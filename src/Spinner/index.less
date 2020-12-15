@@ -1,0 +1,27 @@
+@import '../assets/styles/var.less';
+
+.@{prefix-name} {
+  &-spinner {
+    font-size: 0;
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+    svg {
+      font-size: 24px;
+      animation: deepRound 1s infinite linear;
+    }
+    &-info {
+      font-size: 14px;
+      padding-top: 3px;
+    }
+  }
+}
+
+@keyframes deepRound {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,95 @@
+.r-zc-button {
+  box-sizing: border-box;
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  cursor: pointer;
+  outline: none;
+  border: 0;
+  background-color: transparent;
+}
+.r-zc-button:not(:last-child) {
+  margin-right: 4px;
+}
+.r-zc-button:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0);
+}
+.r-zc-button:active:not(.r-zc-disabled):before {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.r-zc-button-info {
+  pointer-events: none;
+  user-select: none;
+}
+.r-zc-button-primary {
+  background-color: #4569d4;
+  color: #fff;
+}
+.r-zc-button-warning {
+  background-color: #f50;
+  color: #fff;
+}
+.r-zc-button-danger {
+  background-color: #f50f50;
+  color: #fff;
+}
+.r-zc-button-default {
+  background-color: #858585;
+  color: #fff;
+}
+.r-zc-button-plain-primary {
+  color: #4569d4;
+  border: 1px solid #4569d4;
+}
+.r-zc-button-plain-warning {
+  color: #f50;
+  border: 1px solid #f50;
+}
+.r-zc-button-plain-danger {
+  color: #f50f50;
+  border: 1px solid #f50f50;
+}
+.r-zc-button-plain-default {
+  color: #858585;
+  border: 1px solid #858585;
+}
+.r-zc-button-normal {
+  padding: 6px 12px;
+  font-size: 14px;
+}
+.r-zc-button-normal svg {
+  font-size: 14px;
+}
+.r-zc-button-large {
+  padding: 12px 24px;
+  font-size: 16px;
+}
+.r-zc-button-large svg {
+  font-size: 16px;
+}
+.r-zc-button-small {
+  padding: 2px 4px;
+  font-size: 12px;
+}
+.r-zc-button-small svg {
+  font-size: 12px;
+}
+.r-zc-button-block {
+  width: 100%;
+  text-align: center;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+.r-zc-button-disabled {
+  cursor: not-allowed;
+  user-select: none;
+  background-color: #f5f5f5;
+  border: 1px solid #d9d9d9;
+  color: rgba(0, 0, 0, 0.2);
+}
