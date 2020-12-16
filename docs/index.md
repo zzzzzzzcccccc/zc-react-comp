@@ -1,6 +1,21 @@
 ## React组件库
 
-### [Button/按钮](/zh-CN/component/button)
-### [HighText/字符高亮](/zh-CN/component/high-text)
-### [Message/消息](/zh-CN/component/message)
-### [Spinner/加载](/zh-CN/component/spinner)
+### Button
+  
+  * [预览地址](/zh-CN/component/button)
+  * [文档地址](/docs/components/Button.zh-CN.md)
+  
+### HighText
+  
+  * [预览地址](/zh-CN/component/high-text)
+  * [文档地址](/docs/components/HighText.zh-CN.md)
+  
+### Message
+  
+  * [预览地址](/zh-CN/component/message)
+  * [文档地址](/docs/components/Message.zh-CN.md)
+  
+### Spinner
+  
+  * [预览地址](/zh-CN/component/spinner)
+  * [文档地址](/docs/components/Spinner.zh-CN.md)
