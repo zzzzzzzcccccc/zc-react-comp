@@ -38,10 +38,10 @@ const Spinner: FC<SpinnerProps> = ({
     }
   };
   return (
-    <div className={classNames(cssPrefix, className)} style={style}>
+    <span className={classNames(cssPrefix, className)} style={style}>
       {filterSvg()}
       {children && <div className={`${cssPrefix}-info`}>{children}</div>}
-    </div>
+    </span>
   );
 };
 

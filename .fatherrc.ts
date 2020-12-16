@@ -14,7 +14,7 @@ export default {
   // cssModules: true,
   extractCSS: false,
   lessInBabelMode: true,
-  entry: ['src/Spinner/index.tsx', 'src/Button/index.tsx'],
+  // entry: ['src/Spinner/index.tsx', 'src/Button/index.tsx'],
   autoprefixer: {
     browsers: ['ie > 9', 'Safari >= 6'],
   },

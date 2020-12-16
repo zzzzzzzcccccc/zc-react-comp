@@ -3,6 +3,7 @@ interface IVarStyle {
   warningColor: string;
   dangerColor: string;
   defaultColor: string;
+  successColor: string;
 }
 
 const varStyle: IVarStyle = {
@@ -10,6 +11,7 @@ const varStyle: IVarStyle = {
   warningColor: '#f50',
   dangerColor: '#f50f50',
   defaultColor: '#858585',
+  successColor: '#a0d911',
 };
 
 export default varStyle;

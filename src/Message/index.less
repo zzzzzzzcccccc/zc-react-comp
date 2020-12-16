@@ -1,0 +1,105 @@
+@import '../assets/styles/var.less';
+
+.@{prefix-name} {
+  &-message {
+    position: fixed;
+    left: 0;
+    right: 0;
+    background-color: transparent;
+    box-sizing: border-box;
+    pointer-events: none;
+    &-info {
+      width: 100%;
+      background-color: transparent;
+      box-sizing: border-box;
+      &-item {
+        cursor: pointer;
+        text-align: center;
+        width: 90%;
+        margin: 0 auto;
+        background-color: transparent;
+        box-sizing: border-box;
+        &:not(:last-child) {
+          margin-bottom: 12px;
+        }
+        &-content {
+          word-break: break-all;
+          display: inline-block;
+          vertical-align: top;
+          background-color: #fff;
+          box-sizing: border-box;
+          box-shadow: 0 0 10px @shadow-color;
+          padding: 6px 12px;
+          font-size: 14px;
+          pointer-events: auto;
+        }
+      }
+      &-primary {
+        .r-zc-message-info-item-content {
+          background-color: @primary-color;
+          color: #fff;
+        }
+      }
+      &-warning {
+        .r-zc-message-info-item-content {
+          background-color: @warning-color;
+          color: #fff;
+        }
+      }
+      &-danger {
+        .r-zc-message-info-item-content {
+          background-color: @danger-color;
+          color: #fff;
+        }
+      }
+      &-success {
+        .r-zc-message-info-item-content {
+          background-color: @success-color;
+          color: #fff;
+        }
+      }
+      &-default {
+        .r-zc-message-info-item-content {
+          background-color: @default-color;
+          color: #fff;
+        }
+      }
+
+      &-plain-primary {
+        .r-zc-message-info-item-content {
+          background-color: #fff;
+          color: @primary-color;
+          border: 1px solid @primary-color;
+        }
+      }
+      &-plain-warning {
+        .r-zc-message-info-item-content {
+          background-color: #fff;
+          color: @warning-color;
+          border: 1px solid @warning-color;
+        }
+      }
+      &-plain-danger {
+        .r-zc-message-info-item-content {
+          background-color: #fff;
+          color: @danger-color;
+          border: 1px solid @danger-color;
+        }
+      }
+      &-plain-success {
+        .r-zc-message-info-item-content {
+          background-color: #fff;
+          color: @success-color;
+          border: 1px solid @success-color;
+        }
+      }
+      &-plain-default {
+        .r-zc-message-info-item-content {
+          background-color: #fff;
+          color: @default-color;
+          border: 1px solid @default-color;
+        }
+      }
+    }
+  }
+}

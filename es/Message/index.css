@@ -1,0 +1,80 @@
+.r-zc-message {
+  position: fixed;
+  left: 0;
+  right: 0;
+  background-color: transparent;
+  box-sizing: border-box;
+  pointer-events: none;
+}
+.r-zc-message-info {
+  width: 100%;
+  background-color: transparent;
+  box-sizing: border-box;
+}
+.r-zc-message-info-item {
+  cursor: pointer;
+  text-align: center;
+  width: 90%;
+  margin: 0 auto;
+  background-color: transparent;
+  box-sizing: border-box;
+}
+.r-zc-message-info-item:not(:last-child) {
+  margin-bottom: 12px;
+}
+.r-zc-message-info-item-content {
+  word-break: break-all;
+  display: inline-block;
+  vertical-align: top;
+  background-color: #fff;
+  box-sizing: border-box;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.17);
+  padding: 6px 12px;
+  font-size: 14px;
+  pointer-events: auto;
+}
+.r-zc-message-info-primary .r-zc-message-info-item-content {
+  background-color: #4569d4;
+  color: #fff;
+}
+.r-zc-message-info-warning .r-zc-message-info-item-content {
+  background-color: #f50;
+  color: #fff;
+}
+.r-zc-message-info-danger .r-zc-message-info-item-content {
+  background-color: #f50f50;
+  color: #fff;
+}
+.r-zc-message-info-success .r-zc-message-info-item-content {
+  background-color: #a0d911;
+  color: #fff;
+}
+.r-zc-message-info-default .r-zc-message-info-item-content {
+  background-color: #858585;
+  color: #fff;
+}
+.r-zc-message-info-plain-primary .r-zc-message-info-item-content {
+  background-color: #fff;
+  color: #4569d4;
+  border: 1px solid #4569d4;
+}
+.r-zc-message-info-plain-warning .r-zc-message-info-item-content {
+  background-color: #fff;
+  color: #f50;
+  border: 1px solid #f50;
+}
+.r-zc-message-info-plain-danger .r-zc-message-info-item-content {
+  background-color: #fff;
+  color: #f50f50;
+  border: 1px solid #f50f50;
+}
+.r-zc-message-info-plain-success .r-zc-message-info-item-content {
+  background-color: #fff;
+  color: #a0d911;
+  border: 1px solid #a0d911;
+}
+.r-zc-message-info-plain-default .r-zc-message-info-item-content {
+  background-color: #fff;
+  color: #858585;
+  border: 1px solid #858585;
+}

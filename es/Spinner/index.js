@@ -39,7 +39,7 @@ var Spinner = function Spinner(_ref) {
     }
   };
 
-  return /*#__PURE__*/React.createElement("div", {
+  return /*#__PURE__*/React.createElement("span", {
     className: classNames(cssPrefix, className),
     style: style
   }, filterSvg(), children && /*#__PURE__*/React.createElement("div", {

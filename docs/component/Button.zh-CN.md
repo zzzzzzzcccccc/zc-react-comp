@@ -27,6 +27,15 @@ import { Button } from 'zc-react-comp';
 export default () => <Button type="danger">Danger Button</Button>;
 ```
 
+### Success
+
+```tsx
+import React from 'react';
+import { Button } from 'zc-react-comp';
+
+export default () => <Button type="success">Success Button</Button>;
+```
+
 ### Default
 
 ```tsx

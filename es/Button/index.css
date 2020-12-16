@@ -43,6 +43,10 @@
   background-color: #858585;
   color: #fff;
 }
+.r-zc-button-success {
+  background-color: #a0d911;
+  color: #fff;
+}
 .r-zc-button-plain-primary {
   color: #4569d4;
   border: 1px solid #4569d4;
@@ -58,6 +62,10 @@
 .r-zc-button-plain-default {
   color: #858585;
   border: 1px solid #858585;
+}
+.r-zc-button-plain-success {
+  color: #a0d911;
+  border: 1px solid #a0d911;
 }
 .r-zc-button-normal {
   padding: 6px 12px;

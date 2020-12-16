@@ -37,9 +37,7 @@ const Button: FC<ButtonProps> = ({
     onClick={loading || disabled ? undefined : onClick}
     disabled={disabled}
   >
-    {loading && (
-      <Spinner color="#fff" style={{ marginRight: 4 }} />
-    )}
+    {loading && <Spinner color="#fff" style={{ marginRight: 4 }} />}
     <span className={`${cssPrefix}-info`}>{children}</span>
   </button>
 );
