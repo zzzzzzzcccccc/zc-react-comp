@@ -3,6 +3,6 @@ var varStyle = {
   warningColor: '#f50',
   dangerColor: '#f50f50',
   defaultColor: '#858585',
-  successColor: '#a0d911'
+  successColor: '#a0d911',
 };
 export default varStyle;

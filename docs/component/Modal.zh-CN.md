@@ -11,13 +11,16 @@ export default () => {
   return (
     <>
       <Button onClick={() => setVisible(true)}>Show Modal</Button>
-      <Modal title="Title" visible={visible} onClose={() => setVisible(false)} onOk={() => Message.show('Ok!')}>
-         <div style={{ padding: '20px' }}>
-            Show Modal
-         </div>
+      <Modal
+        title="Title"
+        visible={visible}
+        onClose={() => setVisible(false)}
+        onOk={() => Message.show('Ok!')}
+      >
+        <div style={{ padding: '20px' }}>Show Modal</div>
       </Modal>
     </>
-  )
+  );
 };
 ```
 
@@ -29,20 +32,31 @@ import { Modal, Button, Message } from 'zc-react-comp';
 
 export default () => {
   const [visible, setVisible] = useState(false);
-  const [loading, setLoading] = useState(false); 
+  const [loading, setLoading] = useState(false);
   return (
     <>
       <Button onClick={() => setVisible(true)}>Show Modal</Button>
-      <Modal title="Title" visible={visible} onClose={() => setVisible(false)} okText="设置加载" onOk={() => setLoading(!loading)} loading={loading}>
-         <div style={{ padding: '20px' }}>
-             <Button onClick={() => {
-                setLoading(false);
-                setVisible(false);
-             }}>Close Loading</Button>
-         </div>
+      <Modal
+        title="Title"
+        visible={visible}
+        onClose={() => setVisible(false)}
+        okText="设置加载"
+        onOk={() => setLoading(!loading)}
+        loading={loading}
+      >
+        <div style={{ padding: '20px' }}>
+          <Button
+            onClick={() => {
+              setLoading(false);
+              setVisible(false);
+            }}
+          >
+            Close Loading
+          </Button>
+        </div>
       </Modal>
     </>
-  )
+  );
 };
 ```
 
