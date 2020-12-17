@@ -29,3 +29,8 @@
 
 - [预览地址](/zh-CN/component/confirm-modal)
 - [文档地址](/docs/component/ConfirmModal.zh-CN.md)
+
+### Modal 弹窗
+
+- [预览地址](/zh-CN/component/modal)
+- [文档地址](/docs/component/Modal.zh-CN.md)
