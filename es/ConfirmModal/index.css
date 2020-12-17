@@ -1,0 +1,26 @@
+.r-zc-confirm-modal {
+  position: fixed;
+  left: 50%;
+  box-sizing: border-box;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.17);
+}
+.r-zc-confirm-modal-title {
+  box-sizing: border-box;
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
+  padding-top: 24px;
+}
+.r-zc-confirm-modal-content {
+  box-sizing: border-box;
+  text-align: center;
+  font-size: 14px;
+  word-break: break-all;
+  padding: 12px 24px;
+}
+.r-zc-confirm-modal-footer {
+  box-sizing: border-box;
+  text-align: center;
+  padding-bottom: 12px;
+}
