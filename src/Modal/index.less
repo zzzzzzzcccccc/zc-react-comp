@@ -1,0 +1,61 @@
+@import "../assets/styles/var.less";
+
+.@{prefix-name}{
+  &-modal{
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    outline: 0;
+    overflow: auto;
+    box-sizing: border-box;
+    background-color: transparent;
+    &-info{
+      position: absolute;
+      left: 50%;
+      background-color: #fff;
+      box-shadow: 0 0 10px @shadow-color;
+    }
+    &-title{
+      width: 100%;
+      position: relative;
+      background-color: @gray-bg-color;
+      padding: 16px 24px;
+      box-sizing: border-box;
+      border-bottom: 1px solid @gray-border-color;
+      &-info{
+        width: 100%;
+        font-weight: 500;
+        font-size: 16px;
+        box-sizing: border-box;
+        padding-right: 30px;
+        word-break: break-all;
+      }
+      &-close{
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+        text-align: center;
+        line-height: 50px;
+        right: 0;
+        top: 0;
+        font-size: 30px;
+        font-weight: normal;
+        box-sizing: border-box;
+        color: @default-color;
+      }
+    }
+    &-body{
+      width: 100%;
+      box-sizing: border-box;
+    }
+    &-footer{
+      box-sizing: border-box;
+      width: 100%;
+      padding: 10px 16px;
+      border-top: 1px solid @gray-border-color;
+    }
+  }
+}

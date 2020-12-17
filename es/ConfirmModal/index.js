@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import Mask from '../Mask';
 import Button from '../Button';
 import "./index.css";
-import { toggleBodyOverflow } from '@/utils';
+import { toggleBodyOverflow } from '../utils';
 var cssPrefix = 'r-zc-confirm-modal';
 
 var Modal = function Modal(_ref) {

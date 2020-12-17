@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import Mask from '../Mask';
 import Button from '../Button';
 import './index.less';
-import { toggleBodyOverflow } from '@/utils';
+import { toggleBodyOverflow } from '../utils';
 
 interface ConfirmModalProps {
   zIndex?: number;
