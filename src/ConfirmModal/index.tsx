@@ -1,10 +1,12 @@
 import React, { FC, useEffect } from 'react';
 import classNames from 'classnames';
-import ReactDOM from 'react-dom';
+import { CSSTransition } from 'react-transition-group'
+import ReactDOM  from 'react-dom';
 import Mask from '../Mask';
 import Button from '../Button';
 import './index.less';
 import { toggleBodyOverflow } from '../utils';
+import varStyle from '../assets/styles/varStyle';
 
 interface ConfirmModalProps {
   zIndex?: number;
@@ -23,7 +25,7 @@ interface ConfirmModalProps {
 
 const cssPrefix: string = 'r-zc-confirm-modal';
 const Modal: FC<ConfirmModalProps> = ({
-  zIndex = 1024,
+  zIndex = varStyle.modalZIndex,
   top = '20%',
   width = 360,
   title = '提示',
@@ -46,31 +48,33 @@ const Modal: FC<ConfirmModalProps> = ({
   return (
     <>
       <Mask style={{ zIndex }} />
-      <div
-        className={classNames(cssPrefix, className)}
-        style={{
-          ...style,
-          zIndex,
-          width: `${width}px`,
-          marginLeft: `${(width / 2) * -1}px`,
-          top,
-        }}
-      >
-        <div className={`${cssPrefix}-title`}>{title}</div>
-        <div className={`${cssPrefix}-content`}>{content}</div>
-        <div className={`${cssPrefix}-footer`}>
-          {cancelText && (
-            <Button type="default" onClick={onCancel} size={buttonSize}>
-              {cancelText}
-            </Button>
-          )}
-          {okText && (
-            <Button onClick={onOk} size={buttonSize}>
-              {okText}
-            </Button>
-          )}
+      <CSSTransition in timeout={400} classNames="z-modal" appear>
+        <div
+          className={classNames(cssPrefix, className)}
+          style={{
+            ...style,
+            zIndex,
+            width: `${width}px`,
+            marginLeft: `${(width / 2) * -1}px`,
+            top,
+          }}
+        >
+          <div className={`${cssPrefix}-title`}>{title}</div>
+          <div className={`${cssPrefix}-content`}>{content}</div>
+          <div className={`${cssPrefix}-footer`}>
+            {cancelText && (
+              <Button type="default" onClick={onCancel} size={buttonSize}>
+                {cancelText}
+              </Button>
+            )}
+            {okText && (
+              <Button onClick={onOk} size={buttonSize}>
+                {okText}
+              </Button>
+            )}
+          </div>
         </div>
-      </div>
+      </CSSTransition>
     </>
   );
 };

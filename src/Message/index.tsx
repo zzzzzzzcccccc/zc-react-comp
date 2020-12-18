@@ -2,6 +2,7 @@ import React, { FC, useEffect, useState } from 'react';
 import classNames from 'classnames';
 import ReactDOM from 'react-dom';
 import './index.less';
+import varStyle from '../assets/styles/varStyle';
 
 interface MessageCompProps {
   className?: string;
@@ -30,7 +31,7 @@ interface IMessage {
 const cssPrefix: string = 'r-zc-message';
 const MessageComp: FC<MessageCompProps> = ({
   top = '8px',
-  zIndex = 1024,
+  zIndex = varStyle.messageZIndex,
   list,
   onEnd,
 }) => {

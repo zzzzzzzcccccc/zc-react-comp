@@ -4,6 +4,8 @@ interface IVarStyle {
   dangerColor: string;
   defaultColor: string;
   successColor: string;
+  messageZIndex: number;
+  modalZIndex: number;
 }
 
 const varStyle: IVarStyle = {
@@ -12,6 +14,8 @@ const varStyle: IVarStyle = {
   dangerColor: '#f50f50',
   defaultColor: '#858585',
   successColor: '#a0d911',
+  messageZIndex: 1024,
+  modalZIndex: 1000,
 };
 
 export default varStyle;

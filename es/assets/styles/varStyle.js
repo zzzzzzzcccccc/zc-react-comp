@@ -4,5 +4,7 @@ var varStyle = {
   dangerColor: '#f50f50',
   defaultColor: '#858585',
   successColor: '#a0d911',
+  messageZIndex: 1024,
+  modalZIndex: 1000
 };
 export default varStyle;
