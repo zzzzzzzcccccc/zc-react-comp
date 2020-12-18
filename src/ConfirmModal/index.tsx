@@ -1,7 +1,7 @@
 import React, { FC, useEffect } from 'react';
 import classNames from 'classnames';
-import { CSSTransition } from 'react-transition-group'
-import ReactDOM  from 'react-dom';
+import { CSSTransition } from 'react-transition-group';
+import ReactDOM from 'react-dom';
 import Mask from '../Mask';
 import Button from '../Button';
 import './index.less';

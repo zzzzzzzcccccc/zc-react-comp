@@ -1,6 +1,6 @@
 import React, { FC, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { CSSTransition } from 'react-transition-group'
+import { CSSTransition } from 'react-transition-group';
 import classNames from 'classnames';
 import Mask from '../Mask';
 import Button from '../Button';
@@ -37,7 +37,7 @@ const Modal: FC<ModalProps> = ({
   width = 600,
   top = '50px',
   title,
-  destroyOnClose=true,
+  destroyOnClose = true,
   children,
   footer,
   okText = '确认',
@@ -60,7 +60,9 @@ const Modal: FC<ModalProps> = ({
         style={{ display: visible ? 'block' : 'none', zIndex }}
       >
         <CSSTransition timeout={400} in={visible} classNames="z-modal">
-          {destroyOnClose && !visible ? <div /> : (
+          {destroyOnClose && !visible ? (
+            <div />
+          ) : (
             <div
               className={classNames(`${cssPrefix}-info`, className)}
               style={{
@@ -88,12 +90,18 @@ const Modal: FC<ModalProps> = ({
                   style={{ textAlign: footerAlign }}
                 >
                   {cancelText && (
-                    <Button type="default" onClick={() => !loading && onClose()}>
+                    <Button
+                      type="default"
+                      onClick={() => !loading && onClose()}
+                    >
                       {cancelText}
                     </Button>
                   )}
                   {okText && (
-                    <Button onClick={() => !loading && onOk()} loading={loading}>
+                    <Button
+                      onClick={() => !loading && onOk()}
+                      loading={loading}
+                    >
                       {okText}
                     </Button>
                   )}

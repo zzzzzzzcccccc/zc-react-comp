@@ -1,4 +1,4 @@
 var config = {
-  cssPrefix: 'r-zc-table'
+  cssPrefix: 'r-zc-table',
 };
 export default config;
