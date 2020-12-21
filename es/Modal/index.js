@@ -67,6 +67,7 @@ var Modal = function Modal(_ref) {
             timeout: 400,
             in: visible,
             classNames: 'z-modal',
+            appear: true,
           },
           destroyOnClose && !visible
             ? /*#__PURE__*/ React.createElement('div', null)

@@ -72,6 +72,7 @@ export default () => {
     <>
       <Button onClick={() => setVisible(true)}>Show Modal</Button>
       <Modal
+        destroyOnClose
         title="Title"
         width={1000}
         visible={visible}

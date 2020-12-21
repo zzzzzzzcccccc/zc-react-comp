@@ -1,0 +1,75 @@
+@import '../assets/styles/var.less';
+
+.@{prefix-name} {
+  &-dot-status {
+    box-sizing: border-box;
+    font-size: 14px;
+    position: relative;
+    padding-left: 10px;
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      left: 0;
+      top: 50%;
+      border-radius: 50%;
+      margin-top: -3px;
+    }
+    &:before {
+      animation: statusAnimate 1.3s infinite ease-in-out;
+    }
+  }
+  &-dot-status-primary {
+    &:after {
+      background-color: @primary-color;
+    }
+    &:before {
+      background-color: @primary-color;
+    }
+  }
+  &-dot-status-warning {
+    &:after {
+      background-color: @warning-color;
+    }
+    &:before {
+      background-color: @warning-color;
+    }
+  }
+  &-dot-status-danger {
+    &:after {
+      background-color: @danger-color;
+    }
+    &:before {
+      background-color: @danger-color;
+    }
+  }
+  &-dot-status-default {
+    &:after {
+      background-color: @default-color;
+    }
+    &:before {
+      background-color: @default-color;
+    }
+  }
+  &-dot-status-success {
+    &:after {
+      background-color: @success-color;
+    }
+    &:before {
+      background-color: @success-color;
+    }
+  }
+}
+
+@keyframes statusAnimate {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}

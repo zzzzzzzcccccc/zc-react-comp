@@ -1,0 +1,60 @@
+.r-zc-dot-status {
+  box-sizing: border-box;
+  font-size: 14px;
+  position: relative;
+  padding-left: 10px;
+}
+.r-zc-dot-status:before,
+.r-zc-dot-status:after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  left: 0;
+  top: 50%;
+  border-radius: 50%;
+  margin-top: -3px;
+}
+.r-zc-dot-status:before {
+  animation: statusAnimate 1.3s infinite ease-in-out;
+}
+.r-zc-dot-status-primary:after {
+  background-color: #4569d4;
+}
+.r-zc-dot-status-primary:before {
+  background-color: #4569d4;
+}
+.r-zc-dot-status-warning:after {
+  background-color: #f50;
+}
+.r-zc-dot-status-warning:before {
+  background-color: #f50;
+}
+.r-zc-dot-status-danger:after {
+  background-color: #f50f50;
+}
+.r-zc-dot-status-danger:before {
+  background-color: #f50f50;
+}
+.r-zc-dot-status-default:after {
+  background-color: #858585;
+}
+.r-zc-dot-status-default:before {
+  background-color: #858585;
+}
+.r-zc-dot-status-success:after {
+  background-color: #a0d911;
+}
+.r-zc-dot-status-success:before {
+  background-color: #a0d911;
+}
+@keyframes statusAnimate {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}

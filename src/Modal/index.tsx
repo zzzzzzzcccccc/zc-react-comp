@@ -59,7 +59,7 @@ const Modal: FC<ModalProps> = ({
         className={classNames(cssPrefix)}
         style={{ display: visible ? 'block' : 'none', zIndex }}
       >
-        <CSSTransition timeout={400} in={visible} classNames="z-modal">
+        <CSSTransition timeout={400} in={visible} classNames="z-modal" appear>
           {destroyOnClose && !visible ? (
             <div />
           ) : (

@@ -1,0 +1,46 @@
+.r-zc-subtitle {
+  box-sizing: border-box;
+}
+.r-zc-subtitle-info {
+  box-sizing: border-box;
+  word-break: break-all;
+  font-size: 16px;
+  position: relative;
+}
+.r-zc-subtitle-line {
+  padding-left: 8px;
+}
+.r-zc-subtitle-line:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 2px;
+  bottom: 2px;
+  background-color: #4569d4;
+  width: 4px;
+  border-radius: 2px;
+}
+.r-zc-subtitle-point {
+  padding-left: 14px;
+}
+.r-zc-subtitle-point:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  background-color: #4569d4;
+  border-radius: 50%;
+  top: 50%;
+  margin-top: -4px;
+}
+.r-zc-subtitle-border {
+  box-sizing: border-box;
+  border-bottom: 1px solid #e8e8e8;
+  padding-top: 3px;
+}
+.r-zc-subtitle-shadow {
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.17);
+  padding-top: 1px;
+  padding-bottom: 1px;
+}

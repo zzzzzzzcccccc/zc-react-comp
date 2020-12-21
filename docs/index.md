@@ -34,3 +34,13 @@
 
 - [预览地址](/zh-CN/component/modal)
 - [文档地址](/docs/component/Modal.zh-CN.md)
+
+### SubTitle 副标题
+
+- [预览地址](/zh-CN/component/sub-title)
+- [文档地址](/docs/component/SubTitle.zh-CN.md)
+
+### DotStatus 状态标记
+
+- [预览地址](/zh-CN/component/dot-status)
+- [文档地址](/docs/component/DotStatus.zh-CN.md)
