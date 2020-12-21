@@ -1,3 +1,4 @@
+## 文档
 ### Button 按钮
 
 - [预览地址](/zh-CN/component/button)
