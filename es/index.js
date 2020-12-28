@@ -9,3 +9,4 @@ export { default as SubTitle } from './SubTitle';
 export { default as DotStatus } from './DotStatus';
 export { default as SelectBox } from './SelectBox';
 export { default as SelectBoxItem } from './SelectBox/SelectBoxItem';
+export { default as Tag } from './Tag';

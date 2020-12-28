@@ -1,0 +1,70 @@
+.r-zc-tag {
+  display: inline-block;
+  vertical-align: top;
+  box-sizing: border-box;
+}
+.r-zc-tag:not(:last-child) {
+  margin-right: 4px;
+}
+.r-zc-tag-primary {
+  background-color: #4569d4;
+  color: #fff;
+  border: 1px solid #4569d4;
+}
+.r-zc-tag-warning {
+  background-color: #ff9010;
+  color: #fff;
+  border: 1px solid #ff9010;
+}
+.r-zc-tag-danger {
+  background-color: #f50f50;
+  color: #fff;
+  border: 1px solid #f50f50;
+}
+.r-zc-tag-default {
+  background-color: #858585;
+  color: #fff;
+  border: 1px solid #858585;
+}
+.r-zc-tag-success {
+  background-color: #1bd91e;
+  color: #fff;
+  border: 1px solid #1bd91e;
+}
+.r-zc-tag-plain-primary {
+  border: 1px solid #4569d4;
+  color: #4569d4;
+}
+.r-zc-tag-plain-warning {
+  border: 1px solid #ff9010;
+  color: #ff9010;
+}
+.r-zc-tag-plain-danger {
+  border: 1px solid #f50f50;
+  color: #f50f50;
+}
+.r-zc-tag-plain-default {
+  border: 1px solid #858585;
+  color: #858585;
+}
+.r-zc-tag-plain-success {
+  border: 1px solid #1bd91e;
+  color: #1bd91e;
+}
+.r-zc-tag-normal {
+  font-size: 14px;
+  padding: 3px 6px;
+}
+.r-zc-tag-large {
+  font-size: 16px;
+  padding: 4px 8px;
+}
+.r-zc-tag-small {
+  font-size: 12px;
+  padding: 2px 4px;
+}
+.r-zc-tag-close {
+  padding-left: 2px;
+  cursor: pointer;
+  user-select: none;
+}

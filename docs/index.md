@@ -49,3 +49,8 @@
 
 - [预览地址](/zh-CN/component/select-box)
 - [文档地址](/docs/component/SelectBox.zh-CN.md)
+
+### Tag 标签
+
+- [预览地址](/zh-CN/component/tag)
+- [文档地址](/docs/component/tag.zh-CN.md)
