@@ -38,7 +38,7 @@
   color: #fff;
 }
 .r-zc-message-info-warning .r-zc-message-info-item-content {
-  background-color: #f50;
+  background-color: #ff9010;
   color: #fff;
 }
 .r-zc-message-info-danger .r-zc-message-info-item-content {
@@ -46,7 +46,7 @@
   color: #fff;
 }
 .r-zc-message-info-success .r-zc-message-info-item-content {
-  background-color: #a0d911;
+  background-color: #1bd91e;
   color: #fff;
 }
 .r-zc-message-info-default .r-zc-message-info-item-content {
@@ -60,8 +60,8 @@
 }
 .r-zc-message-info-plain-warning .r-zc-message-info-item-content {
   background-color: #fff;
-  color: #f50;
-  border: 1px solid #f50;
+  color: #ff9010;
+  border: 1px solid #ff9010;
 }
 .r-zc-message-info-plain-danger .r-zc-message-info-item-content {
   background-color: #fff;
@@ -70,8 +70,8 @@
 }
 .r-zc-message-info-plain-success .r-zc-message-info-item-content {
   background-color: #fff;
-  color: #a0d911;
-  border: 1px solid #a0d911;
+  color: #1bd91e;
+  border: 1px solid #1bd91e;
 }
 .r-zc-message-info-plain-default .r-zc-message-info-item-content {
   background-color: #fff;

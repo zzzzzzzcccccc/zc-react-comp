@@ -7,3 +7,4 @@ export { default as ConfirmModal } from './ConfirmModal';
 export { default as Modal } from './Modal';
 export { default as SubTitle } from './SubTitle';
 export { default as DotStatus } from './DotStatus';
+export { default as SelectBox } from './SelectBox';

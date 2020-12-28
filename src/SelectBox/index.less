@@ -1,0 +1,93 @@
+@import '../assets/styles/var.less';
+
+.@{prefix-name} {
+  &-select-box {
+    box-sizing: border-box;
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    &-item {
+      display: inline-block;
+      vertical-align: top;
+      box-sizing: border-box;
+      position: relative;
+      cursor: pointer;
+      border: 1px solid transparent;
+      &:hover:not(.@{prefix-name}-select-box-item-disabled) {
+        border-color: @primary-color;
+      }
+      &:not(:last-child) {
+        margin-right: 4px;
+      }
+      &-info {
+        word-break: break-all;
+        user-select: none;
+      }
+      &-ok {
+        width: 0;
+        height: 0;
+        border-top: 20px solid @primary-color;
+        border-left: 20px solid transparent;
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+      &-svg {
+        position: absolute;
+        right: 0;
+        top: 0;
+        font-size: 12px;
+      }
+    }
+    &-item-active {
+      border-color: @primary-color;
+      .r-zc-select-box-item-info {
+        color: @primary-color;
+      }
+    }
+    &-item-disabled {
+      cursor: not-allowed;
+      user-select: none;
+      background-color: @disabled-bg-color;
+      border: 1px solid @disabled-border-color;
+      color: @disabled-font-color;
+      &:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        box-sizing: border-box;
+        display: block;
+        background-color: transparent;
+      }
+    }
+    &-disabled {
+      cursor: not-allowed;
+      user-select: none;
+      background-color: @disabled-bg-color;
+      border: 1px solid @disabled-border-color;
+      color: @disabled-font-color;
+      &:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        box-sizing: border-box;
+        display: block;
+        background-color: transparent;
+      }
+    }
+  }
+  &-select-box-normal {
+    .r-zc-select-box-item {
+      padding: 4px 12px;
+    }
+    .r-zc-select-box-item-info {
+      font-size: 14px;
+    }
+  }
+}

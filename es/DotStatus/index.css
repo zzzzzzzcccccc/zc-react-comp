@@ -25,10 +25,10 @@
   background-color: #4569d4;
 }
 .r-zc-dot-status-warning:after {
-  background-color: #f50;
+  background-color: #ff9010;
 }
 .r-zc-dot-status-warning:before {
-  background-color: #f50;
+  background-color: #ff9010;
 }
 .r-zc-dot-status-danger:after {
   background-color: #f50f50;
@@ -43,10 +43,10 @@
   background-color: #858585;
 }
 .r-zc-dot-status-success:after {
-  background-color: #a0d911;
+  background-color: #1bd91e;
 }
 .r-zc-dot-status-success:before {
-  background-color: #a0d911;
+  background-color: #1bd91e;
 }
 @keyframes statusAnimate {
   0% {

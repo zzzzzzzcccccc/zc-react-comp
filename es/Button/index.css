@@ -21,7 +21,7 @@
   bottom: 0;
   background-color: rgba(0, 0, 0, 0);
 }
-.r-zc-button:active:not(.r-zc-disabled):before {
+.r-zc-button:active:not(.r-zc-button-disabled):before {
   background-color: rgba(0, 0, 0, 0.2);
 }
 .r-zc-button-info {
@@ -33,7 +33,7 @@
   color: #fff;
 }
 .r-zc-button-warning {
-  background-color: #f50;
+  background-color: #ff9010;
   color: #fff;
 }
 .r-zc-button-danger {
@@ -45,7 +45,7 @@
   color: #fff;
 }
 .r-zc-button-success {
-  background-color: #a0d911;
+  background-color: #1bd91e;
   color: #fff;
 }
 .r-zc-button-plain-primary {
@@ -53,8 +53,8 @@
   border: 1px solid #4569d4;
 }
 .r-zc-button-plain-warning {
-  color: #f50;
-  border: 1px solid #f50;
+  color: #ff9010;
+  border: 1px solid #ff9010;
 }
 .r-zc-button-plain-danger {
   color: #f50f50;
@@ -65,8 +65,8 @@
   border: 1px solid #858585;
 }
 .r-zc-button-plain-success {
-  color: #a0d911;
-  border: 1px solid #a0d911;
+  color: #1bd91e;
+  border: 1px solid #1bd91e;
 }
 .r-zc-button-normal {
   padding: 6px 12px;

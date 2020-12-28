@@ -1,4 +1,5 @@
 ## 文档
+
 ### Button 按钮
 
 - [预览地址](/zh-CN/component/button)
@@ -43,3 +44,8 @@
 
 - [预览地址](/zh-CN/component/dot-status)
 - [文档地址](/docs/component/DotStatus.zh-CN.md)
+
+### SelectBox 单选、多选
+
+- [预览地址](/zh-CN/component/select-box)
+- [文档地址](/docs/component/SelectBox.zh-CN.md)
