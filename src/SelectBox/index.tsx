@@ -1,6 +1,5 @@
 import React from 'react';
 import SelectBox from './SelectBox';
-import SelectBoxItem from './SelectBoxItem';
 
 export interface SelectBoxBaseProps {
   className?: string;
@@ -21,7 +20,5 @@ export interface SelectBoxItemProps extends SelectBoxBaseProps {
   onClick?: (value: any, e: React.MouseEvent) => void;
   updateActualValue?: (val: any) => void;
 }
-
-SelectBox['Item'] = SelectBoxItem;
 
 export default SelectBox;

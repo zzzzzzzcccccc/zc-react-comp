@@ -4,15 +4,15 @@
 
 ```tsx
 import React from 'react';
-import { SelectBox } from 'zc-react-comp';
+import { SelectBox, SelectBoxItem } from 'zc-react-comp';
 
 export default () => (
   <SelectBox>
-    <SelectBox.Item value={'A'}>选项A</SelectBox.Item>
-    <SelectBox.Item value={'B'}>选项B</SelectBox.Item>
-    <SelectBox.Item value={'C'}>选项C</SelectBox.Item>
-    <SelectBox.Item value={'D'}>选项D</SelectBox.Item>
-    <SelectBox.Item value={'E'}>选项E</SelectBox.Item>
+    <SelectBoxItem value={'A'}>选项A</SelectBoxItem>
+    <SelectBoxItem value={'B'}>选项B</SelectBoxItem>
+    <SelectBoxItem value={'C'}>选项C</SelectBoxItem>
+    <SelectBoxItem value={'D'}>选项D</SelectBoxItem>
+    <SelectBoxItem value={'E'}>选项E</SelectBoxItem>
   </SelectBox>
 );
 ```
@@ -21,15 +21,15 @@ export default () => (
 
 ```tsx
 import React from 'react';
-import { SelectBox } from 'zc-react-comp';
+import { SelectBox, SelectBoxItem } from 'zc-react-comp';
 
 export default () => (
   <SelectBox disabled>
-    <SelectBox.Item value={'A'}>选项A</SelectBox.Item>
-    <SelectBox.Item value={'B'}>选项B</SelectBox.Item>
-    <SelectBox.Item value={'C'}>选项C</SelectBox.Item>
-    <SelectBox.Item value={'D'}>选项D</SelectBox.Item>
-    <SelectBox.Item value={'E'}>选项E</SelectBox.Item>
+    <SelectBoxItem value={'A'}>选项A</SelectBoxItem>
+    <SelectBoxItem value={'B'}>选项B</SelectBoxItem>
+    <SelectBoxItem value={'C'}>选项C</SelectBoxItem>
+    <SelectBoxItem value={'D'}>选项D</SelectBoxItem>
+    <SelectBoxItem value={'E'}>选项E</SelectBoxItem>
   </SelectBox>
 );
 ```
@@ -38,19 +38,19 @@ export default () => (
 
 ```tsx
 import React from 'react';
-import { SelectBox } from 'zc-react-comp';
+import { SelectBox, SelectBoxItem } from 'zc-react-comp';
 
 export default () => (
   <SelectBox>
-    <SelectBox.Item value={'A'} disabled>
+    <SelectBoxItem value={'A'} disabled>
       选项A
-    </SelectBox.Item>
-    <SelectBox.Item value={'B'}>选项B</SelectBox.Item>
-    <SelectBox.Item value={'C'}>选项C</SelectBox.Item>
-    <SelectBox.Item value={'D'} disabled>
+    </SelectBoxItem>
+    <SelectBoxItem value={'B'}>选项B</SelectBoxItem>
+    <SelectBoxItem value={'C'}>选项C</SelectBoxItem>
+    <SelectBoxItem value={'D'} disabled>
       选项D
-    </SelectBox.Item>
-    <SelectBox.Item value={'E'}>选项E</SelectBox.Item>
+    </SelectBoxItem>
+    <SelectBoxItem value={'E'}>选项E</SelectBoxItem>
   </SelectBox>
 );
 ```
@@ -59,15 +59,15 @@ export default () => (
 
 ```tsx
 import React from 'react';
-import { SelectBox } from 'zc-react-comp';
+import { SelectBox, SelectBoxItem } from 'zc-react-comp';
 
 export default () => (
   <SelectBox multiple>
-    <SelectBox.Item value={'A'}>选项A</SelectBox.Item>
-    <SelectBox.Item value={'B'}>选项B</SelectBox.Item>
-    <SelectBox.Item value={'C'}>选项C</SelectBox.Item>
-    <SelectBox.Item value={'D'}>选项D</SelectBox.Item>
-    <SelectBox.Item value={'E'}>选项E</SelectBox.Item>
+    <SelectBoxItem value={'A'}>选项A</SelectBoxItem>
+    <SelectBoxItem value={'B'}>选项B</SelectBoxItem>
+    <SelectBoxItem value={'C'}>选项C</SelectBoxItem>
+    <SelectBoxItem value={'D'}>选项D</SelectBoxItem>
+    <SelectBoxItem value={'E'}>选项E</SelectBoxItem>
   </SelectBox>
 );
 ```
@@ -76,7 +76,7 @@ export default () => (
 
 ```tsx
 import React from 'react';
-import { SelectBox } from 'zc-react-comp';
+import { SelectBox, SelectBoxItem } from 'zc-react-comp';
 
 export default () => (
   <SelectBox
@@ -84,11 +84,11 @@ export default () => (
     defaultValue={['A', 'E']}
     onChange={val => console.log(val)}
   >
-    <SelectBox.Item value={'A'}>选项A</SelectBox.Item>
-    <SelectBox.Item value={'B'}>选项B</SelectBox.Item>
-    <SelectBox.Item value={'C'}>选项C</SelectBox.Item>
-    <SelectBox.Item value={'D'}>选项D</SelectBox.Item>
-    <SelectBox.Item value={'E'}>选项E</SelectBox.Item>
+    <SelectBoxItem value={'A'}>选项A</SelectBoxItem>
+    <SelectBoxItem value={'B'}>选项B</SelectBoxItem>
+    <SelectBoxItem value={'C'}>选项C</SelectBoxItem>
+    <SelectBoxItem value={'D'}>选项D</SelectBoxItem>
+    <SelectBoxItem value={'E'}>选项E</SelectBoxItem>
   </SelectBox>
 );
 ```
