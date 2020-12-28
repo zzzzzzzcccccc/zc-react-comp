@@ -24,6 +24,31 @@ export default () => {
 };
 ```
 
+### Moving
+
+```tsx
+import React, { useState } from 'react';
+import { Modal, Button, Message } from 'zc-react-comp';
+
+export default () => {
+  const [visible, setVisible] = useState(false);
+  return (
+    <>
+      <Button onClick={() => setVisible(true)}>Show Modal</Button>
+      <Modal
+        isMove
+        title="Title"
+        visible={visible}
+        onClose={() => setVisible(false)}
+        onOk={() => Message.show('Ok!')}
+      >
+        <div style={{ padding: '20px' }}>Show Modal</div>
+      </Modal>
+    </>
+  );
+};
+```
+
 ### Loading
 
 ```tsx

@@ -25,8 +25,6 @@
 .r-zc-select-box-item-ok {
   width: 0;
   height: 0;
-  border-top: 20px solid #4569d4;
-  border-left: 20px solid transparent;
   position: absolute;
   right: 0;
   top: 0;
@@ -35,7 +33,6 @@
   position: absolute;
   right: 0;
   top: 0;
-  font-size: 12px;
 }
 .r-zc-select-box-item-active {
   border-color: #4569d4;
@@ -84,4 +81,37 @@
 }
 .r-zc-select-box-normal .r-zc-select-box-item-info {
   font-size: 14px;
+}
+.r-zc-select-box-normal .r-zc-select-box-item-ok {
+  border-top: 20px solid #4569d4;
+  border-left: 20px solid transparent;
+}
+.r-zc-select-box-normal .r-zc-select-box-item-svg {
+  font-size: 12px;
+}
+.r-zc-select-box-large .r-zc-select-box-item {
+  padding: 8px 24px;
+}
+.r-zc-select-box-large .r-zc-select-box-item-info {
+  font-size: 16px;
+}
+.r-zc-select-box-large .r-zc-select-box-item-ok {
+  border-top: 22px solid #4569d4;
+  border-left: 22px solid transparent;
+}
+.r-zc-select-box-large .r-zc-select-box-item-svg {
+  font-size: 14px;
+}
+.r-zc-select-box-small .r-zc-select-box-item {
+  padding: 3px 9px;
+}
+.r-zc-select-box-small .r-zc-select-box-item-info {
+  font-size: 12px;
+}
+.r-zc-select-box-small .r-zc-select-box-item-ok {
+  border-top: 18px solid #4569d4;
+  border-left: 18px solid transparent;
+}
+.r-zc-select-box-small .r-zc-select-box-item-svg {
+  font-size: 10px;
 }

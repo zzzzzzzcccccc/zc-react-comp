@@ -17,6 +17,40 @@ export default () => (
 );
 ```
 
+### 小
+
+```tsx
+import React from 'react';
+import { SelectBox, SelectBoxItem } from 'zc-react-comp';
+
+export default () => (
+  <SelectBox size="small">
+    <SelectBoxItem value={'A'}>选项A</SelectBoxItem>
+    <SelectBoxItem value={'B'}>选项B</SelectBoxItem>
+    <SelectBoxItem value={'C'}>选项C</SelectBoxItem>
+    <SelectBoxItem value={'D'}>选项D</SelectBoxItem>
+    <SelectBoxItem value={'E'}>选项E</SelectBoxItem>
+  </SelectBox>
+);
+```
+
+### 大
+
+```tsx
+import React from 'react';
+import { SelectBox, SelectBoxItem } from 'zc-react-comp';
+
+export default () => (
+  <SelectBox size="large">
+    <SelectBoxItem value={'A'}>选项A</SelectBoxItem>
+    <SelectBoxItem value={'B'}>选项B</SelectBoxItem>
+    <SelectBoxItem value={'C'}>选项C</SelectBoxItem>
+    <SelectBoxItem value={'D'}>选项D</SelectBoxItem>
+    <SelectBoxItem value={'E'}>选项E</SelectBoxItem>
+  </SelectBox>
+);
+```
+
 ### 全局禁用
 
 ```tsx

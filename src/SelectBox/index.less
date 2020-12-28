@@ -26,8 +26,6 @@
       &-ok {
         width: 0;
         height: 0;
-        border-top: 20px solid @primary-color;
-        border-left: 20px solid transparent;
         position: absolute;
         right: 0;
         top: 0;
@@ -36,7 +34,6 @@
         position: absolute;
         right: 0;
         top: 0;
-        font-size: 12px;
       }
     }
     &-item-active {
@@ -83,11 +80,48 @@
     }
   }
   &-select-box-normal {
-    .r-zc-select-box-item {
+    .@{prefix-name}-select-box-item {
       padding: 4px 12px;
     }
-    .r-zc-select-box-item-info {
+    .@{prefix-name}-select-box-item-info {
       font-size: 14px;
+    }
+    .@{prefix-name}-select-box-item-ok {
+      border-top: 20px solid @primary-color;
+      border-left: 20px solid transparent;
+    }
+    .@{prefix-name}-select-box-item-svg {
+      font-size: 12px;
+    }
+  }
+  &-select-box-large {
+    .@{prefix-name}-select-box-item {
+      padding: 8px 24px;
+    }
+    .@{prefix-name}-select-box-item-info {
+      font-size: 16px;
+    }
+    .@{prefix-name}-select-box-item-ok {
+      border-top: 22px solid @primary-color;
+      border-left: 22px solid transparent;
+    }
+    .@{prefix-name}-select-box-item-svg {
+      font-size: 14px;
+    }
+  }
+  &-select-box-small {
+    .@{prefix-name}-select-box-item {
+      padding: 3px 9px;
+    }
+    .@{prefix-name}-select-box-item-info {
+      font-size: 12px;
+    }
+    .@{prefix-name}-select-box-item-ok {
+      border-top: 18px solid @primary-color;
+      border-left: 18px solid transparent;
+    }
+    .@{prefix-name}-select-box-item-svg {
+      font-size: 10px;
     }
   }
 }

@@ -34,7 +34,6 @@
 }
 .r-zc-modal-info {
   position: absolute;
-  left: 50%;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.17);
   box-sizing: border-box;
@@ -46,6 +45,7 @@
   padding: 16px 24px;
   box-sizing: border-box;
   border-bottom: 1px solid #e8e8e8;
+  user-select: none;
 }
 .r-zc-modal-title-info {
   width: 100%;
@@ -68,6 +68,9 @@
   font-weight: normal;
   box-sizing: border-box;
   color: #858585;
+}
+.r-zc-modal-title-close:hover {
+  color: #000;
 }
 .r-zc-modal-body {
   width: 100%;

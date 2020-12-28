@@ -14,7 +14,6 @@
     background-color: transparent;
     &-info {
       position: absolute;
-      left: 50%;
       background-color: #fff;
       box-shadow: 0 0 10px @shadow-color;
       box-sizing: border-box;
@@ -26,6 +25,7 @@
       padding: 16px 24px;
       box-sizing: border-box;
       border-bottom: 1px solid @gray-border-color;
+      user-select: none;
       &-info {
         width: 100%;
         font-weight: 500;
@@ -47,6 +47,9 @@
         font-weight: normal;
         box-sizing: border-box;
         color: @default-color;
+        &:hover {
+          color: @hover-close-color;
+        }
       }
     }
     &-body {
