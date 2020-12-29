@@ -49,32 +49,27 @@ var Modal = function Modal(_ref) {
       onClose = _ref.onClose,
       _ref$isMove = _ref.isMove,
       isMove = _ref$isMove === void 0 ? false : _ref$isMove;
-  var wrapperRef = useRef();
+  var wrapperRef = useRef(null);
 
   var _useState = useState(0),
       _useState2 = _slicedToArray(_useState, 2),
-      actualLeft = _useState2[0],
-      setActualLeft = _useState2[1];
+      actualTop = _useState2[0],
+      setActualTop = _useState2[1];
 
   var _useState3 = useState(0),
       _useState4 = _slicedToArray(_useState3, 2),
-      actualTop = _useState4[0],
-      setActualTop = _useState4[1];
+      actualLeft = _useState4[0],
+      setActualLeft = _useState4[1];
 
-  var _useState5 = useState(false),
+  var _useState5 = useState(0),
       _useState6 = _slicedToArray(_useState5, 2),
-      moving = _useState6[0],
-      setMoving = _useState6[1];
+      diffX = _useState6[0],
+      setDiffX = _useState6[1];
 
   var _useState7 = useState(0),
       _useState8 = _slicedToArray(_useState7, 2),
-      diffX = _useState8[0],
-      setDiffX = _useState8[1];
-
-  var _useState9 = useState(0),
-      _useState10 = _slicedToArray(_useState9, 2),
-      diffY = _useState10[0],
-      setDiffY = _useState10[1];
+      diffY = _useState8[0],
+      setDiffY = _useState8[1];
 
   var getPosition = function getPosition(e) {
     var dom = e.target; // @ts-ignore
@@ -98,10 +93,6 @@ var Modal = function Modal(_ref) {
   };
 
   var onMouseMove = function onMouseMove(e) {
-    if (!moving) {
-      return;
-    }
-
     var position = getPosition(e);
     var x = position.mouseX - diffX;
     var y = position.mouseY - diffY;
@@ -117,10 +108,11 @@ var Modal = function Modal(_ref) {
   };
 
   var onMouseUp = function onMouseUp() {
-    moving && setMoving(false);
+    document.removeEventListener('mousemove', onMouseMove, false);
+    document.removeEventListener('mouseup', onMouseUp, false);
   };
 
-  var handleMouseDown = function handleMouseDown(e) {
+  var onMouseDown = function onMouseDown(e) {
     if (!isMove) {
       return;
     }
@@ -129,11 +121,10 @@ var Modal = function Modal(_ref) {
         diffX = _getPosition.diffX,
         diffY = _getPosition.diffY;
 
-    window.onmousemove = onMouseMove;
-    window.onmouseup = onMouseUp;
-    setMoving(true);
     setDiffX(diffX);
     setDiffY(diffY);
+    document.addEventListener('mousemove', onMouseMove, false);
+    document.addEventListener('mouseup', onMouseUp, false);
   };
 
   var setDefaultLeftTop = function setDefaultLeftTop() {
@@ -144,16 +135,18 @@ var Modal = function Modal(_ref) {
 
   useEffect(function () {
     toggleBodyOverflow(visible);
-    setDefaultLeftTop();
 
-    window.onresize = function () {
-      return setDefaultLeftTop();
-    };
+    if (visible) {
+      setDefaultLeftTop();
+
+      window.onresize = function () {
+        return setDefaultLeftTop();
+      };
+    }
 
     return function () {
-      window.onmousemove = null;
-      window.onmouseup = null;
-      setMoving(false);
+      window.onresize = null;
+      onMouseUp();
     };
   }, [visible]);
   return /*#__PURE__*/ReactDOM.createPortal( /*#__PURE__*/React.createElement("div", null, visible && /*#__PURE__*/React.createElement(Mask, {
@@ -166,12 +159,12 @@ var Modal = function Modal(_ref) {
       display: visible ? 'block' : 'none',
       zIndex: zIndex
     }
-  }, /*#__PURE__*/React.createElement(CSSTransition, {
+  }, destroyOnClose && !visible ? null : /*#__PURE__*/React.createElement(CSSTransition, {
     timeout: 400,
     in: visible,
     classNames: "z-modal",
     appear: true
-  }, destroyOnClose && !visible ? /*#__PURE__*/React.createElement("div", null) : /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", {
     ref: wrapperRef,
     className: classNames("".concat(cssPrefix, "-info"), className),
     style: Object.assign(Object.assign({}, style), {
@@ -181,9 +174,9 @@ var Modal = function Modal(_ref) {
     })
   }, /*#__PURE__*/React.createElement("div", {
     className: "".concat(cssPrefix, "-title"),
-    onMouseDown: handleMouseDown,
+    onMouseDown: onMouseDown,
     style: {
-      cursor: moving ? 'all-scroll' : 'auto'
+      cursor: isMove ? 'move' : 'auto'
     }
   }, /*#__PURE__*/React.createElement("div", {
     className: "".concat(cssPrefix, "-title-info")
@@ -212,4 +205,4 @@ var Modal = function Modal(_ref) {
   }, okText)))))), layoutDom);
 };
 
-export default Modal;
+export default /*#__PURE__*/React.memo(Modal);

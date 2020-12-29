@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React from 'react';
 import './index.less';
 interface ModalProps {
     visible: boolean;
@@ -20,5 +20,5 @@ interface ModalProps {
     layoutDom?: HTMLElement;
     isMove?: boolean;
 }
-declare const Modal: FC<ModalProps>;
-export default Modal;
+declare const _default: React.NamedExoticComponent<ModalProps>;
+export default _default;

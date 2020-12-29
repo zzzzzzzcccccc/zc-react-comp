@@ -50,14 +50,13 @@ const Modal: FC<ModalProps> = ({
   onClose,
   isMove = false,
 }) => {
-  const wrapperRef = useRef<HTMLDivElement>();
-  const [actualLeft, setActualLeft] = useState<number>(0);
+  const wrapperRef = useRef<HTMLDivElement>(null);
   const [actualTop, setActualTop] = useState<number>(0);
-  const [moving, setMoving] = useState<boolean>(false);
+  const [actualLeft, setActualLeft] = useState<number>(0);
   const [diffX, setDiffX] = useState<number>(0);
   const [diffY, setDiffY] = useState<number>(0);
 
-  const getPosition = (e: MouseEvent | React.MouseEvent) => {
+  const getPosition = (e: React.MouseEvent | MouseEvent) => {
     const dom = e.target;
     // @ts-ignore
     const { left: X, top: Y } = dom.getBoundingClientRect();
@@ -68,10 +67,7 @@ const Modal: FC<ModalProps> = ({
     return { X, Y, mouseX, mouseY, diffX, diffY };
   };
 
-  const onMouseMove = (e: MouseEvent) => {
-    if (!moving) {
-      return;
-    }
+  const onMouseMove = (e: MouseEvent): void => {
     const position = getPosition(e);
     const x = position.mouseX - diffX;
     const y = position.mouseY - diffY;
@@ -84,37 +80,37 @@ const Modal: FC<ModalProps> = ({
     setActualTop(top);
   };
 
-  const onMouseUp = () => {
-    moving && setMoving(false);
+  const onMouseUp = (): void => {
+    document.removeEventListener('mousemove', onMouseMove, false);
+    document.removeEventListener('mouseup', onMouseUp, false);
   };
 
-  const handleMouseDown = (e: React.MouseEvent): void => {
+  const onMouseDown = (e: React.MouseEvent): void => {
     if (!isMove) {
       return;
     }
     const { diffX, diffY } = getPosition(e);
-    window.onmousemove = onMouseMove;
-    window.onmouseup = onMouseUp;
-    setMoving(true);
     setDiffX(diffX);
     setDiffY(diffY);
+    document.addEventListener('mousemove', onMouseMove, false);
+    document.addEventListener('mouseup', onMouseUp, false);
   };
 
   const setDefaultLeftTop = (): void => {
-    let clientWidth =
-      document.documentElement.clientWidth || document.body.clientWidth;
+    let clientWidth = document.documentElement.clientWidth || document.body.clientWidth;
     setActualTop(top);
     setActualLeft((clientWidth - width) / 2);
   };
 
   useEffect(() => {
     toggleBodyOverflow(visible);
-    setDefaultLeftTop();
-    window.onresize = () => setDefaultLeftTop();
+    if (visible) {
+      setDefaultLeftTop();
+      window.onresize = () => setDefaultLeftTop();
+    }
     return () => {
-      window.onmousemove = null;
-      window.onmouseup = null;
-      setMoving(false);
+      window.onresize = null;
+      onMouseUp();
     };
   }, [visible]);
 
@@ -125,10 +121,8 @@ const Modal: FC<ModalProps> = ({
         className={classNames(cssPrefix)}
         style={{ display: visible ? 'block' : 'none', zIndex }}
       >
-        <CSSTransition timeout={400} in={visible} classNames="z-modal" appear>
-          {destroyOnClose && !visible ? (
-            <div />
-          ) : (
+        {destroyOnClose && !visible ? null :
+          <CSSTransition timeout={400} in={visible} classNames="z-modal" appear>
             <div
               ref={wrapperRef}
               className={classNames(`${cssPrefix}-info`, className)}
@@ -139,11 +133,9 @@ const Modal: FC<ModalProps> = ({
                 width: `${width}px`,
               }}
             >
-              <div
-                className={`${cssPrefix}-title`}
-                onMouseDown={handleMouseDown}
-                style={{ cursor: moving ? 'all-scroll' : 'auto' }}
-              >
+              <div className={`${cssPrefix}-title`}
+                   onMouseDown={onMouseDown}
+                   style={{ cursor: isMove ? 'move' : 'auto' }}>
                 <div className={`${cssPrefix}-title-info`}>{title}</div>
                 <div
                   className={`${cssPrefix}-title-close`}
@@ -179,12 +171,11 @@ const Modal: FC<ModalProps> = ({
                 </div>
               )}
             </div>
-          )}
-        </CSSTransition>
+          </CSSTransition>}
       </div>
     </div>,
     layoutDom,
   );
 };
 
-export default Modal;
+export default React.memo(Modal);
