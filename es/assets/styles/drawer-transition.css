@@ -1,0 +1,48 @@
+.z-drawer-left-enter,
+.z-drawer-left-appear,
+.z-drawer-left-exit,
+.z-drawer-left-exit-done {
+  transform: translateX(-100%);
+}
+.z-drawer-left-enter-active,
+.z-drawer-left-appear-active,
+.z-drawer-left-exit-active {
+  transform: translateX(0);
+  transition: transform 300ms;
+}
+.z-drawer-right-enter,
+.z-drawer-right-appear,
+.z-drawer-right-exit,
+.z-drawer-right-exit-done {
+  transform: translateX(100%);
+}
+.z-drawer-right-enter-active,
+.z-drawer-right-appear-active,
+.z-drawer-right-exit-active {
+  transform: translateX(0);
+  transition: transform 300ms;
+}
+.z-drawer-top-enter,
+.z-drawer-top-appear,
+.z-drawer-top-exit,
+.z-drawer-top-exit-done {
+  transform: translateY(-100%);
+}
+.z-drawer-top-enter-active,
+.z-drawer-top-appear-active,
+.z-drawer-top-exit-active {
+  transform: translateY(0);
+  transition: transform 300ms;
+}
+.z-drawer-bottom-enter,
+.z-drawer-bottom-appear,
+.z-drawer-bottom-exit,
+.z-drawer-bottom-exit-done {
+  transform: translateY(100%);
+}
+.z-drawer-bottom-enter-active,
+.z-drawer-bottom-appear-active,
+.z-drawer-bottom-exit-active {
+  transform: translateY(0);
+  transition: transform 300ms;
+}

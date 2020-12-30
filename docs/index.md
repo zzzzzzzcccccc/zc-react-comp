@@ -53,4 +53,9 @@
 ### Tag 标签
 
 - [预览地址](/zh-CN/component/tag)
-- [文档地址](/docs/component/tag.zh-CN.md)
+- [文档地址](/docs/component/Tag.zh-CN.md)
+
+### Drawer 抽屉
+
+- [预览地址](/zh-CN/component/drawer)
+- [文档地址](/docs/component/Drawer.zh-CN.md)

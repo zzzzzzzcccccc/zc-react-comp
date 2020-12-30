@@ -205,4 +205,4 @@ var Modal = function Modal(_ref) {
   }, okText)))))), layoutDom);
 };
 
-export default /*#__PURE__*/React.memo(Modal);
+export default Modal;

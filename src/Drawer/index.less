@@ -1,0 +1,60 @@
+@import '../assets/styles/var.less';
+@import '../assets/styles/drawer-transition.less';
+
+.@{prefix-name} {
+  &-drawer {
+    box-sizing: border-box;
+    &-wrapper {
+      position: fixed;
+      box-sizing: border-box;
+      background-color: #fff;
+      box-shadow: 0 0 10px @shadow-color;
+      &-title {
+        width: 100%;
+        position: relative;
+        background-color: @gray-bg-color;
+        padding: 16px 24px;
+        box-sizing: border-box;
+        border-bottom: 1px solid @gray-border-color;
+        &-info {
+          width: 100%;
+          font-weight: 500;
+          font-size: 16px;
+          box-sizing: border-box;
+          padding-right: 30px;
+          word-break: break-all;
+        }
+        &-close {
+          position: absolute;
+          width: 50px;
+          height: 50px;
+          cursor: pointer;
+          text-align: center;
+          line-height: 50px;
+          right: 0;
+          top: 0;
+          font-size: 30px;
+          font-weight: normal;
+          box-sizing: border-box;
+          color: @default-color;
+          &:hover {
+            color: @hover-close-color;
+          }
+        }
+      }
+      &-body {
+        box-sizing: border-box;
+        overflow: auto;
+      }
+      &-footer {
+        box-sizing: border-box;
+        width: 100%;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        padding: 8px 16px;
+        border-top: 1px solid @gray-border-color;
+      }
+    }
+  }
+}

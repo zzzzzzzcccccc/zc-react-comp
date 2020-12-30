@@ -16,7 +16,7 @@ export default {
   lessInBabelMode: true,
   // entry: ['src/Spinner/index.tsx', 'src/Button/index.tsx'],
   autoprefixer: {
-    browsers: ['ie > 9', 'Safari >= 6'],
+    browsers: ['ie > 8', 'Safari >= 6'],
   },
   pkgs: [
     // 组件依赖构建顺序

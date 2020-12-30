@@ -97,7 +97,8 @@ const Modal: FC<ModalProps> = ({
   };
 
   const setDefaultLeftTop = (): void => {
-    let clientWidth = document.documentElement.clientWidth || document.body.clientWidth;
+    let clientWidth =
+      document.documentElement.clientWidth || document.body.clientWidth;
     setActualTop(top);
     setActualLeft((clientWidth - width) / 2);
   };
@@ -121,7 +122,7 @@ const Modal: FC<ModalProps> = ({
         className={classNames(cssPrefix)}
         style={{ display: visible ? 'block' : 'none', zIndex }}
       >
-        {destroyOnClose && !visible ? null :
+        {destroyOnClose && !visible ? null : (
           <CSSTransition timeout={400} in={visible} classNames="z-modal" appear>
             <div
               ref={wrapperRef}
@@ -133,9 +134,11 @@ const Modal: FC<ModalProps> = ({
                 width: `${width}px`,
               }}
             >
-              <div className={`${cssPrefix}-title`}
-                   onMouseDown={onMouseDown}
-                   style={{ cursor: isMove ? 'move' : 'auto' }}>
+              <div
+                className={`${cssPrefix}-title`}
+                onMouseDown={onMouseDown}
+                style={{ cursor: isMove ? 'move' : 'auto' }}
+              >
                 <div className={`${cssPrefix}-title-info`}>{title}</div>
                 <div
                   className={`${cssPrefix}-title-close`}
@@ -171,11 +174,12 @@ const Modal: FC<ModalProps> = ({
                 </div>
               )}
             </div>
-          </CSSTransition>}
+          </CSSTransition>
+        )}
       </div>
     </div>,
     layoutDom,
   );
 };
 
-export default React.memo(Modal);
+export default Modal;

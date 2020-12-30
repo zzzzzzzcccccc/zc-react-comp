@@ -1,0 +1,103 @@
+.z-drawer-left-enter,
+.z-drawer-left-appear,
+.z-drawer-left-exit,
+.z-drawer-left-exit-done {
+  transform: translateX(-100%);
+}
+.z-drawer-left-enter-active,
+.z-drawer-left-appear-active,
+.z-drawer-left-exit-active {
+  transform: translateX(0);
+  transition: transform 300ms;
+}
+.z-drawer-right-enter,
+.z-drawer-right-appear,
+.z-drawer-right-exit,
+.z-drawer-right-exit-done {
+  transform: translateX(100%);
+}
+.z-drawer-right-enter-active,
+.z-drawer-right-appear-active,
+.z-drawer-right-exit-active {
+  transform: translateX(0);
+  transition: transform 300ms;
+}
+.z-drawer-top-enter,
+.z-drawer-top-appear,
+.z-drawer-top-exit,
+.z-drawer-top-exit-done {
+  transform: translateY(-100%);
+}
+.z-drawer-top-enter-active,
+.z-drawer-top-appear-active,
+.z-drawer-top-exit-active {
+  transform: translateY(0);
+  transition: transform 300ms;
+}
+.z-drawer-bottom-enter,
+.z-drawer-bottom-appear,
+.z-drawer-bottom-exit,
+.z-drawer-bottom-exit-done {
+  transform: translateY(100%);
+}
+.z-drawer-bottom-enter-active,
+.z-drawer-bottom-appear-active,
+.z-drawer-bottom-exit-active {
+  transform: translateY(0);
+  transition: transform 300ms;
+}
+.r-zc-drawer {
+  box-sizing: border-box;
+}
+.r-zc-drawer-wrapper {
+  position: fixed;
+  box-sizing: border-box;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.17);
+}
+.r-zc-drawer-wrapper-title {
+  width: 100%;
+  position: relative;
+  background-color: #f5f5f9;
+  padding: 16px 24px;
+  box-sizing: border-box;
+  border-bottom: 1px solid #e8e8e8;
+}
+.r-zc-drawer-wrapper-title-info {
+  width: 100%;
+  font-weight: 500;
+  font-size: 16px;
+  box-sizing: border-box;
+  padding-right: 30px;
+  word-break: break-all;
+}
+.r-zc-drawer-wrapper-title-close {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  text-align: center;
+  line-height: 50px;
+  right: 0;
+  top: 0;
+  font-size: 30px;
+  font-weight: normal;
+  box-sizing: border-box;
+  color: #858585;
+}
+.r-zc-drawer-wrapper-title-close:hover {
+  color: #000;
+}
+.r-zc-drawer-wrapper-body {
+  box-sizing: border-box;
+  overflow: auto;
+}
+.r-zc-drawer-wrapper-footer {
+  box-sizing: border-box;
+  width: 100%;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 8px 16px;
+  border-top: 1px solid #e8e8e8;
+}
