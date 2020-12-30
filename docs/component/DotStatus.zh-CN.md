@@ -65,4 +65,8 @@ export default () => (
 );
 ```
 
-More skills for writing demo: https://d.umijs.org/guide/demo-principle
+## API
+
+| 属性 | 说明 | 类型 | 默认值 |
+| ---- | ---- | ---- | ---- |
+| type | 类型 | primary/warning/danger/default/success | primary |

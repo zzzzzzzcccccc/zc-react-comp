@@ -7,7 +7,6 @@ export interface SelectBoxBaseProps {
   children?: React.ReactNode;
   multiple?: boolean;
   disabled?: boolean;
-  activeColor?: string;
 }
 export interface SelectBoxProps extends SelectBoxBaseProps {
   defaultValue?: any;

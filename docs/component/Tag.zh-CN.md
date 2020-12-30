@@ -78,3 +78,13 @@ export default () => (
   </>
 );
 ```
+
+## API
+
+| 属性 | 说明 | 类型 | 默认值 |
+| ---- | ---- | ---- | ---- |
+| type | 类型 | primary/warning/danger/default/success | primary |
+| plain | 是否镂空 | boolean | false |
+| size | 按钮尺寸 | normal/large/small | normal |
+| onClick | 点击事件 | function | |
+| onClose | 关闭事件 | function | |

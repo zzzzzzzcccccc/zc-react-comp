@@ -120,4 +120,15 @@ export default () => (
 );
 ```
 
-More skills for writing demo: https://d.umijs.org/guide/demo-principle
+## API
+
+| 属性 | 说明 | 类型 | 默认值 |
+| ---- | ---- | ---- | ---- |
+| top | 距离顶部距离 | string/number | 8px |
+| zIndex | 层级 | number | 1024 |
+| duration | 显示持续时间(ms) | number | 3000 |
+| type | 类型 | primary/warning/danger/default/success | primary |
+| content | 内容 | React.ReactNode | |
+| loading | 是否加载中 | boolean | false |
+| plain | 是否镂空 | boolean | false |
+

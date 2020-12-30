@@ -4,7 +4,7 @@ import Spinner from '../Spinner';
 import './index.less';
 
 interface ButtonProps {
-  type?: 'primary' | 'warning' | 'danger' | 'default';
+  type?: 'primary' | 'warning' | 'danger' | 'default' | 'success';
   disabled?: boolean;
   block?: boolean;
   plain?: boolean;

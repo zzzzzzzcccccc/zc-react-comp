@@ -124,4 +124,14 @@ export default () => (
 );
 ```
 
-More skills for writing demo: https://d.umijs.org/guide/demo-principle
+## API
+
+| 属性 | 说明 | 类型 | 默认值 |
+| ---- | ---- | ---- | ---- |
+| type | 类型 | primary/warning/danger/default/success | primary |
+| disabled | 是否禁用 | boolean | false |
+| block | 是否block按钮 | boolean | false |
+| plain | 是否镂空 | boolean | false |
+| size | 按钮尺寸 | normal/large/small | normal |
+| loading | 是否加载中 | boolean | false |
+| onClick | 点击事件 | function | |

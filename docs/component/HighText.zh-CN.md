@@ -22,4 +22,9 @@ export default () => (
 );
 ```
 
-More skills for writing demo: https://d.umijs.org/guide/demo-principle
+## API
+
+| 属性 | 说明 | 类型 | 默认值 |
+| ---- | ---- | ---- | ---- |
+| activeColor | 高亮文案颜色 | string | #f50f50 |
+| high | 高亮文案关键字 | string |  |

@@ -126,3 +126,23 @@ export default () => (
   </SelectBox>
 );
 ```
+
+## API
+
+### SelectBox
+
+| 属性 | 说明 | 类型 | 默认值 |
+| ---- | ---- | ---- | ---- |
+| multiple | 是否多选 | boolean | false |
+| disabled | 是否禁用 | boolean | false |
+| size | 尺寸 | normal/large/small | normal |
+| onChange | 值变化事件 | function(val:any) | |
+| defaultValue | 初始化默认值 | any | undefined |
+
+### SelectBoxItem
+
+| 属性 | 说明 | 类型 | 默认值 |
+| ---- | ---- | ---- | ---- |
+| disabled | 是否禁用 | boolean | false |
+| value | 值 | any | undefined |
+| onClick | 点击事件 | function(value: any, e: React.MouseEvent) | |
