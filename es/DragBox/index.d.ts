@@ -15,8 +15,6 @@ declare class DragBox implements IDragBox {
     moving: boolean;
     wrapLeft: number;
     wrapTop: number;
-    bodyWidth: number;
-    bodyHeight: number;
     maxX: number;
     maxY: number;
     constructor(drag: HTMLElement, wrap: HTMLElement, isCheckBody?: boolean);

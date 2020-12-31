@@ -16,8 +16,6 @@ class DragBox implements IDragBox {
   public moving: boolean;
   public wrapLeft: number;
   public wrapTop: number;
-  public bodyWidth: number;
-  public bodyHeight: number;
   public maxX: number;
   public maxY: number;
 
@@ -35,8 +33,6 @@ class DragBox implements IDragBox {
     this.moving = false;
     this.wrapLeft = this.getCss(this.wrap, 'left');
     this.wrapTop = this.getCss(this.wrap, 'top');
-    this.bodyWidth = clientWidth;
-    this.bodyHeight = clientHeight;
     this.maxX = clientWidth - this.wrap.offsetWidth;
     this.maxY = clientHeight - this.wrap.offsetHeight;
   }
