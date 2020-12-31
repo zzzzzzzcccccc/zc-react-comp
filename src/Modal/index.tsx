@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState, useRef } from 'react';
+import React, { FC, useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
 import { CSSTransition } from 'react-transition-group';
 import classNames from 'classnames';
@@ -6,6 +6,7 @@ import Mask from '../Mask';
 import Button from '../Button';
 import './index.less';
 import { toggleBodyOverflow } from '../utils';
+import DragBox, { IDragBox } from '../DragBox';
 import varStyle from '../assets/styles/varStyle';
 
 interface ModalProps {
@@ -30,6 +31,7 @@ interface ModalProps {
 }
 
 const cssPrefix: string = 'r-zc-modal';
+let dragBox: IDragBox | null = null;
 const Modal: FC<ModalProps> = ({
   visible,
   className,
@@ -50,57 +52,35 @@ const Modal: FC<ModalProps> = ({
   onClose,
   isMove = false,
 }) => {
-  const wrapperRef = useRef<HTMLDivElement>(null);
-  const [actualTop, setActualTop] = useState<number>(0);
-  const [actualLeft, setActualLeft] = useState<number>(0);
-  const [diffX, setDiffX] = useState<number>(0);
-  const [diffY, setDiffY] = useState<number>(0);
+  const wrapperRef = useRef<HTMLDivElement>();
+  const titleRef = useRef<HTMLDivElement>();
 
-  const getPosition = (e: React.MouseEvent | MouseEvent) => {
-    const dom = e.target;
-    // @ts-ignore
-    const { left: X, top: Y } = dom.getBoundingClientRect();
-    let mouseX = e.clientX;
-    let mouseY = e.clientY;
-    const diffX = mouseX - X;
-    const diffY = mouseY - Y;
-    return { X, Y, mouseX, mouseY, diffX, diffY };
-  };
-
-  const onMouseMove = (e: MouseEvent): void => {
-    const position = getPosition(e);
-    const x = position.mouseX - diffX;
-    const y = position.mouseY - diffY;
-    const { clientWidth, clientHeight } = document.body;
-    const maxHeight = clientHeight - wrapperRef.current.offsetHeight;
-    const maxWidth = clientWidth - wrapperRef.current.offsetWidth;
-    const left = x > 0 ? (x < maxWidth ? x : maxWidth) : 0;
-    const top = y > 0 ? (y < maxHeight ? y : maxHeight) : 0;
-    setActualLeft(left);
-    setActualTop(top);
-  };
-
-  const onMouseUp = (): void => {
-    document.removeEventListener('mousemove', onMouseMove, false);
-    document.removeEventListener('mouseup', onMouseUp, false);
-  };
-
-  const onMouseDown = (e: React.MouseEvent): void => {
-    if (!isMove) {
-      return;
-    }
-    const { diffX, diffY } = getPosition(e);
-    setDiffX(diffX);
-    setDiffY(diffY);
-    document.addEventListener('mousemove', onMouseMove, false);
-    document.addEventListener('mouseup', onMouseUp, false);
+  const setWrapperTopLeft = (top: number, left: number): void => {
+    const dom = wrapperRef.current;
+    dom.style.top = top + 'px';
+    dom.style.left = left + 'px';
   };
 
   const setDefaultLeftTop = (): void => {
     let clientWidth =
       document.documentElement.clientWidth || document.body.clientWidth;
-    setActualTop(top);
-    setActualLeft((clientWidth - width) / 2);
+    setWrapperTopLeft(top, (clientWidth - width) / 2);
+  };
+
+  const initDrag = () => {
+    if (!isMove) {
+      return;
+    }
+    dragBox = new DragBox(titleRef.current, wrapperRef.current);
+    dragBox.init();
+  };
+
+  const removeDrag = () => {
+    if (!isMove || !dragBox) {
+      return;
+    }
+    dragBox.remove();
+    dragBox = null;
   };
 
   useEffect(() => {
@@ -108,10 +88,13 @@ const Modal: FC<ModalProps> = ({
     if (visible) {
       setDefaultLeftTop();
       window.onresize = () => setDefaultLeftTop();
+      initDrag();
+    } else {
+      removeDrag();
     }
     return () => {
       window.onresize = null;
-      onMouseUp();
+      removeDrag();
     };
   }, [visible]);
 
@@ -127,16 +110,11 @@ const Modal: FC<ModalProps> = ({
             <div
               ref={wrapperRef}
               className={classNames(`${cssPrefix}-info`, className)}
-              style={{
-                ...style,
-                top: `${actualTop}px`,
-                left: `${actualLeft}px`,
-                width: `${width}px`,
-              }}
+              style={{ ...style, width: `${width}px` }}
             >
               <div
+                ref={titleRef}
                 className={`${cssPrefix}-title`}
-                onMouseDown={onMouseDown}
                 style={{ cursor: isMove ? 'move' : 'auto' }}
               >
                 <div className={`${cssPrefix}-title-info`}>{title}</div>

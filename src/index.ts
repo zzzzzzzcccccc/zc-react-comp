@@ -10,3 +10,4 @@ export { default as SelectBox } from './SelectBox';
 export { default as SelectBoxItem } from './SelectBox/SelectBoxItem';
 export { default as Tag } from './Tag';
 export { default as Drawer } from './Drawer';
+export { default as DragBox } from './DragBox';

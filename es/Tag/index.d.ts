@@ -7,7 +7,6 @@ interface TagProps {
     plain?: boolean;
     size?: 'normal' | 'large' | 'small';
     children?: React.ReactNode;
-    color?: string;
     onClick?: React.MouseEventHandler<HTMLElement>;
     onClose?: React.MouseEventHandler<HTMLElement>;
 }

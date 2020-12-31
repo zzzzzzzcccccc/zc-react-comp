@@ -1,16 +1,4 @@
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
 import { CSSTransition } from 'react-transition-group';
 import classNames from 'classnames';
@@ -18,8 +6,10 @@ import Mask from '../Mask';
 import Button from '../Button';
 import "./index.css";
 import { toggleBodyOverflow } from '../utils';
+import DragBox from '../DragBox';
 import varStyle from '../assets/styles/varStyle';
 var cssPrefix = 'r-zc-modal';
+var dragBox = null;
 
 var Modal = function Modal(_ref) {
   var visible = _ref.visible,
@@ -49,88 +39,36 @@ var Modal = function Modal(_ref) {
       onClose = _ref.onClose,
       _ref$isMove = _ref.isMove,
       isMove = _ref$isMove === void 0 ? false : _ref$isMove;
-  var wrapperRef = useRef(null);
+  var wrapperRef = useRef();
+  var titleRef = useRef();
 
-  var _useState = useState(0),
-      _useState2 = _slicedToArray(_useState, 2),
-      actualTop = _useState2[0],
-      setActualTop = _useState2[1];
-
-  var _useState3 = useState(0),
-      _useState4 = _slicedToArray(_useState3, 2),
-      actualLeft = _useState4[0],
-      setActualLeft = _useState4[1];
-
-  var _useState5 = useState(0),
-      _useState6 = _slicedToArray(_useState5, 2),
-      diffX = _useState6[0],
-      setDiffX = _useState6[1];
-
-  var _useState7 = useState(0),
-      _useState8 = _slicedToArray(_useState7, 2),
-      diffY = _useState8[0],
-      setDiffY = _useState8[1];
-
-  var getPosition = function getPosition(e) {
-    var dom = e.target; // @ts-ignore
-
-    var _dom$getBoundingClien = dom.getBoundingClientRect(),
-        X = _dom$getBoundingClien.left,
-        Y = _dom$getBoundingClien.top;
-
-    var mouseX = e.clientX;
-    var mouseY = e.clientY;
-    var diffX = mouseX - X;
-    var diffY = mouseY - Y;
-    return {
-      X: X,
-      Y: Y,
-      mouseX: mouseX,
-      mouseY: mouseY,
-      diffX: diffX,
-      diffY: diffY
-    };
-  };
-
-  var onMouseMove = function onMouseMove(e) {
-    var position = getPosition(e);
-    var x = position.mouseX - diffX;
-    var y = position.mouseY - diffY;
-    var _document$body = document.body,
-        clientWidth = _document$body.clientWidth,
-        clientHeight = _document$body.clientHeight;
-    var maxHeight = clientHeight - wrapperRef.current.offsetHeight;
-    var maxWidth = clientWidth - wrapperRef.current.offsetWidth;
-    var left = x > 0 ? x < maxWidth ? x : maxWidth : 0;
-    var top = y > 0 ? y < maxHeight ? y : maxHeight : 0;
-    setActualLeft(left);
-    setActualTop(top);
-  };
-
-  var onMouseUp = function onMouseUp() {
-    document.removeEventListener('mousemove', onMouseMove, false);
-    document.removeEventListener('mouseup', onMouseUp, false);
-  };
-
-  var onMouseDown = function onMouseDown(e) {
-    if (!isMove) {
-      return;
-    }
-
-    var _getPosition = getPosition(e),
-        diffX = _getPosition.diffX,
-        diffY = _getPosition.diffY;
-
-    setDiffX(diffX);
-    setDiffY(diffY);
-    document.addEventListener('mousemove', onMouseMove, false);
-    document.addEventListener('mouseup', onMouseUp, false);
+  var setWrapperTopLeft = function setWrapperTopLeft(top, left) {
+    var dom = wrapperRef.current;
+    dom.style.top = top + 'px';
+    dom.style.left = left + 'px';
   };
 
   var setDefaultLeftTop = function setDefaultLeftTop() {
     var clientWidth = document.documentElement.clientWidth || document.body.clientWidth;
-    setActualTop(top);
-    setActualLeft((clientWidth - width) / 2);
+    setWrapperTopLeft(top, (clientWidth - width) / 2);
+  };
+
+  var initDrag = function initDrag() {
+    if (!isMove) {
+      return;
+    }
+
+    dragBox = new DragBox(titleRef.current, wrapperRef.current);
+    dragBox.init();
+  };
+
+  var removeDrag = function removeDrag() {
+    if (!isMove || !dragBox) {
+      return;
+    }
+
+    dragBox.remove();
+    dragBox = null;
   };
 
   useEffect(function () {
@@ -142,11 +80,15 @@ var Modal = function Modal(_ref) {
       window.onresize = function () {
         return setDefaultLeftTop();
       };
+
+      initDrag();
+    } else {
+      removeDrag();
     }
 
     return function () {
       window.onresize = null;
-      onMouseUp();
+      removeDrag();
     };
   }, [visible]);
   return /*#__PURE__*/ReactDOM.createPortal( /*#__PURE__*/React.createElement("div", null, visible && /*#__PURE__*/React.createElement(Mask, {
@@ -168,13 +110,11 @@ var Modal = function Modal(_ref) {
     ref: wrapperRef,
     className: classNames("".concat(cssPrefix, "-info"), className),
     style: Object.assign(Object.assign({}, style), {
-      top: "".concat(actualTop, "px"),
-      left: "".concat(actualLeft, "px"),
       width: "".concat(width, "px")
     })
   }, /*#__PURE__*/React.createElement("div", {
+    ref: titleRef,
     className: "".concat(cssPrefix, "-title"),
-    onMouseDown: onMouseDown,
     style: {
       cursor: isMove ? 'move' : 'auto'
     }

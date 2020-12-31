@@ -169,22 +169,22 @@ export default () => {
 
 ## API
 
-| 属性 | 说明 | 类型 | 默认值 |
-| ---- | ---- | ---- | ---- |
-| layoutDom | 挂载dom | HTMLElement | document.body |
-| visible | 打开关闭 | boolean | false |
-| position | 打开方位 | left/right/top/bottom | right |
-| zIndex | 层级 | number |  |
-| showMask | 是否显示遮罩 | boolean | true | 
-| destroyOnClose | 是否销毁dom | boolean | true |
-| maskClosable | 是否可以点击遮罩关闭 | boolean | true |
-| onClose | 关闭事件 | function | |
-| title | 是否显示标题 | React.ReactNode | |
-| showCloseIcon | 是否显示右侧关闭按钮(title不为空才有效) | boolean | true |
-| footer | 底部自定义渲染(title不为空才有效) | React.ReactNode | |
-| footerAlign | 底部布局(title不为空才有效) | left/right/center | right |
-| okText | 确认按钮文案 | string | 确认 |
-| cancelText | 取消按钮文案 | string | 取消 |
-| lockBody | 是否锁住body | boolean | false |
-| loading | 按钮是否在加载中 | boolean | false |
-| onOk | 点击确认事件 | function | |
+| 属性           | 说明                                     | 类型                  | 默认值        |
+| -------------- | ---------------------------------------- | --------------------- | ------------- |
+| layoutDom      | 挂载 dom                                 | HTMLElement           | document.body |
+| visible        | 打开关闭                                 | boolean               | false         |
+| position       | 打开方位                                 | left/right/top/bottom | right         |
+| zIndex         | 层级                                     | number                |               |
+| showMask       | 是否显示遮罩                             | boolean               | true          |
+| destroyOnClose | 是否销毁 dom                             | boolean               | true          |
+| maskClosable   | 是否可以点击遮罩关闭                     | boolean               | true          |
+| onClose        | 关闭事件                                 | function              |               |
+| title          | 是否显示标题                             | React.ReactNode       |               |
+| showCloseIcon  | 是否显示右侧关闭按钮(title 不为空才有效) | boolean               | true          |
+| footer         | 底部自定义渲染(title 不为空才有效)       | React.ReactNode       |               |
+| footerAlign    | 底部布局(title 不为空才有效)             | left/right/center     | right         |
+| okText         | 确认按钮文案                             | string                | 确认          |
+| cancelText     | 取消按钮文案                             | string                | 取消          |
+| lockBody       | 是否锁住 body                            | boolean               | false         |
+| loading        | 按钮是否在加载中                         | boolean               | false         |
+| onOk           | 点击确认事件                             | function              |               |

@@ -113,20 +113,20 @@ export default () => {
 
 ## API
 
-| 属性 | 说明 | 类型 | 默认值 |
-| ---- | ---- | ---- | ---- |
-| visible | 显示隐藏开关 | boolean | false |
-| zIndex | 层级 | number | 1000 |
-| width | 弹窗宽度 | 600 | false |
-| top | 距离顶部距离 | number | 50 |
-| destroyOnClose | 是否销毁dom | boolean | true |
-| title | 标题 | React.ReactNode |  |
-| okText | 确认按钮文案 | string | 确认 |
-| cancelText | 去下按钮文案 | string | 取消 |
-| loading | 按钮是否在加载中 | boolean | false | 
-| footer | 自定义底部 | React.ReactNode | |
-| footerAlign | 底部布局 | left/right/center | right |
-| onOk | 点击确认按钮事件 | function | |
-| onClose | 点击取消按钮事件 | function | |
-| layoutDom | 挂载dom | HTMLElement | document.body |
-| isMove | 是否可以移动 | boolean | false |
+| 属性           | 说明             | 类型              | 默认值        |
+| -------------- | ---------------- | ----------------- | ------------- |
+| visible        | 显示隐藏开关     | boolean           | false         |
+| zIndex         | 层级             | number            | 1000          |
+| width          | 弹窗宽度         | number            | 600           |
+| top            | 距离顶部距离     | number            | 50            |
+| destroyOnClose | 是否销毁 dom     | boolean           | true          |
+| title          | 标题             | React.ReactNode   |               |
+| okText         | 确认按钮文案     | string            | 确认          |
+| cancelText     | 取消按钮文案     | string            | 取消          |
+| loading        | 按钮是否在加载中 | boolean           | false         |
+| footer         | 自定义底部       | React.ReactNode   |               |
+| footerAlign    | 底部布局         | left/right/center | right         |
+| onOk           | 点击确认按钮事件 | function          |               |
+| onClose        | 点击取消按钮事件 | function          |               |
+| layoutDom      | 挂载 dom         | HTMLElement       | document.body |
+| isMove         | 是否可以移动     | boolean           | false         |

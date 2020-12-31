@@ -59,3 +59,8 @@
 
 - [预览地址](/zh-CN/component/drawer)
 - [文档地址](/docs/component/Drawer.zh-CN.md)
+
+### DragBox 移动Dom
+
+- [预览地址](/zh-CN/component/drag-box)
+- [文档地址](/docs/component/DragBox.zh-CN.md)

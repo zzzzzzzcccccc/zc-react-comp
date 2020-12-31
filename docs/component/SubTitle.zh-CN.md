@@ -47,9 +47,9 @@ export default () => <SubTitle shadow>我是副标题</SubTitle>;
 
 ## API
 
-| 属性 | 说明 | 类型 | 默认值 |
-| ---- | ---- | ---- | ---- |
-| type | 类型 | line/point | line |
-| shadow | 是否显示阴影 | boolean | false |
-| border | 是否显示底部边线 | boolean | false |
-| onClick | 点击事件 | function | |
+| 属性    | 说明             | 类型       | 默认值 |
+| ------- | ---------------- | ---------- | ------ |
+| type    | 类型             | line/point | line   |
+| shadow  | 是否显示阴影     | boolean    | false  |
+| border  | 是否显示底部边线 | boolean    | false  |
+| onClick | 点击事件         | function   |        |
