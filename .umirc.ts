@@ -1,6 +1,7 @@
 import { defineConfig } from 'dumi';
 
 export default defineConfig({
+  publicPath: './',
   base: '/',
   mode: 'site',
   title: 'zc-react-comp',
