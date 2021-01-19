@@ -2,7 +2,7 @@
 
 ### 预览
 
-[预览地址](https://z5829984520.github.io/zc-react-comp/#/zh-CN)
+[预览地址](https://z5829984520.github.io/zc-react-comp)
 
 ### 安装
 

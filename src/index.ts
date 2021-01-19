@@ -11,3 +11,5 @@ export { default as SelectBoxItem } from './SelectBox/SelectBoxItem';
 export { default as Tag } from './Tag';
 export { default as Drawer } from './Drawer';
 export { default as DragBox } from './DragBox';
+export { default as Collapse } from './Collapse';
+export { default as CollapseItem } from './Collapse/CollapseItem';

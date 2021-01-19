@@ -10,13 +10,13 @@ export default defineConfig({
   outputPath: 'docs-dist',
   navs: {
     'en-US': [
-      { title: "component", path: '/component' },
-      { title: 'github', path: 'https://github.com/z5829984520/zc-react-comp' }
+      { title: 'component', path: '/component' },
+      { title: 'github', path: 'https://github.com/z5829984520/zc-react-comp' },
     ],
     'zh-CN': [
-      { title: "组件", path: '/zh-CN/component' },
-      { title: 'github', path: 'https://github.com/z5829984520/zc-react-comp' }
-    ]
+      { title: '组件', path: '/zh-CN/component' },
+      { title: 'github', path: 'https://github.com/z5829984520/zc-react-comp' },
+    ],
   },
   history: {
     type: 'hash',

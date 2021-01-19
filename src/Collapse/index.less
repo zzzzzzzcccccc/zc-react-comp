@@ -1,0 +1,44 @@
+@import '../assets/styles/var.less';
+
+.@{prefix-name} {
+  &-collapse {
+    box-sizing: border-box;
+    border: 1px solid @gray-border-color;
+    border-radius: 2px;
+    background-color: @gray-bg-color;
+  }
+  &-collapse-item {
+    box-sizing: border-box;
+    border-bottom: 1px solid @gray-border-color;
+    &:last-child {
+      border-bottom: 0;
+    }
+    &-header {
+      box-sizing: border-box;
+      cursor: pointer;
+      &-title {
+        user-select: none;
+        box-sizing: border-box;
+      }
+    }
+    &-body {
+      box-sizing: border-box;
+      border-top: 1px solid @gray-border-color;
+      display: none;
+      background-color: #fff;
+    }
+  }
+  &-collapse-item-disabled {
+    .r-zc-collapse-item-header {
+      cursor: not-allowed;
+      user-select: none;
+      background-color: @disabled-bg-color;
+      color: @disabled-font-color;
+    }
+  }
+  &-collapse-item-active {
+    .r-zc-collapse-item-body {
+      display: block;
+    }
+  }
+}

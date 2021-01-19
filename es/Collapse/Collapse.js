@@ -67,33 +67,26 @@ function _arrayWithHoles(arr) {
 import React, { useState } from 'react';
 import classNames from 'classnames';
 import './index.css';
-var cssPrefix = 'r-zc-select-box';
+var cssPrefix = 'r-zc-collapse';
 
-var SelectBox = function SelectBox(_ref) {
+var Collapse = function Collapse(_ref) {
   var className = _ref.className,
     style = _ref.style,
+    _ref$defaultValue = _ref.defaultValue,
+    defaultValue = _ref$defaultValue === void 0 ? undefined : _ref$defaultValue,
     children = _ref.children,
     _ref$multiple = _ref.multiple,
-    multiple = _ref$multiple === void 0 ? false : _ref$multiple,
-    _ref$disabled = _ref.disabled,
-    disabled = _ref$disabled === void 0 ? false : _ref$disabled,
-    _ref$size = _ref.size,
-    size = _ref$size === void 0 ? 'normal' : _ref$size,
-    onChange = _ref.onChange,
-    defaultValue = _ref.defaultValue;
+    multiple = _ref$multiple === void 0 ? true : _ref$multiple,
+    onChange = _ref.onChange;
 
-  var _useState = useState(
-      multiple
-        ? defaultValue || []
-        : defaultValue || defaultValue === 0
-        ? defaultValue
-        : undefined,
-    ),
+  var _useState = useState(defaultValue || []),
     _useState2 = _slicedToArray(_useState, 2),
     actualValue = _useState2[0],
     setActualValue = _useState2[1];
 
-  var updateActualValue = function updateActualValue(val) {
+  var updateActualValue = function updateActualValue() {
+    var val =
+      arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
     setActualValue(val);
     onChange && onChange(val);
   };
@@ -107,8 +100,8 @@ var SelectBox = function SelectBox(_ref) {
       if (/*#__PURE__*/ React.isValidElement(child)) {
         return /*#__PURE__*/ React.cloneElement(child, {
           actualValue: actualValue,
-          multiple: multiple,
           updateActualValue: updateActualValue,
+          multiple: multiple,
         });
       } else {
         return child;
@@ -119,16 +112,11 @@ var SelectBox = function SelectBox(_ref) {
   return /*#__PURE__*/ React.createElement(
     'div',
     {
-      className: classNames(
-        cssPrefix,
-        disabled && ''.concat(cssPrefix, '-disabled'),
-        ''.concat(cssPrefix, '-').concat(size),
-        className,
-      ),
+      className: classNames(cssPrefix, className),
       style: style,
     },
     renderChild(),
   );
 };
 
-export default SelectBox;
+export default Collapse;
