@@ -71,3 +71,21 @@ export default () => (
   </Collapse>
 );
 ```
+## API
+
+### Collapse
+
+| 属性     | 说明            | 类型                                   | 默认值  |
+| -------- | --------------- | -------------------------------------- | ------- |
+| multiple | 是否多选        | boolean                                | true |
+| defaultValue | 默认展开值   | any[]                             | undefined   |
+| onChange | 折叠变化触发函数 | function(val: any)                       |    |
+
+### CollapseItem
+
+| 属性     | 说明            | 类型                                   | 默认值  |
+| -------- | --------------- | -------------------------------------- | ------- |
+| title | 标题        | React.ReactNode                                |  |
+| value | 唯一标识   | any                             | undefined   |
+| disabled | 是否禁用 | boolean   | false |
+| onToggle | 切换事件 | function(collapsed: boolean, val: any, e: React.MouseEvent) | |
