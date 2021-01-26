@@ -64,3 +64,8 @@
 
 - [预览地址](https://z5829984520.github.io/zc-react-comp/#/zh-CN/component/collapse)
 - [文档地址](https://github.com/z5829984520/zc-react-comp/blob/master/docs/component/Collapse.zh-CN.md)
+
+### Table 表格
+
+- [预览地址](https://z5829984520.github.io/zc-react-comp/#/zh-CN/component/table)
+- [文档地址](https://github.com/z5829984520/zc-react-comp/blob/master/docs/component/Table.zh-CN.md)
