@@ -1,15 +1,62 @@
 import React from 'react';
-import Table from './Table';
-import { TableProps } from 'antd/es/table';
-import { ResizeCallbackData } from 'react-resizable';
+import BaseTable from './BaseTable';
 
-export interface BaseTableProps extends TableProps<object> {
-  titleResizeable?: boolean;
+interface IScroll {
+  x?: string | number;
+  y?: string | number;
 }
 
-export interface TableResizeableTitleProps {
-  width?: number | string;
-  onResize?: (e: React.SyntheticEvent, data: ResizeCallbackData) => any;
+export interface IColumn {
+  title: React.ReactNode;
+  dataIndex: string;
+  width?: string | number;
+  children?: IColumn[];
+  render?: (val: any, record: object, index: number) => void;
+  ellipsis?: boolean;
+}
+export interface ITheadColumn extends IColumn {
+  colSpan?: number;
+  rowSpan?: number;
+  level?: number;
+  children?: ITheadColumn[];
+  isEndColumn?: boolean;
 }
 
-export default Table;
+export interface BaseTableProps {
+  dataSource: any[];
+  columns: IColumn[];
+  rowKey?: string;
+  className?: string;
+  style?: React.CSSProperties;
+  size?: 'small' | 'middle' | 'large';
+  scroll?: IScroll;
+  bordered?: boolean;
+}
+
+export interface BaseTableHeaderProps {
+  originColumns: ITheadColumn[][];
+  genColumns: ITheadColumn[];
+  scroll?: IScroll;
+  ref?: React.MutableRefObject<any>;
+}
+
+export interface BaseTableBodyProps {
+  genColumns: ITheadColumn[];
+  dataSource: any[];
+  rowKey?: string;
+  scroll?: IScroll;
+  onScroll?: (scrollLeft: number, scrollTop: number) => void;
+}
+
+export interface TableCellProps {
+  className?: string;
+  style?: React.CSSProperties;
+  column: IColumn | ITheadColumn;
+  renderType: 'header' | 'body';
+  record?: object;
+  index?: number;
+}
+
+export const cssPrefix: string = 'r-zc-table';
+
+export default BaseTable;

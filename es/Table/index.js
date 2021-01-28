@@ -1,2 +1,3 @@
-import Table from './Table';
-export default Table;
+import BaseTable from './BaseTable';
+export var cssPrefix = 'r-zc-table';
+export default BaseTable;
