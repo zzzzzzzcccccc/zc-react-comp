@@ -38,6 +38,19 @@
       .@{prefix-name}-table-cell-last {
         border-bottom: 1px solid @gray-border-color;
       }
+      .react-resizable {
+        position: relative;
+        background-clip: padding-box;
+      }
+      .react-resizable-handle {
+        position: absolute;
+        width: 10px;
+        height: 100%;
+        bottom: 0;
+        right: -5px;
+        cursor: col-resize;
+        z-index: 1;
+      }
     }
   }
 
@@ -62,14 +75,10 @@
     &-body {
       word-break: break-word;
     }
-  }
-
-  /* size */
-  &-table-middle {
-    table tr th,
-    table tr td {
-      padding: 8px 12px;
-      font-size: 14px;
+    &-ellipsis {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
 
@@ -97,6 +106,31 @@
           }
         }
       }
+    }
+  }
+
+  /* size */
+  &-table-middle {
+    table tr th,
+    table tr td {
+      padding: 8px 12px;
+      font-size: 14px;
+    }
+  }
+
+  &-table-small {
+    table tr th,
+    table tr td {
+      padding: 4px 10px;
+      font-size: 12px;
+    }
+  }
+
+  &-table-large {
+    table tr th,
+    table tr td {
+      padding: 10px 14px;
+      font-size: 16px;
     }
   }
 }

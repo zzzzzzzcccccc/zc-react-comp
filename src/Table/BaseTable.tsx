@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import classNames from 'classnames';
 import { BaseTableProps, cssPrefix } from './index';
 import { convertToRows } from './tableUitls';
@@ -15,8 +15,22 @@ const BaseTable: FC<BaseTableProps> = ({
   rowKey = '',
   scroll,
   bordered = false,
+  hideHeader=false,
+  onScroll,
 }) => {
   const { originColumns, genColumns } = convertToRows(columns);
+  const [endColumns, setEndColumns] = useState(genColumns.filter(v => v.isEndColumn));
+
+  const handleResize = (index: number, width: number) => {
+    let updateEndColumns = [...endColumns];
+    updateEndColumns[index].width = width;
+    setEndColumns(updateEndColumns);
+  };
+
+  const handleBodyScroll = (x: number, y: number) => {
+    onScroll && onScroll(x, y);
+  };
+
   return (
     <div
       className={classNames(
@@ -30,14 +44,17 @@ const BaseTable: FC<BaseTableProps> = ({
       <div className={`${cssPrefix}-wrapper`}>
         <div className={`${cssPrefix}-content`}>
           <TableHeader
+            style={{ display: hideHeader ? 'none' : 'block' }}
             originColumns={originColumns}
             scroll={scroll}
-            genColumns={genColumns}
+            onResize={handleResize}
+            genColumns={endColumns}
           />
           <TableBody
-            genColumns={genColumns}
+            genColumns={endColumns}
             rowKey={rowKey}
             scroll={scroll}
+            onScroll={handleBodyScroll}
             dataSource={dataSource}
           />
         </div>

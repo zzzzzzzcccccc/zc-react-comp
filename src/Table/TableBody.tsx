@@ -16,18 +16,12 @@ const TableBody: FC<BaseTableBodyProps> = ({
     tableEmitter.emit(tableBodyScrollEmitKey, scrollLeft, scrollTop);
     onScroll && onScroll(scrollLeft, scrollTop);
   };
+
   return (
     <div
       className={`${cssPrefix}-body`}
       onScroll={handleScroll}
-      style={
-        scroll && {
-          maxHeight: scroll.y,
-          overflow: `${scroll.x ? 'scroll' : 'hidden'} ${
-            scroll.y ? 'scroll' : 'hidden'
-          }`,
-        }
-      }
+      style={scroll && { maxHeight: scroll.y, overflow: `${scroll.x ? 'scroll' : 'hidden'} ${scroll.y ? 'scroll' : 'hidden'}` }}
     >
       <table style={{ width: scroll && scroll.x }}>
         <colgroup>

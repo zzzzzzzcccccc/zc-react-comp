@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import classNames from 'classnames';
-import { cssPrefix, TableCellProps } from './index';
+import { cssPrefix, TableCellProps, isTableCellHeader } from './index';
 
 const TableCell: FC<TableCellProps> = ({
   className,
@@ -20,8 +20,11 @@ const TableCell: FC<TableCellProps> = ({
       : record[column.dataIndex];
   };
 
+  const renderCell = (): React.ReactNode => isTableCellHeader(renderType) ? renderHeaderCell() : renderBodyCell()
+
   return (
     <span
+      title={column.ellipsis && renderCell() as string}
       className={classNames(
         `${cssPrefix}-cell`,
         `${cssPrefix}-cell-${renderType}`,
@@ -30,7 +33,7 @@ const TableCell: FC<TableCellProps> = ({
       )}
       style={style}
     >
-      {renderType === 'header' ? renderHeaderCell() : renderBodyCell()}
+      {renderCell()}
     </span>
   );
 };

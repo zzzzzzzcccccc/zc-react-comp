@@ -2,7 +2,7 @@ import { IColumn, ITheadColumn } from './index';
 import { EventEmitter } from 'events';
 
 export const tableEmitter = new EventEmitter();
-export const tableBodyScrollEmitKey = 'tableBodyScroll';
+export const tableBodyScrollEmitKey = 'tableBodyScroll' + new Date().getTime();
 
 const getGenColumns = (columns: IColumn[]): IColumn[] | ITheadColumn[] => {
   let list: IColumn[] = [];

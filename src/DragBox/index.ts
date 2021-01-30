@@ -8,16 +8,16 @@ export interface IDragBox {
 }
 
 class DragBox implements IDragBox {
-  public drag: HTMLElement;
-  public wrap: HTMLElement;
-  public isCheckBody: boolean;
-  public initX: number;
-  public initY: number;
-  public moving: boolean;
-  public wrapLeft: number;
-  public wrapTop: number;
-  public maxX: number;
-  public maxY: number;
+  drag: HTMLElement;
+  wrap: HTMLElement;
+  isCheckBody: boolean;
+  initX: number;
+  initY: number;
+  moving: boolean;
+  wrapLeft: number;
+  wrapTop: number;
+  maxX: number;
+  maxY: number;
 
   constructor(
     drag: HTMLElement,

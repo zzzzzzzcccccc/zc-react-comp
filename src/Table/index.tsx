@@ -9,10 +9,11 @@ interface IScroll {
 export interface IColumn {
   title: React.ReactNode;
   dataIndex: string;
-  width?: string | number;
+  width?: number;
   children?: IColumn[];
-  render?: (val: any, record: object, index: number) => void;
+  render?: (val: any, record: object, index: number) => React.ReactNode;
   ellipsis?: boolean;
+  resize?: boolean;
 }
 export interface ITheadColumn extends IColumn {
   colSpan?: number;
@@ -23,7 +24,7 @@ export interface ITheadColumn extends IColumn {
 }
 
 export interface BaseTableProps {
-  dataSource: any[];
+  dataSource: object[];
   columns: IColumn[];
   rowKey?: string;
   className?: string;
@@ -31,6 +32,8 @@ export interface BaseTableProps {
   size?: 'small' | 'middle' | 'large';
   scroll?: IScroll;
   bordered?: boolean;
+  hideHeader?: boolean;
+  onScroll?: (x: number, y: number) => void;
 }
 
 export interface BaseTableHeaderProps {
@@ -38,6 +41,8 @@ export interface BaseTableHeaderProps {
   genColumns: ITheadColumn[];
   scroll?: IScroll;
   ref?: React.MutableRefObject<any>;
+  onResize?: (index: number, width: number) => void;
+  style?: React.CSSProperties;
 }
 
 export interface BaseTableBodyProps {
@@ -57,6 +62,7 @@ export interface TableCellProps {
   index?: number;
 }
 
+export const isTableCellHeader = (renderType: 'header' | 'body'): boolean => renderType === 'header';
 export const cssPrefix: string = 'r-zc-table';
 
 export default BaseTable;
