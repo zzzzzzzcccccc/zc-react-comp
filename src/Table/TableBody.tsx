@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import classNames from 'classnames';
 import { BaseTableBodyProps, cssPrefix } from './index';
 import { tableEmitter, tableBodyScrollEmitKey } from './tableUitls';
 import TableCell from './TableCell';
@@ -10,7 +11,6 @@ const TableBody: FC<BaseTableBodyProps> = ({
   scroll,
   onScroll,
 }) => {
-  const endColumns = genColumns.filter(v => v.isEndColumn);
   const handleScroll = (e: React.UIEvent) => {
     const { scrollLeft, scrollTop } = e.target as HTMLDivElement;
     tableEmitter.emit(tableBodyScrollEmitKey, scrollLeft, scrollTop);
@@ -19,13 +19,20 @@ const TableBody: FC<BaseTableBodyProps> = ({
 
   return (
     <div
-      className={`${cssPrefix}-body`}
+      className={classNames(`${cssPrefix}-body`)}
       onScroll={handleScroll}
-      style={scroll && { maxHeight: scroll.y, overflow: `${scroll.x ? 'scroll' : 'hidden'} ${scroll.y ? 'scroll' : 'hidden'}` }}
+      style={
+        scroll && {
+          maxHeight: scroll.y,
+          overflow: `${scroll.x ? 'scroll' : 'hidden'} ${
+            scroll.y ? 'scroll' : 'hidden'
+          }`,
+        }
+      }
     >
       <table style={{ width: scroll && scroll.x }}>
         <colgroup>
-          {endColumns.map((column, columnIndex) => (
+          {genColumns.map((column, columnIndex) => (
             <col
               key={columnIndex}
               style={{ width: column.width, minWidth: column.width }}
@@ -39,7 +46,7 @@ const TableBody: FC<BaseTableBodyProps> = ({
                 key={rowKey ? record[rowKey] : recordIndex}
                 data-row-key={rowKey ? record[rowKey] : recordIndex}
               >
-                {endColumns.map((column, columnIndex) => {
+                {genColumns.map(column => {
                   return (
                     <td key={column.dataIndex}>
                       <TableCell

@@ -5,6 +5,7 @@ import { convertToRows } from './tableUitls';
 import TableHeader from './TableHeader';
 import TableBody from './TableBody';
 import './index.less';
+import VirtualTableBody from '@/Table/VirtualTableBody';
 
 const BaseTable: FC<BaseTableProps> = ({
   className,
@@ -15,11 +16,14 @@ const BaseTable: FC<BaseTableProps> = ({
   rowKey = '',
   scroll,
   bordered = false,
-  hideHeader=false,
+  hideHeader = false,
   onScroll,
+  virtualScroll,
 }) => {
   const { originColumns, genColumns } = convertToRows(columns);
-  const [endColumns, setEndColumns] = useState(genColumns.filter(v => v.isEndColumn));
+  const [endColumns, setEndColumns] = useState(
+    genColumns.filter(v => v.isEndColumn),
+  );
 
   const handleResize = (index: number, width: number) => {
     let updateEndColumns = [...endColumns];
@@ -50,13 +54,24 @@ const BaseTable: FC<BaseTableProps> = ({
             onResize={handleResize}
             genColumns={endColumns}
           />
-          <TableBody
-            genColumns={endColumns}
-            rowKey={rowKey}
-            scroll={scroll}
-            onScroll={handleBodyScroll}
-            dataSource={dataSource}
-          />
+          {virtualScroll && virtualScroll.itemHeight ? (
+            <VirtualTableBody
+              genColumns={endColumns}
+              virtualScroll={virtualScroll}
+              rowKey={rowKey}
+              scroll={scroll}
+              onScroll={handleBodyScroll}
+              dataSource={dataSource}
+            />
+          ) : (
+            <TableBody
+              genColumns={endColumns}
+              rowKey={rowKey}
+              scroll={scroll}
+              onScroll={handleBodyScroll}
+              dataSource={dataSource}
+            />
+          )}
         </div>
       </div>
     </div>

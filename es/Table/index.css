@@ -2,8 +2,9 @@
   /* header */
   /* body */
   /* cell */
-  /* size */
+  /* virtual */
   /* bordered */
+  /* size */
 }
 .r-zc-table {
   zoom: 1;
@@ -41,6 +42,19 @@
 .r-zc-table-header tr .r-zc-table-cell-last {
   border-bottom: 1px solid #e8e8e8;
 }
+.r-zc-table-header tr .react-resizable {
+  position: relative;
+  background-clip: padding-box;
+}
+.r-zc-table-header tr .react-resizable-handle {
+  position: absolute;
+  width: 10px;
+  height: 100%;
+  bottom: 0;
+  right: -5px;
+  cursor: col-resize;
+  z-index: 1;
+}
 .r-zc-table-body {
   box-sizing: border-box;
 }
@@ -58,10 +72,13 @@
 .r-zc-table-cell-body {
   word-break: break-word;
 }
-.r-zc-table-middle table tr th,
-.r-zc-table-middle table tr td {
-  padding: 8px 12px;
-  font-size: 14px;
+.r-zc-table-cell-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.r-zc-table-virtual-cell {
+  border-bottom: 1px solid #e8e8e8;
 }
 .r-zc-table-bordered .r-zc-table-header tr th {
   border: 1px solid #e8e8e8;
@@ -75,4 +92,50 @@
 }
 .r-zc-table-bordered .r-zc-table-body tr td:last-child {
   border-right: 0;
+}
+.r-zc-table-bordered .r-zc-table-body-virtual {
+  border-left: 1px solid #e8e8e8;
+}
+.r-zc-table-bordered .r-zc-table-virtual-cell:after {
+  content: '';
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 1px;
+  background-color: #e8e8e8;
+  display: block;
+  position: absolute;
+}
+.r-zc-table-bordered .r-zc-table-virtual-cell-last:after {
+  right: -1px;
+}
+.r-zc-table-middle table tr th,
+.r-zc-table-middle table tr td {
+  padding: 8px 12px;
+  font-size: 14px;
+}
+.r-zc-table-middle .r-zc-table-virtual-cell {
+  padding: 8px 12px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+.r-zc-table-small table tr th,
+.r-zc-table-small table tr td {
+  padding: 4px 10px;
+  font-size: 12px;
+}
+.r-zc-table-small .r-zc-table-virtual-cell {
+  padding: 4px 10px;
+  box-sizing: border-box;
+  font-size: 12px;
+}
+.r-zc-table-large table tr th,
+.r-zc-table-large table tr td {
+  padding: 10px 14px;
+  font-size: 16px;
+}
+.r-zc-table-large .r-zc-table-virtual-cell {
+  padding: 10px 14px;
+  box-sizing: border-box;
+  font-size: 16px;
 }

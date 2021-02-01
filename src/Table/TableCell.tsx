@@ -20,11 +20,12 @@ const TableCell: FC<TableCellProps> = ({
       : record[column.dataIndex];
   };
 
-  const renderCell = (): React.ReactNode => isTableCellHeader(renderType) ? renderHeaderCell() : renderBodyCell()
+  const renderCell = (): React.ReactNode =>
+    isTableCellHeader(renderType) ? renderHeaderCell() : renderBodyCell();
 
   return (
     <span
-      title={column.ellipsis && renderCell() as string}
+      title={column.ellipsis && (renderCell() as string)}
       className={classNames(
         `${cssPrefix}-cell`,
         `${cssPrefix}-cell-${renderType}`,

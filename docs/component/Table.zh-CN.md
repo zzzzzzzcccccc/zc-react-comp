@@ -24,6 +24,7 @@ export default () => {
 ```
 
 ### 小尺寸
+
 ```tsx
 import React from 'react';
 import { Table } from 'zc-react-comp';
@@ -41,11 +42,14 @@ export default () => {
     { title: '性别', dataIndex: 'sex' },
     { title: '年龄', dataIndex: 'age', width: 100 },
   ];
-  return <Table rowKey="id" size="small" dataSource={dataSource} columns={columns} />;
+  return (
+    <Table rowKey="id" size="small" dataSource={dataSource} columns={columns} />
+  );
 };
 ```
 
 ### 大尺寸
+
 ```tsx
 import React from 'react';
 import { Table } from 'zc-react-comp';
@@ -63,7 +67,9 @@ export default () => {
     { title: '性别', dataIndex: 'sex' },
     { title: '年龄', dataIndex: 'age', width: 100 },
   ];
-  return <Table rowKey="id" size="large" dataSource={dataSource} columns={columns} />;
+  return (
+    <Table rowKey="id" size="large" dataSource={dataSource} columns={columns} />
+  );
 };
 ```
 
@@ -86,7 +92,9 @@ export default () => {
     { title: '性别', dataIndex: 'sex' },
     { title: '年龄', dataIndex: 'age', width: 100 },
   ];
-  return <Table hideHeader rowKey="id" dataSource={dataSource} columns={columns} />;
+  return (
+    <Table hideHeader rowKey="id" dataSource={dataSource} columns={columns} />
+  );
 };
 ```
 
@@ -210,6 +218,7 @@ export default () => {
   );
 };
 ```
+
 ### 虚拟滚动
 
 ```tsx
@@ -219,50 +228,67 @@ import { Table } from 'zc-react-comp';
 export default () => {
   let dataSource = [];
   for (let i = 0; i < 1000; i++) {
-    dataSource = [...dataSource, {
-      id: i + 1,
-      name: `张三${i + 1}`,
-      sex: "MMMM",
-      age: Math.floor(Math.random() * 1000)
-    }]
+    dataSource = [
+      ...dataSource,
+      {
+        id: i + 1,
+        name: `张三${i + 1}`,
+        sex: 'MMMM',
+        age: Math.floor(Math.random() * 1000),
+        a: i + 1,
+        b: i + 2,
+        c: i + 3,
+        d: i + 4,
+        e: i + 5,
+      },
+    ];
   }
   const columns = [
     { title: '姓名', dataIndex: 'name', width: 100, ellipsis: true },
-    { title: '性别', dataIndex: 'sex', ellipsis: true },
+    { title: '性别', dataIndex: 'sex', width: 400, ellipsis: true },
+    { title: 'a', dataIndex: 'a', width: 400, ellipsis: true },
+    { title: 'b', dataIndex: 'b', width: 400, ellipsis: true },
+    { title: 'c', dataIndex: 'c', width: 400, ellipsis: true },
+    { title: 'd', dataIndex: 'd', width: 400, ellipsis: true },
     { title: '年龄', dataIndex: 'age', width: 100, ellipsis: true },
   ];
-  return <Table rowKey="id" 
-                dataSource={dataSource} 
-                scroll={{ y: 500 }}
-                columns={columns} />;
+  return (
+    <Table
+      rowKey="id"
+      dataSource={dataSource}
+      bordered
+      scroll={{ y: 500, x: '100%' }}
+      virtualScroll={{ itemHeight: 36, maxViewportNum: 20 }}
+      columns={columns}
+    />
+  );
 };
 ```
-
-
 
 ## API
 
 ### Table
 
-| 属性 | 说明 | 类型 | 默认值 |
-| -- | -- | -- | -- |
-| dataSource | 源数据 | object[] | [] |
-| columns | [表头配置](/zh-CN/component/table#column) | IColumn[] | [] |
-| rowKey | 唯一标识 | string | 若不传则为索引 |
-| size | 尺寸 | small/middle/large | middle |
-| scroll | 表格滚动 | {x: 1000/1000px/100%, y: 1000/100px/50% } | |
-| bordered | 是否显示边框 | boolean | false |
-| hideHeader | 是否隐藏头部 | boolean | false |
-| onScroll | 内容滚动监听 | (x, y) => void | |
+| 属性          | 说明                                      | 类型                                      | 默认值         |
+| ------------- | ----------------------------------------- | ----------------------------------------- | -------------- |
+| dataSource    | 源数据                                    | object[]                                  | []             |
+| columns       | [表头配置](/zh-CN/component/table#column) | IColumn[]                                 | []             |
+| rowKey        | 唯一标识                                  | string                                    | 若不传则为索引 |
+| size          | 尺寸                                      | small/middle/large                        | middle         |
+| scroll        | 表格滚动                                  | {x: 1000/1000px/100%, y: 1000/100px/50% } |                |
+| bordered      | 是否显示边框                              | boolean                                   | false          |
+| hideHeader    | 是否隐藏头部                              | boolean                                   | false          |
+| onScroll      | 内容滚动监听                              | (x, y) => void                            |                |
+| virtualScroll | 虚拟滚动配置                              | { itemHeight: number }                    |                |
 
 ### Column
 
-| 属性 | 说明 | 类型 | 默认值 |
-| -- | -- | -- | -- |
-| title | 文案 | React.ReactNode | |
-| dataIndex | 字段索引 | string | |
-| width | 宽度 | number |  |
-| children | 子集 | IColumn[] | |
-| render | 自定义渲染内容 | (val, record, index) => React.ReactNode | |
-| ellipsis | 是否一行显示 | boolean | false |
-| resize | 是否可以调整宽度(必须设置width) | boolean | false | 
+| 属性      | 说明                             | 类型                                    | 默认值 |
+| --------- | -------------------------------- | --------------------------------------- | ------ |
+| title     | 文案                             | React.ReactNode                         |        |
+| dataIndex | 字段索引                         | string                                  |        |
+| width     | 宽度                             | number                                  |        |
+| children  | 子集                             | IColumn[]                               |        |
+| render    | 自定义渲染内容                   | (val, record, index) => React.ReactNode |        |
+| ellipsis  | 是否一行显示                     | boolean                                 | false  |
+| resize    | 是否可以调整宽度(必须设置 width) | boolean                                 | false  |

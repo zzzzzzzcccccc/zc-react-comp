@@ -6,6 +6,10 @@ interface IScroll {
   y?: string | number;
 }
 
+interface IVirtualScroll {
+  itemHeight: number;
+}
+
 export interface IColumn {
   title: React.ReactNode;
   dataIndex: string;
@@ -34,6 +38,7 @@ export interface BaseTableProps {
   bordered?: boolean;
   hideHeader?: boolean;
   onScroll?: (x: number, y: number) => void;
+  virtualScroll?: IVirtualScroll;
 }
 
 export interface BaseTableHeaderProps {
@@ -52,6 +57,9 @@ export interface BaseTableBodyProps {
   scroll?: IScroll;
   onScroll?: (scrollLeft: number, scrollTop: number) => void;
 }
+export interface BaseVirtualTableBodyProps extends BaseTableBodyProps {
+  virtualScroll: IVirtualScroll;
+}
 
 export interface TableCellProps {
   className?: string;
@@ -62,7 +70,8 @@ export interface TableCellProps {
   index?: number;
 }
 
-export const isTableCellHeader = (renderType: 'header' | 'body'): boolean => renderType === 'header';
+export const isTableCellHeader = (renderType: 'header' | 'body'): boolean =>
+  renderType === 'header';
 export const cssPrefix: string = 'r-zc-table';
 
 export default BaseTable;

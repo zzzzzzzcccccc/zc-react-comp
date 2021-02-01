@@ -19,7 +19,10 @@ const TableHeader: FC<BaseTableHeaderProps> = ({
     ref && ref.current && (ref.current.scrollLeft = scrollLeft);
   };
 
-  const handleResize = (column: ITheadColumn) => (e:React.SyntheticEvent, data: ResizeCallbackData): void => {
+  const handleResize = (column: ITheadColumn) => (
+    e: React.SyntheticEvent,
+    data: ResizeCallbackData,
+  ): void => {
     e.stopPropagation();
     if (data.size.width < 20) {
       return;
@@ -32,7 +35,7 @@ const TableHeader: FC<BaseTableHeaderProps> = ({
       }
     }
     onResize && onResize(currentIndex, data.size.width);
-  }
+  };
 
   useEffect(() => {
     tableEmitter.addListener(tableBodyScrollEmitKey, setScrollLeft);
@@ -45,38 +48,47 @@ const TableHeader: FC<BaseTableHeaderProps> = ({
     <div
       className={`${cssPrefix}-header`}
       ref={ref}
-      style={{ ...style, ...scroll && scroll.y && { overflow: 'hidden scroll' } }}
+      style={{
+        ...style,
+        ...(scroll && scroll.y && { overflow: 'hidden scroll' }),
+      }}
     >
       <table style={{ width: scroll && scroll.x }} ref={tableRef}>
         <colgroup>
           {genColumns.map((column, columnIndex) => (
-              <col
-                key={columnIndex}
-                style={{ width: column.width, minWidth: column.width }}
-              />
-            ))}
+            <col
+              key={columnIndex}
+              style={{ width: column.width, minWidth: column.width }}
+            />
+          ))}
         </colgroup>
         <thead>
           {originColumns.map((columns, columnsIndex) => {
             return (
               <tr key={columnsIndex}>
                 {columns.map((column, columnIndex) => {
-                  if ((!column.children || column.children.length <= 0) && column.resize && column.width && typeof column.width === "number") {
+                  if (
+                    (!column.children || column.children.length <= 0) &&
+                    column.resize &&
+                    column.width &&
+                    typeof column.width === 'number'
+                  ) {
                     return (
-                      <Resizable width={column.width}
-                                 key={columnIndex}
-                                 onResize={handleResize(column)}
-                                 draggableOpts={{ enableUserSelectHack: false }}
-                                 height={0}>
+                      <Resizable
+                        width={column.width}
+                        key={columnIndex}
+                        onResize={handleResize(column)}
+                        draggableOpts={{ enableUserSelectHack: false }}
+                        height={0}
+                      >
                         <th {...getThProps(column)}>
                           <TableCell column={column} renderType="header" />
                         </th>
                       </Resizable>
-                    )
+                    );
                   }
                   return (
-                    <th key={columnIndex}
-                        {...getThProps(column)}>
+                    <th key={columnIndex} {...getThProps(column)}>
                       <TableCell column={column} renderType="header" />
                     </th>
                   );
@@ -94,8 +106,9 @@ const getThProps = (column: ITheadColumn) => ({
   colSpan: column.colSpan == 1 ? undefined : column.colSpan,
   rowSpan: column.rowSpan == 1 ? undefined : column.rowSpan,
   className: classNames(
-    (!column.children || column.children.length === 0) && `${cssPrefix}-cell-last`,
-  )
+    (!column.children || column.children.length === 0) &&
+      `${cssPrefix}-cell-last`,
+  ),
 });
 
 export default TableHeader;

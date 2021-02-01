@@ -1,6 +1,6 @@
 {
   "name": "zc-react-comp",
-  "version": "1.2.7",
+  "version": "1.2.8",
   "license": "MIT",
   "author": "zc",
   "scripts": {
@@ -38,13 +38,16 @@
     "@types/classnames": "^2.2.11",
     "@types/react-resizable": "^1.7.2",
     "@types/react-transition-group": "^4.4.0",
+    "@types/react-window": "^1.8.2",
     "classnames": "^2.2.6",
     "events": "^3.2.0",
+    "rc-resize-observer": "^1.0.0",
     "rc-table": "^7.12.3",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-resizable": "^1.11.0",
     "react-transition-group": "^4.4.1",
+    "react-window": "^1.8.6",
     "tslib": "^2.1.0"
   },
   "devDependencies": {
