@@ -27,6 +27,10 @@ export interface ITheadColumn extends IColumn {
   isEndColumn?: boolean;
 }
 
+export interface IBaseTableContext {
+  onBodyScroll?: (scrollLeft:number, scrollTop: number) => void;
+}
+
 export interface BaseTableProps {
   dataSource: object[];
   columns: IColumn[];

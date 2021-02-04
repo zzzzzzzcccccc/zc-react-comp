@@ -1,8 +1,8 @@
-import React, { FC } from 'react';
+import React, { FC, useContext } from 'react';
 import classNames from 'classnames';
 import { BaseTableBodyProps, cssPrefix } from './index';
-import { tableEmitter, tableBodyScrollEmitKey } from './tableUitls';
 import TableCell from './TableCell';
+import { BaseTableContext } from './BaseTable';
 
 const TableBody: FC<BaseTableBodyProps> = ({
   dataSource,
@@ -11,9 +11,10 @@ const TableBody: FC<BaseTableBodyProps> = ({
   scroll,
   onScroll,
 }) => {
+  const context = useContext(BaseTableContext);
   const handleScroll = (e: React.UIEvent) => {
     const { scrollLeft, scrollTop } = e.target as HTMLDivElement;
-    tableEmitter.emit(tableBodyScrollEmitKey, scrollLeft, scrollTop);
+    context && context.onBodyScroll && context.onBodyScroll(scrollLeft, scrollTop);
     onScroll && onScroll(scrollLeft, scrollTop);
   };
 

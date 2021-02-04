@@ -1,11 +1,13 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, createContext } from 'react';
 import classNames from 'classnames';
-import { BaseTableProps, cssPrefix } from './index';
+import { IBaseTableContext, BaseTableProps, cssPrefix } from './index';
 import { convertToRows } from './tableUitls';
 import TableHeader from './TableHeader';
 import TableBody from './TableBody';
+import VirtualTableBody from './VirtualTableBody';
 import './index.less';
-import VirtualTableBody from '@/Table/VirtualTableBody';
+
+export const BaseTableContext = createContext<IBaseTableContext>(null);
 
 const BaseTable: FC<BaseTableProps> = ({
   className,
@@ -35,46 +37,50 @@ const BaseTable: FC<BaseTableProps> = ({
     onScroll && onScroll(x, y);
   };
 
+  const context = {}
+
   return (
-    <div
-      className={classNames(
-        cssPrefix,
-        `${cssPrefix}-${size}`,
-        bordered && `${cssPrefix}-bordered`,
-        className,
-      )}
-      style={style}
-    >
-      <div className={`${cssPrefix}-wrapper`}>
-        <div className={`${cssPrefix}-content`}>
-          <TableHeader
-            style={{ display: hideHeader ? 'none' : 'block' }}
-            originColumns={originColumns}
-            scroll={scroll}
-            onResize={handleResize}
-            genColumns={endColumns}
-          />
-          {virtualScroll && virtualScroll.itemHeight ? (
-            <VirtualTableBody
-              genColumns={endColumns}
-              virtualScroll={virtualScroll}
-              rowKey={rowKey}
+    <BaseTableContext.Provider value={context}>
+      <div
+        className={classNames(
+          cssPrefix,
+          `${cssPrefix}-${size}`,
+          bordered && `${cssPrefix}-bordered`,
+          className,
+        )}
+        style={style}
+      >
+        <div className={`${cssPrefix}-wrapper`}>
+          <div className={`${cssPrefix}-content`}>
+            <TableHeader
+              style={{ display: hideHeader ? 'none' : 'block' }}
+              originColumns={originColumns}
               scroll={scroll}
-              onScroll={handleBodyScroll}
-              dataSource={dataSource}
-            />
-          ) : (
-            <TableBody
+              onResize={handleResize}
               genColumns={endColumns}
-              rowKey={rowKey}
-              scroll={scroll}
-              onScroll={handleBodyScroll}
-              dataSource={dataSource}
             />
-          )}
+            {virtualScroll && virtualScroll.itemHeight ? (
+              <VirtualTableBody
+                genColumns={endColumns}
+                virtualScroll={virtualScroll}
+                rowKey={rowKey}
+                scroll={scroll}
+                onScroll={handleBodyScroll}
+                dataSource={dataSource}
+              />
+            ) : (
+              <TableBody
+                genColumns={endColumns}
+                rowKey={rowKey}
+                scroll={scroll}
+                onScroll={handleBodyScroll}
+                dataSource={dataSource}
+              />
+            )}
+          </div>
         </div>
       </div>
-    </div>
+    </BaseTableContext.Provider>
   );
 };
 

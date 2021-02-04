@@ -1,9 +1,9 @@
-import React, { FC, useEffect, useRef } from 'react';
+import React, { FC, useRef, useContext } from 'react';
 import { BaseTableHeaderProps, cssPrefix, ITheadColumn } from './index';
 import classNames from 'classnames';
-import { tableEmitter, tableBodyScrollEmitKey } from './tableUitls';
 import TableCell from './TableCell';
 import { Resizable, ResizeCallbackData } from 'react-resizable';
+import { BaseTableContext } from './BaseTable';
 
 const TableHeader: FC<BaseTableHeaderProps> = ({
   originColumns,
@@ -14,6 +14,7 @@ const TableHeader: FC<BaseTableHeaderProps> = ({
 }) => {
   const ref = useRef<HTMLDivElement>();
   const tableRef = useRef<HTMLTableElement>();
+  const context = useContext(BaseTableContext);
 
   const setScrollLeft = (scrollLeft: number) => {
     ref && ref.current && (ref.current.scrollLeft = scrollLeft);
@@ -37,12 +38,7 @@ const TableHeader: FC<BaseTableHeaderProps> = ({
     onResize && onResize(currentIndex, data.size.width);
   };
 
-  useEffect(() => {
-    tableEmitter.addListener(tableBodyScrollEmitKey, setScrollLeft);
-    return () => {
-      tableEmitter.removeListener(tableBodyScrollEmitKey, setScrollLeft);
-    };
-  }, []);
+  context.onBodyScroll = setScrollLeft;
 
   return (
     <div

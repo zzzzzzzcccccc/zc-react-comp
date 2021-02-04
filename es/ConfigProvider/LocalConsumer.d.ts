@@ -1,6 +1,6 @@
 import { FC } from 'react';
 interface LocalConsumerProps {
-  componentName?: string;
+    componentName?: string;
 }
 declare const LocalConsumer: FC<LocalConsumerProps>;
 export default LocalConsumer;
