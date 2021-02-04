@@ -13,3 +13,7 @@ export const logError = (str = '') => {
 export const logWarning = (str = '') => {
   console.warn(str);
 };
+
+export const isArray = (target: any): boolean => {
+  return Object.prototype.toString.call(target) === '[object Array]';
+};

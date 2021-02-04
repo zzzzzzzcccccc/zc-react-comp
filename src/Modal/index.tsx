@@ -1,15 +1,17 @@
 import React, { FC, useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
+import { IGlobal } from '../Local';
+import LocalConsumer from '../ConfigProvider/LocalConsumer';
 import { CSSTransition } from 'react-transition-group';
 import classNames from 'classnames';
 import Mask from '../Mask';
 import Button from '../Button';
-import './index.less';
 import { toggleBodyOverflow } from '../utils';
 import DragBox, { IDragBox } from '../DragBox';
 import varStyle from '../assets/styles/varStyle';
+import './index.less';
 
-interface ModalProps {
+export interface ModalProps {
   visible: boolean;
   top?: number;
   width?: number;
@@ -43,8 +45,8 @@ const Modal: FC<ModalProps> = ({
   destroyOnClose = true,
   children,
   footer,
-  okText = '确认',
-  cancelText = '取消',
+  okText,
+  cancelText,
   footerAlign = 'right',
   loading,
   layoutDom = document.body,
@@ -99,63 +101,72 @@ const Modal: FC<ModalProps> = ({
   }, [visible]);
 
   return ReactDOM.createPortal(
-    <div>
-      {visible && <Mask style={{ zIndex }} />}
-      <div
-        className={classNames(cssPrefix)}
-        style={{ display: visible ? 'block' : 'none', zIndex }}
-      >
-        {destroyOnClose && !visible ? null : (
-          <CSSTransition timeout={400} in={visible} classNames="z-modal" appear>
+    <LocalConsumer>
+      {(local: IGlobal) => {
+        return (
+          <div>
+            {visible && <Mask style={{ zIndex }} />}
             <div
-              ref={wrapperRef}
-              className={classNames(`${cssPrefix}-info`, className)}
-              style={{ ...style, width: `${width}px` }}
+              className={classNames(cssPrefix)}
+              style={{ display: visible ? 'block' : 'none', zIndex }}
             >
-              <div
-                ref={titleRef}
-                className={`${cssPrefix}-title`}
-                style={{ cursor: isMove ? 'move' : 'auto' }}
-              >
-                <div className={`${cssPrefix}-title-info`}>{title}</div>
-                <div
-                  className={`${cssPrefix}-title-close`}
-                  onClick={() => !loading && onClose()}
+              {destroyOnClose && !visible ? null : (
+                <CSSTransition
+                  timeout={400}
+                  in={visible}
+                  classNames="z-modal"
+                  appear
                 >
-                  ×
-                </div>
-              </div>
-              <div className={`${cssPrefix}-body`}>{children}</div>
-              {footer ? (
-                footer
-              ) : (
-                <div
-                  className={`${cssPrefix}-footer`}
-                  style={{ textAlign: footerAlign }}
-                >
-                  {cancelText && (
-                    <Button
-                      type="default"
-                      onClick={() => !loading && onClose()}
+                  <div
+                    ref={wrapperRef}
+                    className={classNames(`${cssPrefix}-info`, className)}
+                    style={{ ...style, width: `${width}px` }}
+                  >
+                    <div
+                      ref={titleRef}
+                      className={`${cssPrefix}-title`}
+                      style={{ cursor: isMove ? 'move' : 'auto' }}
                     >
-                      {cancelText}
-                    </Button>
-                  )}
-                  {okText && (
-                    <Button
-                      onClick={() => !loading && onOk()}
-                      loading={loading}
-                    >
-                      {okText}
-                    </Button>
-                  )}
-                </div>
+                      <div className={`${cssPrefix}-title-info`}>
+                        {title !== undefined ? title : local.title}
+                      </div>
+                      <div
+                        className={`${cssPrefix}-title-close`}
+                        onClick={() => !loading && onClose()}
+                      >
+                        ×
+                      </div>
+                    </div>
+                    <div className={`${cssPrefix}-body`}>{children}</div>
+                    {footer ? (
+                      footer
+                    ) : (
+                      <div
+                        className={`${cssPrefix}-footer`}
+                        style={{ textAlign: footerAlign }}
+                      >
+                        <Button
+                          type="default"
+                          onClick={() => !loading && onClose()}
+                        >
+                          {cancelText || local.cancel}
+                        </Button>
+                        <Button
+                          onClick={() => !loading && onOk()}
+                          loading={loading}
+                        >
+                          {okText || local.ok}
+                        </Button>
+                      </div>
+                    )}
+                  </div>
+                </CSSTransition>
               )}
             </div>
-          </CSSTransition>
-        )}
-      </div>
-    </div>,
+          </div>
+        );
+      }}
+    </LocalConsumer>,
     layoutDom,
   );
 };

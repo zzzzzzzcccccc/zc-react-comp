@@ -2,13 +2,15 @@ import React, { FC, useEffect } from 'react';
 import classNames from 'classnames';
 import { CSSTransition } from 'react-transition-group';
 import ReactDOM from 'react-dom';
+import LocalConsumer from '../ConfigProvider/LocalConsumer';
+import { IGlobal } from '../Local';
 import Mask from '../Mask';
 import Button from '../Button';
-import './index.less';
 import { toggleBodyOverflow } from '../utils';
 import varStyle from '../assets/styles/varStyle';
+import './index.less';
 
-interface ConfirmModalProps {
+export interface ConfirmModalProps {
   zIndex?: number;
   top?: string;
   width?: number;
@@ -18,6 +20,7 @@ interface ConfirmModalProps {
   cancelText?: string;
   className?: string;
   style?: React.CSSProperties;
+  footer?: React.ReactNode;
   onOk?: () => void;
   onCancel?: () => void;
   buttonSize?: 'small' | 'large' | 'normal';
@@ -28,12 +31,13 @@ const Modal: FC<ConfirmModalProps> = ({
   zIndex = varStyle.modalZIndex,
   top = '20%',
   width = 360,
-  title = '提示',
+  title,
   content = '',
   style = {},
   className,
-  okText = '确认',
-  cancelText = '取消',
+  footer,
+  okText,
+  cancelText,
   buttonSize = 'normal',
   onOk,
   onCancel,
@@ -46,36 +50,50 @@ const Modal: FC<ConfirmModalProps> = ({
   }, []);
 
   return (
-    <>
-      <Mask style={{ zIndex }} />
-      <CSSTransition in timeout={400} classNames="z-modal" appear>
-        <div
-          className={classNames(cssPrefix, className)}
-          style={{
-            ...style,
-            zIndex,
-            width: `${width}px`,
-            marginLeft: `${(width / 2) * -1}px`,
-            top,
-          }}
-        >
-          <div className={`${cssPrefix}-title`}>{title}</div>
-          <div className={`${cssPrefix}-content`}>{content}</div>
-          <div className={`${cssPrefix}-footer`}>
-            {cancelText && (
-              <Button type="default" onClick={onCancel} size={buttonSize}>
-                {cancelText}
-              </Button>
-            )}
-            {okText && (
-              <Button onClick={onOk} size={buttonSize}>
-                {okText}
-              </Button>
-            )}
-          </div>
-        </div>
-      </CSSTransition>
-    </>
+    <LocalConsumer>
+      {(local: IGlobal) => {
+        return (
+          <>
+            <Mask style={{ zIndex }} />
+            <CSSTransition in timeout={400} classNames="z-modal" appear>
+              <div
+                className={classNames(cssPrefix, className)}
+                style={{
+                  ...style,
+                  zIndex,
+                  width: `${width}px`,
+                  marginLeft: `${(width / 2) * -1}px`,
+                  top,
+                }}
+              >
+                <div className={`${cssPrefix}-title`}>
+                  {title || local.prompt}
+                </div>
+                <div className={`${cssPrefix}-content`}>{content}</div>
+                <div className={`${cssPrefix}-footer`}>
+                  {footer ? (
+                    footer
+                  ) : (
+                    <>
+                      <Button
+                        type="default"
+                        onClick={onCancel}
+                        size={buttonSize}
+                      >
+                        {cancelText || local.cancel}
+                      </Button>
+                      <Button onClick={onOk} size={buttonSize}>
+                        {okText || local.ok}
+                      </Button>
+                    </>
+                  )}
+                </div>
+              </div>
+            </CSSTransition>
+          </>
+        );
+      }}
+    </LocalConsumer>
   );
 };
 

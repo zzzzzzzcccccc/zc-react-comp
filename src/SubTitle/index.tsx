@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import classNames from 'classnames';
 import './index.less';
 
-interface SubTitleProps {
+export interface SubTitleProps {
   className?: string;
   style?: React.CSSProperties;
   type?: 'line' | 'point';

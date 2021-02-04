@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import './index.less';
 import varStyle from '../assets/styles/varStyle';
 
-interface MessageCompProps {
+export interface MessageCompProps {
   className?: string;
   style?: React.CSSProperties;
   children?: React.ReactNode;

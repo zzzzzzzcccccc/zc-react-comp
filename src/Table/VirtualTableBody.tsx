@@ -44,8 +44,6 @@ const VirtualTableBody: FC<BaseVirtualTableBodyProps> = ({
     onScroll && onScroll(scrollLeft, scrollTop);
   };
 
-  console.log(tableWidth);
-
   return (
     <ResizeObserver onResize={({ width }) => setTableWidth(width)}>
       <div className={classNames(`${cssPrefix}-body`)}>
@@ -61,9 +59,6 @@ const VirtualTableBody: FC<BaseVirtualTableBodyProps> = ({
           width={tableWidth}
         >
           {({ columnIndex, rowIndex, style }) => {
-            if (columnIndex === mergedColumns.length - 1) {
-              console.log(dataSource[rowIndex].dataIndex);
-            }
             return (
               <div
                 style={style}

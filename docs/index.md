@@ -1,71 +1,29 @@
-## 文档
+## Home
 
-### Button 按钮
+---
 
-- [预览地址](https://z5829984520.github.io/zc-react-comp/#/zh-CN/component/button)
-- [文档地址](https://github.com/z5829984520/zc-react-comp/blob/master/docs/component/Button.zh-CN.md)
+### Basic
 
-### HighText 字符高亮
+- [Button](/component/basic/button)
+- [DragBox](/component/basic/drag-box)
+- [Message](/component/basic/message)
 
-- [预览地址](https://z5829984520.github.io/zc-react-comp/#/zh-CN/component/high-text)
-- [文档地址](https://github.com/z5829984520/zc-react-comp/blob/master/docs/component/HighText.zh-CN.md)
+### Data
 
-### Message 消息
+- [Table](/component/data/table)
 
-- [预览地址](https://z5829984520.github.io/zc-react-comp/#/zh-CN/component/message)
-- [文档地址](https://github.com/z5829984520/zc-react-comp/blob/master/docs/component/Message.zh-CN.md)
+### Text
 
-### Spinner 加载
+- [DotStatus](/component/text/dot-status)
+- [HighText](/component/text/high-text)
+- [SubTitle](/component/text/sub-title)
 
-- [预览地址](https://z5829984520.github.io/zc-react-comp/#/zh-CN/component/spinner)
-- [文档地址](https://github.com/z5829984520/zc-react-comp/blob/master/docs/component/Spinner.zh-CN.md)
+### View
 
-### ConfirmModal 确认弹窗
-
-- [预览地址](https://z5829984520.github.io/zc-react-comp/#/zh-CN/component/confirm-modal)
-- [文档地址](https://github.com/z5829984520/zc-react-comp/blob/master/docs/component/ConfirmModal.zh-CN.md)
-
-### Modal 弹窗
-
-- [预览地址](https://z5829984520.github.io/zc-react-comp/#/zh-CN/component/modal)
-- [文档地址](https://github.com/z5829984520/zc-react-comp/blob/master/docs/component/Modal.zh-CN.md)
-
-### SubTitle 副标题
-
-- [预览地址](https://z5829984520.github.io/zc-react-comp/#/zh-CN/component/sub-title)
-- [文档地址](https://github.com/z5829984520/zc-react-comp/blob/master/docs/component/SubTitle.zh-CN.md)
-
-### DotStatus 状态标记
-
-- [预览地址](https://z5829984520.github.io/zc-react-comp/#/zh-CN/component/dot-status)
-- [文档地址](https://github.com/z5829984520/zc-react-comp/blob/master/docs/component/DotStatus.zh-CN.md)
-
-### SelectBox 单选、多选
-
-- [预览地址](https://z5829984520.github.io/zc-react-comp/#/zh-CN/component/select-box)
-- [文档地址](https://github.com/z5829984520/zc-react-comp/blob/master/docs/component/SelectBox.zh-CN.md)
-
-### Tag 标签
-
-- [预览地址](https://z5829984520.github.io/zc-react-comp/#/zh-CN/component/tag)
-- [文档地址](https://github.com/z5829984520/zc-react-comp/blob/master/docs/component/Tag.zh-CN.md)
-
-### Drawer 抽屉
-
-- [预览地址](https://z5829984520.github.io/zc-react-comp/#/zh-CN/component/drawer)
-- [文档地址](https://github.com/z5829984520/zc-react-comp/blob/master/docs/component/Drawer.zh-CN.md)
-
-### DragBox 移动 Dom
-
-- [预览地址](https://z5829984520.github.io/zc-react-comp/#/zh-CN/component/drag-box)
-- [文档地址](https://github.com/z5829984520/zc-react-comp/blob/master/docs/component/DragBox.zh-CN.md)
-
-### Collapse 折叠
-
-- [预览地址](https://z5829984520.github.io/zc-react-comp/#/zh-CN/component/collapse)
-- [文档地址](https://github.com/z5829984520/zc-react-comp/blob/master/docs/component/Collapse.zh-CN.md)
-
-### Table 表格
-
-- [预览地址](https://z5829984520.github.io/zc-react-comp/#/zh-CN/component/table)
-- [文档地址](https://github.com/z5829984520/zc-react-comp/blob/master/docs/component/Table.zh-CN.md)
+- [Collapse](/component/view/collapse)
+- [ConfirmModal](/component/view/confirm-modal)
+- [Drawer](/component/view/drawer)
+- [DotStatus](/component/view/dot-status)
+- [Modal](/component/view/modal)
+- [Spinner](/component/view/spinner)
+- [Tag](/component/view/tag)

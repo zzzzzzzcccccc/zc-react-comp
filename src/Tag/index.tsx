@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import classNames from 'classnames';
 import './index.less';
 
-interface TagProps {
+export interface TagProps {
   className?: string;
   style?: React.CSSProperties;
   type?: 'primary' | 'warning' | 'danger' | 'default' | 'success';

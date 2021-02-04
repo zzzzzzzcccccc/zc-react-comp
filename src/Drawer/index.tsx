@@ -4,12 +4,14 @@ import { CSSTransition } from 'react-transition-group';
 import classNames from 'classnames';
 import Mask from '../Mask';
 import Button from '../Button';
+import LocalConsumer from '../ConfigProvider/LocalConsumer';
+import { IGlobal } from '../Local';
 import { toggleBodyOverflow } from '../utils';
 import './index.less';
 
 type Position = 'left' | 'right' | 'top' | 'bottom';
 
-interface DrawerProps {
+export interface DrawerProps {
   layoutDom?: HTMLElement;
   className?: string;
   style?: React.CSSProperties;
@@ -49,8 +51,8 @@ const Drawer: FC<DrawerProps> = ({
   showCloseIcon = true,
   footer = '',
   footerAlign = 'right',
-  okText = '确认',
-  cancelText = '取消',
+  okText,
+  cancelText,
   lockBody = false,
   loading = false,
   onOk,
@@ -88,79 +90,87 @@ const Drawer: FC<DrawerProps> = ({
   }, [visible]);
 
   return ReactDOM.createPortal(
-    <div
-      className={classNames(cssPrefix, className)}
-      style={{ display: visible ? 'block' : 'none' }}
-    >
-      {showMask && visible && (
-        <Mask
-          style={{ zIndex }}
-          onClick={e => maskClosable && closeDrawer(e)}
-        />
-      )}
-      {destroyOnClose && !visible ? null : (
-        <CSSTransition
-          timeout={400}
-          in={visible}
-          classNames={`z-drawer-${position}`}
-          appear
-        >
+    <LocalConsumer>
+      {(local: IGlobal) => {
+        return (
           <div
-            className={`${cssPrefix}-wrapper`}
-            ref={wrapperRef}
-            style={{ ...style, zIndex, ...getPositionStyle(position) }}
+            className={classNames(cssPrefix, className)}
+            style={{ display: visible ? 'block' : 'none' }}
           >
-            {title ? (
-              <>
-                <div className={`${cssPrefix}-wrapper-title`} ref={titleRef}>
-                  <div className={`${cssPrefix}-wrapper-title-info`}>
-                    {title}
-                  </div>
-                  {showCloseIcon && (
-                    <div
-                      className={`${cssPrefix}-wrapper-title-close`}
-                      onClick={e => onClose && onClose(e)}
-                    >
-                      ×
-                    </div>
-                  )}
-                </div>
+            {showMask && visible && (
+              <Mask
+                style={{ zIndex }}
+                onClick={e => maskClosable && closeDrawer(e)}
+              />
+            )}
+            {destroyOnClose && !visible ? null : (
+              <CSSTransition
+                timeout={400}
+                in={visible}
+                classNames={`z-drawer-${position}`}
+                appear
+              >
                 <div
-                  className={`${cssPrefix}-wrapper-body`}
-                  style={{ height: bodyHeight }}
+                  className={`${cssPrefix}-wrapper`}
+                  ref={wrapperRef}
+                  style={{ ...style, zIndex, ...getPositionStyle(position) }}
                 >
-                  {children}
-                </div>
-                <div
-                  className={`${cssPrefix}-wrapper-footer`}
-                  ref={footerRef}
-                  style={{ textAlign: footerAlign }}
-                >
-                  {footer ? (
-                    footer
-                  ) : (
+                  {title ? (
                     <>
-                      {cancelText && (
-                        <Button type="default" onClick={e => closeDrawer(e)}>
-                          {cancelText}
-                        </Button>
-                      )}
-                      {okText && (
-                        <Button onClick={onOk} loading={loading}>
-                          {okText}
-                        </Button>
-                      )}
+                      <div
+                        className={`${cssPrefix}-wrapper-title`}
+                        ref={titleRef}
+                      >
+                        <div className={`${cssPrefix}-wrapper-title-info`}>
+                          {title}
+                        </div>
+                        {showCloseIcon && (
+                          <div
+                            className={`${cssPrefix}-wrapper-title-close`}
+                            onClick={e => onClose && onClose(e)}
+                          >
+                            ×
+                          </div>
+                        )}
+                      </div>
+                      <div
+                        className={`${cssPrefix}-wrapper-body`}
+                        style={{ height: bodyHeight }}
+                      >
+                        {children}
+                      </div>
+                      <div
+                        className={`${cssPrefix}-wrapper-footer`}
+                        ref={footerRef}
+                        style={{ textAlign: footerAlign }}
+                      >
+                        {footer ? (
+                          footer
+                        ) : (
+                          <>
+                            <Button
+                              type="default"
+                              onClick={e => closeDrawer(e)}
+                            >
+                              {cancelText || local.cancel}
+                            </Button>
+                            <Button onClick={onOk} loading={loading}>
+                              {okText || local.ok}
+                            </Button>
+                          </>
+                        )}
+                      </div>
                     </>
+                  ) : (
+                    children
                   )}
                 </div>
-              </>
-            ) : (
-              children
+              </CSSTransition>
             )}
           </div>
-        </CSSTransition>
-      )}
-    </div>,
+        );
+      }}
+    </LocalConsumer>,
     layoutDom,
   );
 };

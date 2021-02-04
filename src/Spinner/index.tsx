@@ -5,7 +5,7 @@ import RoundLine from './item/RoundLine';
 import RoundPoint from './item/RoundPoint';
 import './index.less';
 
-interface SpinnerProps {
+export interface SpinnerProps {
   className?: string;
   size?: string | number;
   style?: React.CSSProperties;

@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import classNames from 'classnames';
 import './index.less';
 
-interface DotStatusProps {
+export interface DotStatusProps {
   className?: string;
   style?: React.CSSProperties;
   type?: 'primary' | 'warning' | 'danger' | 'default' | 'success';

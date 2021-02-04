@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import Spinner from '../Spinner';
 import './index.less';
 
-interface ButtonProps {
+export interface ButtonProps {
   type?: 'primary' | 'warning' | 'danger' | 'default' | 'success';
   disabled?: boolean;
   block?: boolean;

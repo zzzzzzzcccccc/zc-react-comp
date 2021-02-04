@@ -1,3 +1,4 @@
+export { default as ConfigProvider } from './ConfigProvider';
 export { default as Spinner } from './Spinner';
 export { default as Button } from './Button';
 export { default as Message } from './Message';
@@ -14,3 +15,5 @@ export { default as DragBox } from './DragBox';
 export { default as Collapse } from './Collapse';
 export { default as CollapseItem } from './Collapse/CollapseItem';
 export { default as Table } from './Table';
+export { default as CheckBox } from './CheckBox/CheckBox';
+export { default as CheckboxGroup } from './CheckBox/CheckboxGroup';

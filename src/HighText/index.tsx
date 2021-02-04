@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import varStyle from '../assets/styles/varStyle';
 
-interface HighProps {
+export interface HighProps {
   children?: string;
   activeColor?: string;
   high?: string;

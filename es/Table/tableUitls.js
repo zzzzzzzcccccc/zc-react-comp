@@ -4,7 +4,7 @@ export var tableBodyScrollEmitKey = 'tableBodyScroll' + new Date().getTime();
 
 var getGenColumns = function getGenColumns(columns) {
   var list = [];
-  columns.forEach(function (column) {
+  columns.forEach(function(column) {
     if (column.children && column.children.length > 0) {
       list.push(column);
       list.push.apply(list, getGenColumns(column.children));
@@ -29,7 +29,7 @@ export var convertToRows = function convertToRows(originColumns) {
 
     if (column.children) {
       var colSpan = 0;
-      column.children.forEach(function (subColumn) {
+      column.children.forEach(function(subColumn) {
         traverse(subColumn, column);
         colSpan += subColumn.colSpan;
       });
@@ -39,7 +39,7 @@ export var convertToRows = function convertToRows(originColumns) {
     }
   };
 
-  originColumns.forEach(function (column) {
+  originColumns.forEach(function(column) {
     column.level = 1;
     traverse(column, undefined);
   });
@@ -50,7 +50,7 @@ export var convertToRows = function convertToRows(originColumns) {
   }
 
   var allColumns = getGenColumns(originColumns);
-  allColumns.forEach(function (column) {
+  allColumns.forEach(function(column) {
     if (!column.children || column.children.length <= 0) {
       column.rowSpan = maxLevel - column.level + 1;
       column.isEndColumn = true;
@@ -62,6 +62,6 @@ export var convertToRows = function convertToRows(originColumns) {
   });
   return {
     originColumns: rows,
-    genColumns: allColumns
+    genColumns: allColumns,
   };
 };

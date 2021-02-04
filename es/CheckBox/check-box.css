@@ -1,0 +1,97 @@
+.r-zc-checkbox {
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  font-size: 14px;
+}
+.r-zc-checkbox-info {
+  width: 1em;
+  height: 1em;
+  position: relative;
+  display: inline-block;
+  box-sizing: initial;
+  margin-right: 6px;
+}
+.r-zc-checkbox-info input {
+  cursor: pointer;
+  position: absolute;
+  opacity: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+.r-zc-checkbox-info:after {
+  content: '';
+  display: block;
+  position: absolute;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.r-zc-checkbox-info:before {
+  position: absolute;
+  top: 0.12em;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  content: '';
+  color: transparent;
+  border: 1px solid #b9b9b9;
+  border-radius: 0;
+  box-sizing: border-box;
+}
+.r-zc-checkbox:not(:last-child) {
+  margin-right: 8px;
+}
+.r-zc-checkbox-indeterminate .r-zc-checkbox-info:after {
+  content: '';
+  width: 0.52em;
+  height: 0.52em;
+  background-color: #4569d4;
+  border: 0;
+  position: absolute;
+  transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -webkit-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  opacity: 1;
+  left: 50%;
+  top: 60%;
+  margin: -0.26em 0 0 -0.26em;
+}
+.r-zc-checkbox-active .r-zc-checkbox-info:after {
+  width: 0.25em;
+  height: 0.5em;
+  border-color: #fff;
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  opacity: 1;
+  left: 40%;
+  top: 46%;
+  margin: -0.25em 0 0 -0.125em;
+}
+.r-zc-checkbox-active .r-zc-checkbox-info:before {
+  border-color: #4569d4;
+  background-color: #4569d4;
+}
+.r-zc-checkbox-disabled {
+  cursor: not-allowed;
+  user-select: none;
+  color: rgba(0, 0, 0, 0.2);
+}
+.r-zc-checkbox-disabled .r-zc-checkbox-info:before {
+  border-color: #e8e8e8;
+  background-color: #e8e8e8;
+}

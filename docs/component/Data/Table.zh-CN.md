@@ -111,20 +111,8 @@ export default () => {
       dataIndex: 'name',
       key: 'name',
       width: 100,
-      fixed: 'left',
       ellipsis: true,
       resize: true,
-      filters: [
-        {
-          text: 'Joe',
-          value: 'Joe',
-        },
-        {
-          text: 'John',
-          value: 'John',
-        },
-      ],
-      onFilter: (value, record) => record.name.indexOf(value) === 0,
     },
     {
       title: 'Other',
@@ -135,7 +123,6 @@ export default () => {
           key: 'age',
           width: 150,
           resize: true,
-          sorter: (a, b) => a.age - b.age,
         },
         {
           title: 'Address',
@@ -227,7 +214,7 @@ import { Table } from 'zc-react-comp';
 
 export default () => {
   let dataSource = [];
-  for (let i = 0; i < 1000; i++) {
+  for (let i = 0; i < 10000; i++) {
     dataSource = [
       ...dataSource,
       {
@@ -258,7 +245,7 @@ export default () => {
       dataSource={dataSource}
       bordered
       scroll={{ y: 500, x: '100%' }}
-      virtualScroll={{ itemHeight: 36, maxViewportNum: 20 }}
+      virtualScroll={{ itemHeight: 36 }}
       columns={columns}
     />
   );
@@ -269,17 +256,17 @@ export default () => {
 
 ### Table
 
-| 属性          | 说明                                      | 类型                                      | 默认值         |
-| ------------- | ----------------------------------------- | ----------------------------------------- | -------------- |
-| dataSource    | 源数据                                    | object[]                                  | []             |
-| columns       | [表头配置](/zh-CN/component/table#column) | IColumn[]                                 | []             |
-| rowKey        | 唯一标识                                  | string                                    | 若不传则为索引 |
-| size          | 尺寸                                      | small/middle/large                        | middle         |
-| scroll        | 表格滚动                                  | {x: 1000/1000px/100%, y: 1000/100px/50% } |                |
-| bordered      | 是否显示边框                              | boolean                                   | false          |
-| hideHeader    | 是否隐藏头部                              | boolean                                   | false          |
-| onScroll      | 内容滚动监听                              | (x, y) => void                            |                |
-| virtualScroll | 虚拟滚动配置                              | { itemHeight: number }                    |                |
+| 属性          | 说明                                           | 类型                                      | 默认值         |
+| ------------- | ---------------------------------------------- | ----------------------------------------- | -------------- |
+| dataSource    | 源数据                                         | object[]                                  | []             |
+| columns       | [表头配置](/zh-CN/component/data/table#column) | IColumn[]                                 | []             |
+| rowKey        | 唯一标识                                       | string                                    | 若不传则为索引 |
+| size          | 尺寸                                           | small/middle/large                        | middle         |
+| scroll        | 表格滚动                                       | {x: 1000/1000px/100%, y: 1000/100px/50% } |                |
+| bordered      | 是否显示边框                                   | boolean                                   | false          |
+| hideHeader    | 是否隐藏头部                                   | boolean                                   | false          |
+| onScroll      | 内容滚动监听                                   | (x, y) => void                            |                |
+| virtualScroll | 虚拟滚动配置(需要配合 scroll.y)                | { itemHeight: number }                    |                |
 
 ### Column
 
