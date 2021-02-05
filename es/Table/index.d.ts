@@ -1,5 +1,6 @@
 import React from 'react';
 import BaseTable from './BaseTable';
+declare type TableColumnFixed = 'left' | 'right';
 interface IScroll {
     x?: string | number;
     y?: string | number;
@@ -13,8 +14,8 @@ export interface IColumn {
     width?: number;
     children?: IColumn[];
     render?: (val: any, record: object, index: number) => React.ReactNode;
-    ellipsis?: boolean;
     resize?: boolean;
+    fixed?: TableColumnFixed;
 }
 export interface ITheadColumn extends IColumn {
     colSpan?: number;
@@ -24,7 +25,10 @@ export interface ITheadColumn extends IColumn {
     isEndColumn?: boolean;
 }
 export interface IBaseTableContext {
-    onBodyScroll?: (scrollLeft: number, scrollTop: number) => void;
+    theadRefCurrent?: HTMLTableSectionElement;
+    headerRefCurrent?: HTMLDivElement;
+    leftFixedBodyRefCurrent?: HTMLDivElement;
+    rightFixedBodyRefCurrent?: HTMLDivElement;
 }
 export interface BaseTableProps {
     dataSource: object[];
@@ -38,6 +42,7 @@ export interface BaseTableProps {
     hideHeader?: boolean;
     onScroll?: (x: number, y: number) => void;
     virtualScroll?: IVirtualScroll;
+    onResize?: (dataIndex: string, width: number) => void;
 }
 export interface BaseTableHeaderProps {
     originColumns: ITheadColumn[][];
@@ -64,6 +69,13 @@ export interface TableCellProps {
     renderType: 'header' | 'body';
     record?: object;
     index?: number;
+}
+export interface FixedBaseTableProps {
+    fixed: TableColumnFixed;
+    genColumns?: ITheadColumn[];
+    dataSource: any[];
+    scroll?: IScroll;
+    rowKey?: string;
 }
 export declare const isTableCellHeader: (renderType: 'header' | 'body') => boolean;
 export declare const cssPrefix: string;

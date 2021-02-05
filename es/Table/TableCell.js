@@ -23,8 +23,8 @@ var TableCell = function TableCell(_ref) {
   };
 
   return /*#__PURE__*/React.createElement("span", {
-    title: column.ellipsis && renderCell(),
-    className: classNames("".concat(cssPrefix, "-cell"), "".concat(cssPrefix, "-cell-").concat(renderType), column.ellipsis && "".concat(cssPrefix, "-cell-ellipsis"), className),
+    title: typeof renderCell() === 'string' ? renderCell() : undefined,
+    className: classNames("".concat(cssPrefix, "-cell"), "".concat(cssPrefix, "-cell-").concat(renderType), "".concat(cssPrefix, "-cell-ellipsis"), className),
     style: style
   }, renderCell());
 };

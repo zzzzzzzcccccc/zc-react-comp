@@ -1,8 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import { cssPrefix } from './index';
 import TableCell from './TableCell';
-import { BaseTableContext } from './BaseTable';
 
 var TableBody = function TableBody(_ref) {
   var dataSource = _ref.dataSource,
@@ -10,13 +9,11 @@ var TableBody = function TableBody(_ref) {
       rowKey = _ref.rowKey,
       scroll = _ref.scroll,
       onScroll = _ref.onScroll;
-  var context = useContext(BaseTableContext);
 
   var handleScroll = function handleScroll(e) {
     var _e$target = e.target,
         scrollLeft = _e$target.scrollLeft,
         scrollTop = _e$target.scrollTop;
-    context && context.onBodyScroll && context.onBodyScroll(scrollLeft, scrollTop);
     onScroll && onScroll(scrollLeft, scrollTop);
   };
 

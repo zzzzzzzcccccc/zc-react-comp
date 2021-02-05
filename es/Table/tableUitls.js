@@ -1,6 +1,6 @@
-import { EventEmitter } from 'events';
-export var tableEmitter = new EventEmitter();
-export var tableBodyScrollEmitKey = 'tableBodyScroll' + new Date().getTime();
+import { createContext } from 'react';
+import { cssPrefix } from './index';
+import classNames from 'classnames';
 
 var getGenColumns = function getGenColumns(columns) {
   var list = [];
@@ -65,3 +65,11 @@ export var convertToRows = function convertToRows(originColumns) {
     genColumns: allColumns
   };
 };
+export var getThProps = function getThProps(column) {
+  return {
+    colSpan: column.colSpan == 1 ? undefined : column.colSpan,
+    rowSpan: column.rowSpan == 1 ? undefined : column.rowSpan,
+    className: classNames((!column.children || column.children.length === 0) && "".concat(cssPrefix, "-cell-last"))
+  };
+};
+export var BaseTableContext = /*#__PURE__*/createContext(null);

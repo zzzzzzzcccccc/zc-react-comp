@@ -10,13 +10,12 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-import React, { useState, useRef, useEffect, useContext } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { cssPrefix } from './index';
 import classNames from 'classnames';
 import { VariableSizeGrid as Grid } from 'react-window';
 import ResizeObserver from 'rc-resize-observer';
 import TableCell from './TableCell';
-import { BaseTableContext } from './BaseTable';
 
 var VirtualTableBody = function VirtualTableBody(_ref) {
   var virtualScroll = _ref.virtualScroll,
@@ -24,7 +23,6 @@ var VirtualTableBody = function VirtualTableBody(_ref) {
       onScroll = _ref.onScroll,
       genColumns = _ref.genColumns,
       dataSource = _ref.dataSource;
-  var context = useContext(BaseTableContext);
 
   var _useState = useState(0),
       _useState2 = _slicedToArray(_useState, 2),
@@ -49,6 +47,7 @@ var VirtualTableBody = function VirtualTableBody(_ref) {
   var resetVirtualGrid = function resetVirtualGrid() {
     gridRef.current.resetAfterIndices({
       columnIndex: 0,
+      rowIndex: 0,
       shouldForceUpdate: false
     });
   };
@@ -60,7 +59,6 @@ var VirtualTableBody = function VirtualTableBody(_ref) {
   var handleScroll = function handleScroll(props) {
     var scrollLeft = props.scrollLeft,
         scrollTop = props.scrollTop;
-    context && context.onBodyScroll && context.onBodyScroll(scrollLeft, scrollTop);
     onScroll && onScroll(scrollLeft, scrollTop);
   };
 

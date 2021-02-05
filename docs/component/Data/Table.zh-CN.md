@@ -112,7 +112,7 @@ export default () => {
       key: 'name',
       width: 100,
       ellipsis: true,
-      resize: true,
+      fixed: 'left'
     },
     {
       title: 'Other',
@@ -259,7 +259,7 @@ export default () => {
 | 属性          | 说明                                           | 类型                                      | 默认值         |
 | ------------- | ---------------------------------------------- | ----------------------------------------- | -------------- |
 | dataSource    | 源数据                                         | object[]                                  | []             |
-| columns       | [表头配置](/zh-CN/component/data/table#column) | IColumn[]                                 | []             |
+| columns       | [表头配置](/zh-CN/component/data/table?anchor=api#column) | IColumn[]                                 | []             |
 | rowKey        | 唯一标识                                       | string                                    | 若不传则为索引 |
 | size          | 尺寸                                           | small/middle/large                        | middle         |
 | scroll        | 表格滚动                                       | {x: 1000/1000px/100%, y: 1000/100px/50% } |                |
@@ -277,5 +277,5 @@ export default () => {
 | width     | 宽度                             | number                                  |        |
 | children  | 子集                             | IColumn[]                               |        |
 | render    | 自定义渲染内容                   | (val, record, index) => React.ReactNode |        |
-| ellipsis  | 是否一行显示                     | boolean                                 | false  |
 | resize    | 是否可以调整宽度(必须设置 width) | boolean                                 | false  |
+| fixed     | 列冻结                        | left/right                             | |

@@ -1,9 +1,12 @@
-/// <reference types="node" />
-import { IColumn, ITheadColumn } from './index';
-import { EventEmitter } from 'events';
-export declare const tableEmitter: EventEmitter;
-export declare const tableBodyScrollEmitKey: string;
+/// <reference types="react" />
+import { IBaseTableContext, IColumn, ITheadColumn } from './index';
 export declare const convertToRows: (originColumns: IColumn[] | ITheadColumn[]) => {
     originColumns: ITheadColumn[][];
     genColumns: ITheadColumn[];
 };
+export declare const getThProps: (column: ITheadColumn) => {
+    colSpan: number;
+    rowSpan: number;
+    className: string;
+};
+export declare const BaseTableContext: import("react").Context<IBaseTableContext>;

@@ -25,11 +25,11 @@ const TableCell: FC<TableCellProps> = ({
 
   return (
     <span
-      title={column.ellipsis && (renderCell() as string)}
+      title={typeof renderCell() === 'string' ? renderCell() as string : undefined}
       className={classNames(
         `${cssPrefix}-cell`,
         `${cssPrefix}-cell-${renderType}`,
-        column.ellipsis && `${cssPrefix}-cell-ellipsis`,
+        `${cssPrefix}-cell-ellipsis`,
         className,
       )}
       style={style}

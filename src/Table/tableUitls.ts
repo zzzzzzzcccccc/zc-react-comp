@@ -1,4 +1,6 @@
-import { IColumn, ITheadColumn } from './index';
+import { createContext } from 'react';
+import { cssPrefix, IBaseTableContext, IColumn, ITheadColumn } from './index';
+import classNames from 'classnames';
 
 const getGenColumns = (columns: IColumn[]): IColumn[] | ITheadColumn[] => {
   let list: IColumn[] = [];
@@ -65,3 +67,14 @@ export const convertToRows = (
     genColumns: allColumns,
   };
 };
+
+export const getThProps = (column: ITheadColumn) => ({
+  colSpan: column.colSpan == 1 ? undefined : column.colSpan,
+  rowSpan: column.rowSpan == 1 ? undefined : column.rowSpan,
+  className: classNames(
+    (!column.children || column.children.length === 0) &&
+    `${cssPrefix}-cell-last`,
+  ),
+});
+
+export const BaseTableContext = createContext<IBaseTableContext>(null);

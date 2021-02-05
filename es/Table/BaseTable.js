@@ -18,15 +18,15 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-import React, { useState, createContext } from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames';
 import { cssPrefix } from './index';
-import { convertToRows } from './tableUitls';
+import { convertToRows, BaseTableContext } from './tableUitls';
 import TableHeader from './TableHeader';
 import TableBody from './TableBody';
 import VirtualTableBody from './VirtualTableBody';
+import FixedBaseTable from './FixedBaseTable';
 import "./index.css";
-export var BaseTableContext = /*#__PURE__*/createContext(null);
 
 var BaseTable = function BaseTable(_ref) {
   var className = _ref.className,
@@ -43,7 +43,9 @@ var BaseTable = function BaseTable(_ref) {
       _ref$hideHeader = _ref.hideHeader,
       hideHeader = _ref$hideHeader === void 0 ? false : _ref$hideHeader,
       onScroll = _ref.onScroll,
+      onResize = _ref.onResize,
       virtualScroll = _ref.virtualScroll;
+  var context = {};
 
   var _convertToRows = convertToRows(columns),
       originColumns = _convertToRows.originColumns,
@@ -56,18 +58,45 @@ var BaseTable = function BaseTable(_ref) {
       endColumns = _useState2[0],
       setEndColumns = _useState2[1];
 
+  var _useState3 = useState(genColumns.filter(function (v) {
+    return v.level === 1 && (!v.children || v.children.length <= 0) && v.fixed === 'left';
+  })),
+      _useState4 = _slicedToArray(_useState3, 1),
+      leftColumns = _useState4[0];
+
+  var _useState5 = useState(genColumns.filter(function (v) {
+    return v.level === 1 && (!v.children || v.children.length <= 0) && v.fixed === 'right';
+  })),
+      _useState6 = _slicedToArray(_useState5, 1),
+      rightColumns = _useState6[0];
+
   var handleResize = function handleResize(index, width) {
     var updateEndColumns = _toConsumableArray(endColumns);
 
     updateEndColumns[index].width = width;
     setEndColumns(updateEndColumns);
+    onResize && onResize(updateEndColumns[index].dataIndex, width);
   };
 
   var handleBodyScroll = function handleBodyScroll(x, y) {
+    setTableScroll(x, y);
     onScroll && onScroll(x, y);
   };
 
-  var context = {};
+  var setTableScroll = function setTableScroll(x, y) {
+    if (context.headerRefCurrent) {
+      context.headerRefCurrent.scrollLeft = x;
+    }
+
+    if (context.leftFixedBodyRefCurrent) {
+      context.leftFixedBodyRefCurrent.scrollTop = y;
+    }
+
+    if (context.rightFixedBodyRefCurrent) {
+      context.rightFixedBodyRefCurrent.scrollTop = y;
+    }
+  };
+
   return /*#__PURE__*/React.createElement(BaseTableContext.Provider, {
     value: context
   }, /*#__PURE__*/React.createElement("div", {
@@ -97,6 +126,18 @@ var BaseTable = function BaseTable(_ref) {
     rowKey: rowKey,
     scroll: scroll,
     onScroll: handleBodyScroll,
+    dataSource: dataSource
+  }), /*#__PURE__*/React.createElement(FixedBaseTable, {
+    rowKey: rowKey,
+    fixed: "left",
+    scroll: scroll,
+    genColumns: leftColumns,
+    dataSource: dataSource
+  }), /*#__PURE__*/React.createElement(FixedBaseTable, {
+    rowKey: rowKey,
+    fixed: "right",
+    scroll: scroll,
+    genColumns: rightColumns,
     dataSource: dataSource
   })))));
 };

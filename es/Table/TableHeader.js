@@ -1,9 +1,8 @@
-import React, { useRef, useContext } from 'react';
+import React, { useRef, useContext, useEffect } from 'react';
 import { cssPrefix } from './index';
-import classNames from 'classnames';
 import TableCell from './TableCell';
 import { Resizable } from 'react-resizable';
-import { BaseTableContext } from './BaseTable';
+import { getThProps, BaseTableContext } from './tableUitls';
 
 var TableHeader = function TableHeader(_ref) {
   var originColumns = _ref.originColumns,
@@ -11,13 +10,9 @@ var TableHeader = function TableHeader(_ref) {
       scroll = _ref.scroll,
       onResize = _ref.onResize,
       style = _ref.style;
-  var ref = useRef();
-  var tableRef = useRef();
+  var bodyRef = useRef();
+  var theadRef = useRef();
   var context = useContext(BaseTableContext);
-
-  var setScrollLeft = function setScrollLeft(scrollLeft) {
-    ref && ref.current && (ref.current.scrollLeft = scrollLeft);
-  };
 
   var handleResize = function handleResize(column) {
     return function (e, data) {
@@ -40,18 +35,26 @@ var TableHeader = function TableHeader(_ref) {
     };
   };
 
-  context.onBodyScroll = setScrollLeft;
+  useEffect(function () {
+    if (theadRef && theadRef.current) {
+      context.theadRefCurrent = theadRef.current;
+    }
+  }, [theadRef]);
+  useEffect(function () {
+    if (bodyRef && bodyRef.current) {
+      context.headerRefCurrent = bodyRef.current;
+    }
+  }, [bodyRef]);
   return /*#__PURE__*/React.createElement("div", {
     className: "".concat(cssPrefix, "-header"),
-    ref: ref,
+    ref: bodyRef,
     style: Object.assign(Object.assign({}, style), scroll && scroll.y && {
       overflow: 'hidden scroll'
     })
   }, /*#__PURE__*/React.createElement("table", {
     style: {
       width: scroll && scroll.x
-    },
-    ref: tableRef
+    }
   }, /*#__PURE__*/React.createElement("colgroup", null, genColumns.map(function (column, columnIndex) {
     return /*#__PURE__*/React.createElement("col", {
       key: columnIndex,
@@ -60,11 +63,13 @@ var TableHeader = function TableHeader(_ref) {
         minWidth: column.width
       }
     });
-  })), /*#__PURE__*/React.createElement("thead", null, originColumns.map(function (columns, columnsIndex) {
+  })), /*#__PURE__*/React.createElement("thead", {
+    ref: theadRef
+  }, originColumns.map(function (columns, columnsIndex) {
     return /*#__PURE__*/React.createElement("tr", {
       key: columnsIndex
     }, columns.map(function (column, columnIndex) {
-      if ((!column.children || column.children.length <= 0) && column.resize && column.width && typeof column.width === 'number') {
+      if ((!column.children || column.children.length <= 0) && column.resize && column.width && !column.fixed && typeof column.width === 'number') {
         return /*#__PURE__*/React.createElement(Resizable, {
           width: column.width,
           key: columnIndex,
@@ -87,14 +92,6 @@ var TableHeader = function TableHeader(_ref) {
       }));
     }));
   }))));
-};
-
-var getThProps = function getThProps(column) {
-  return {
-    colSpan: column.colSpan == 1 ? undefined : column.colSpan,
-    rowSpan: column.rowSpan == 1 ? undefined : column.rowSpan,
-    className: classNames((!column.children || column.children.length === 0) && "".concat(cssPrefix, "-cell-last"))
-  };
 };
 
 export default TableHeader;

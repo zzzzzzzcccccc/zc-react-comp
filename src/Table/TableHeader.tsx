@@ -1,9 +1,8 @@
-import React, { FC, useRef, useContext } from 'react';
+import React, { FC, useRef, useContext, useEffect } from 'react';
 import { BaseTableHeaderProps, cssPrefix, ITheadColumn } from './index';
-import classNames from 'classnames';
 import TableCell from './TableCell';
 import { Resizable, ResizeCallbackData } from 'react-resizable';
-import { BaseTableContext } from './BaseTable';
+import { getThProps, BaseTableContext } from './tableUitls'
 
 const TableHeader: FC<BaseTableHeaderProps> = ({
   originColumns,
@@ -12,18 +11,11 @@ const TableHeader: FC<BaseTableHeaderProps> = ({
   onResize,
   style,
 }) => {
-  const ref = useRef<HTMLDivElement>();
-  const tableRef = useRef<HTMLTableElement>();
+  const bodyRef = useRef<HTMLDivElement>();
+  const theadRef = useRef<HTMLTableSectionElement>()
   const context = useContext(BaseTableContext);
 
-  const setScrollLeft = (scrollLeft: number) => {
-    ref && ref.current && (ref.current.scrollLeft = scrollLeft);
-  };
-
-  const handleResize = (column: ITheadColumn) => (
-    e: React.SyntheticEvent,
-    data: ResizeCallbackData,
-  ): void => {
+  const handleResize = (column: ITheadColumn) => (e: React.SyntheticEvent, data: ResizeCallbackData): void => {
     e.stopPropagation();
     if (data.size.width < 20) {
       return;
@@ -38,18 +30,24 @@ const TableHeader: FC<BaseTableHeaderProps> = ({
     onResize && onResize(currentIndex, data.size.width);
   };
 
-  context.onBodyScroll = setScrollLeft;
+  useEffect(() => {
+    if (theadRef && theadRef.current) {
+      context.theadRefCurrent = theadRef.current;
+    }
+  }, [theadRef]);
+
+  useEffect(() => {
+    if (bodyRef && bodyRef.current) {
+      context.headerRefCurrent = bodyRef.current;
+    }
+  }, [bodyRef]);
 
   return (
     <div
       className={`${cssPrefix}-header`}
-      ref={ref}
-      style={{
-        ...style,
-        ...(scroll && scroll.y && { overflow: 'hidden scroll' }),
-      }}
-    >
-      <table style={{ width: scroll && scroll.x }} ref={tableRef}>
+      ref={bodyRef}
+      style={{ ...style, ...(scroll && scroll.y && { overflow: 'hidden scroll' }) }}>
+      <table style={{ width: scroll && scroll.x }}>
         <colgroup>
           {genColumns.map((column, columnIndex) => (
             <col
@@ -58,7 +56,7 @@ const TableHeader: FC<BaseTableHeaderProps> = ({
             />
           ))}
         </colgroup>
-        <thead>
+        <thead ref={theadRef}>
           {originColumns.map((columns, columnsIndex) => {
             return (
               <tr key={columnsIndex}>
@@ -67,6 +65,7 @@ const TableHeader: FC<BaseTableHeaderProps> = ({
                     (!column.children || column.children.length <= 0) &&
                     column.resize &&
                     column.width &&
+                    !column.fixed &&
                     typeof column.width === 'number'
                   ) {
                     return (
@@ -78,14 +77,17 @@ const TableHeader: FC<BaseTableHeaderProps> = ({
                         height={0}
                       >
                         <th {...getThProps(column)}>
-                          <TableCell column={column} renderType="header" />
+                          <TableCell column={column}
+                                     renderType="header" />
                         </th>
                       </Resizable>
                     );
                   }
                   return (
-                    <th key={columnIndex} {...getThProps(column)}>
-                      <TableCell column={column} renderType="header" />
+                    <th key={columnIndex}
+                        {...getThProps(column)}>
+                      <TableCell column={column}
+                                 renderType="header" />
                     </th>
                   );
                 })}
@@ -97,14 +99,5 @@ const TableHeader: FC<BaseTableHeaderProps> = ({
     </div>
   );
 };
-
-const getThProps = (column: ITheadColumn) => ({
-  colSpan: column.colSpan == 1 ? undefined : column.colSpan,
-  rowSpan: column.rowSpan == 1 ? undefined : column.rowSpan,
-  className: classNames(
-    (!column.children || column.children.length === 0) &&
-      `${cssPrefix}-cell-last`,
-  ),
-});
 
 export default TableHeader;

@@ -1,10 +1,9 @@
-import React, { FC, useState, useRef, useEffect, useContext } from 'react';
+import React, { FC, useState, useRef, useEffect } from 'react';
 import { BaseVirtualTableBodyProps, cssPrefix } from './index';
 import classNames from 'classnames';
 import { GridOnScrollProps, VariableSizeGrid as Grid } from 'react-window';
 import ResizeObserver from 'rc-resize-observer';
 import TableCell from './TableCell';
-import { BaseTableContext } from './BaseTable';
 
 const VirtualTableBody: FC<BaseVirtualTableBodyProps> = ({
   virtualScroll,
@@ -13,7 +12,6 @@ const VirtualTableBody: FC<BaseVirtualTableBodyProps> = ({
   genColumns,
   dataSource,
 }) => {
-  const context = useContext(BaseTableContext)
   const [tableWidth, setTableWidth] = useState(0);
   const notWidthColumnCount = genColumns!.filter(({ width }) => !width).length;
   const mergedColumns = genColumns!.map(column => {
@@ -31,7 +29,8 @@ const VirtualTableBody: FC<BaseVirtualTableBodyProps> = ({
   const resetVirtualGrid = () => {
     gridRef.current.resetAfterIndices({
       columnIndex: 0,
-      shouldForceUpdate: false,
+      rowIndex: 0,
+      shouldForceUpdate: false
     });
   };
 
@@ -41,7 +40,6 @@ const VirtualTableBody: FC<BaseVirtualTableBodyProps> = ({
 
   const handleScroll = (props: GridOnScrollProps) => {
     const { scrollLeft, scrollTop } = props;
-    context && context.onBodyScroll && context.onBodyScroll(scrollLeft, scrollTop);
     onScroll && onScroll(scrollLeft, scrollTop);
   };
 

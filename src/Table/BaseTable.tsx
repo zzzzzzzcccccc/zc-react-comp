@@ -1,13 +1,12 @@
-import React, { FC, useState, createContext } from 'react';
+import React, { FC, useState } from 'react';
 import classNames from 'classnames';
-import { IBaseTableContext, BaseTableProps, cssPrefix } from './index';
-import { convertToRows } from './tableUitls';
+import { BaseTableProps, cssPrefix, IBaseTableContext } from './index';
+import { convertToRows, BaseTableContext } from './tableUitls';
 import TableHeader from './TableHeader';
 import TableBody from './TableBody';
 import VirtualTableBody from './VirtualTableBody';
+import FixedBaseTable from './FixedBaseTable';
 import './index.less';
-
-export const BaseTableContext = createContext<IBaseTableContext>(null);
 
 const BaseTable: FC<BaseTableProps> = ({
   className,
@@ -20,24 +19,38 @@ const BaseTable: FC<BaseTableProps> = ({
   bordered = false,
   hideHeader = false,
   onScroll,
+  onResize,
   virtualScroll,
 }) => {
+  const context: IBaseTableContext = {}
   const { originColumns, genColumns } = convertToRows(columns);
-  const [endColumns, setEndColumns] = useState(
-    genColumns.filter(v => v.isEndColumn),
-  );
+  const [endColumns, setEndColumns] = useState(genColumns.filter(v => v.isEndColumn));
+  const [leftColumns] = useState(genColumns.filter(v => v.level === 1 && (!v.children || v.children.length <= 0) && v.fixed === 'left'));
+  const [rightColumns] = useState(genColumns.filter(v => v.level === 1 && (!v.children || v.children.length <= 0) && v.fixed === 'right'));
 
   const handleResize = (index: number, width: number) => {
     let updateEndColumns = [...endColumns];
     updateEndColumns[index].width = width;
     setEndColumns(updateEndColumns);
+    onResize && onResize(updateEndColumns[index].dataIndex, width);
   };
 
   const handleBodyScroll = (x: number, y: number) => {
+    setTableScroll(x, y);
     onScroll && onScroll(x, y);
   };
 
-  const context = {}
+  const setTableScroll = (x: number, y: number) => {
+    if (context.headerRefCurrent) {
+      context.headerRefCurrent.scrollLeft = x;
+    }
+    if (context.leftFixedBodyRefCurrent) {
+      context.leftFixedBodyRefCurrent.scrollTop = y;
+    }
+    if (context.rightFixedBodyRefCurrent) {
+      context.rightFixedBodyRefCurrent.scrollTop = y;
+    }
+  };
 
   return (
     <BaseTableContext.Provider value={context}>
@@ -77,6 +90,8 @@ const BaseTable: FC<BaseTableProps> = ({
                 dataSource={dataSource}
               />
             )}
+            <FixedBaseTable rowKey={rowKey} fixed="left" scroll={scroll} genColumns={leftColumns} dataSource={dataSource} />
+            <FixedBaseTable rowKey={rowKey} fixed="right" scroll={scroll} genColumns={rightColumns} dataSource={dataSource} />
           </div>
         </div>
       </div>
