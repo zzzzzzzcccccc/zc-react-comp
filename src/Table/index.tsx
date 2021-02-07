@@ -3,12 +3,12 @@ import BaseTable from './BaseTable';
 
 type TableColumnFixed = 'left' | 'right';
 
-interface IScroll {
+export interface IScroll {
   x?: string | number;
   y?: string | number;
 }
 
-interface IVirtualScroll {
+export interface IVirtualScroll {
   itemHeight: number;
 }
 
@@ -86,6 +86,7 @@ export interface FixedBaseTableProps {
   dataSource: any[];
   scroll?: IScroll;
   rowKey?: string;
+  hideHeader?: boolean;
 }
 
 export const isTableCellHeader = (renderType: 'header' | 'body'): boolean =>

@@ -1,11 +1,11 @@
 import React from 'react';
 import BaseTable from './BaseTable';
 declare type TableColumnFixed = 'left' | 'right';
-interface IScroll {
+export interface IScroll {
     x?: string | number;
     y?: string | number;
 }
-interface IVirtualScroll {
+export interface IVirtualScroll {
     itemHeight: number;
 }
 export interface IColumn {
@@ -76,6 +76,7 @@ export interface FixedBaseTableProps {
     dataSource: any[];
     scroll?: IScroll;
     rowKey?: string;
+    hideHeader?: boolean;
 }
 export declare const isTableCellHeader: (renderType: 'header' | 'body') => boolean;
 export declare const cssPrefix: string;

@@ -28,24 +28,19 @@
   &-table-content {
     box-sizing: border-box;
     position: relative;
-    &-scroll-bar{
-      position: absolute;
-      width: 100%;
-      top: 0;
-      bottom: 0;
-      overflow: scroll;
-      z-index: -9999;
-      &-info{
-        width: 100%;
-        height: 100%;
-      }
-    }
   }
   /* header */
   &-table-header {
     box-sizing: border-box;
     background-color: @gray-bg-color;
+    thead{
+      box-sizing: border-box;
+    }
     tr {
+      box-sizing: border-box;
+      th{
+        box-sizing: border-box;
+      }
       .@{prefix-name}-table-cell-last {
         border-bottom: 1px solid @gray-border-color;
       }
@@ -68,9 +63,14 @@
   /* body */
   &-table-body {
     box-sizing: border-box;
+    tbody{
+      box-sizing: border-box;
+    }
     tr {
+      box-sizing: border-box;
       td {
         border-bottom: 1px solid @gray-border-color;
+        box-sizing: border-box;
       }
     }
   }
@@ -82,6 +82,7 @@
     bottom: 0;
     overflow: hidden;
     background-color: #fff;
+    box-sizing: border-box;
     table{
       width: auto;
     }
@@ -113,6 +114,7 @@
     display: inline-block;
     vertical-align: top;
     width: 100%;
+    font-family: "宋体,Simsun";
     &-header {
       font-weight: normal;
     }
@@ -135,14 +137,15 @@
   &-table-bordered {
     .@{prefix-name} {
       &-table-content{
+        border-top: 1px solid @gray-border-color;
         &:after{
           content: '';
           display: block;
           position: absolute;
           top: 0;
-          left: 0;
+          bottom: 0;
           right: 0;
-          height: 1px;
+          width: 1px;
           background-color: @gray-border-color;
         }
         &:before{

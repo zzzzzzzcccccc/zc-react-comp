@@ -35,13 +35,14 @@ export { default as Tag } from './Tag';
 export type { DrawerProps } from './Drawer';
 export { default as Drawer } from './Drawer';
 
+export type { IDragBox } from './DragBox';
 export { default as DragBox } from './DragBox';
 
 export type { CollapseProps, CollapseItemProps } from './Collapse';
 export { default as Collapse } from './Collapse';
 export { default as CollapseItem } from './Collapse/CollapseItem';
 
-export type { BaseTableProps } from './Table';
+export type { BaseTableProps, IColumn, IScroll, IVirtualScroll } from './Table';
 export { default as Table } from './Table';
 
 export type { CheckBoxProps, CheckBoxGroupProps } from './CheckBox';

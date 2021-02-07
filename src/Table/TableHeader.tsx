@@ -46,7 +46,7 @@ const TableHeader: FC<BaseTableHeaderProps> = ({
     <div
       className={`${cssPrefix}-header`}
       ref={bodyRef}
-      style={{ ...style, ...(scroll && scroll.y && { overflow: 'hidden scroll' }) }}>
+      style={{ ...style, ...(scroll && { overflow: `hidden ${scroll.y ? 'scroll' : 'hidden'}` }) }}>
       <table style={{ width: scroll && scroll.x }}>
         <colgroup>
           {genColumns.map((column, columnIndex) => (

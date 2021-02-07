@@ -116,12 +116,14 @@ var BaseTable = function BaseTable(_ref) {
     onScroll: handleBodyScroll,
     dataSource: dataSource
   }), /*#__PURE__*/React.createElement(FixedBaseTable, {
+    hideHeader: hideHeader,
     rowKey: rowKey,
     fixed: "left",
     scroll: scroll,
     genColumns: genColumns,
     dataSource: dataSource
   }), /*#__PURE__*/React.createElement(FixedBaseTable, {
+    hideHeader: hideHeader,
     rowKey: rowKey,
     fixed: "right",
     scroll: scroll,

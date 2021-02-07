@@ -98,6 +98,76 @@ export default () => {
 };
 ```
 
+### 只滚动x轴
+```tsx
+import React from 'react';
+import { Table } from 'zc-react-comp';
+
+export default () => {
+  const columns = [
+    { title: "姓名", dataIndex: 'name' },
+    { title: "年龄", dataIndex: "age" },
+    { title: '描述', dataIndex: 'desc' },
+    { title: 'A', dataIndex: 'A' },
+    { title: 'B', dataIndex: 'B' },
+    { title: 'C', dataIndex: 'C' },
+    { title: 'D', dataIndex: 'D' },
+    { title: 'E', dataIndex: 'E', width: 50, fixed: 'right' }
+  ];
+  let data = [];
+  for (let i = 0; i < 10; i++) {
+    data.push({ 
+      id: i + 1, 
+      name: "张三" + i + 1, 
+      age: i + 1, 
+      desc: 'descdescdesc' + i + 1,
+      A: i + 1,
+      B: i + 1,
+      C: i + 1,
+      D: i + 1,
+      E: i + 1,
+    })
+  }
+  
+  return <Table hideHeader scroll={{ x: 1000 }} columns={columns} rowKey="id" dataSource={data} />
+};
+```
+
+### 只滚动y轴
+```tsx
+import React from 'react';
+import { Table } from 'zc-react-comp';
+
+export default () => {
+  const columns = [
+    { title: "姓名", dataIndex: 'name' },
+    { title: "年龄", dataIndex: "age" },
+    { title: '描述', dataIndex: 'desc' },
+    { title: 'A', dataIndex: 'A' },
+    { title: 'B', dataIndex: 'B' },
+    { title: 'C', dataIndex: 'C' },
+    { title: 'D', dataIndex: 'D' },
+    { title: 'E', dataIndex: 'E', width: 50 }
+  ];
+  let data = [];
+  for (let i = 0; i < 10; i++) {
+    data.push({ 
+      id: i + 1, 
+      name: "张三" + i + 1, 
+      age: i + 1, 
+      desc: 'descdescdesc' + i + 1,
+      A: i + 1,
+      B: i + 1,
+      C: i + 1,
+      D: i + 1,
+      E: i + 1,
+    })
+  }
+  
+  return <Table scroll={{ y: 300 }} columns={columns} rowKey="id" dataSource={data} />
+};
+```
+
 ### 表头嵌套表头固定滚动某些列可以拖动宽度
 
 ```tsx
@@ -111,7 +181,6 @@ export default () => {
       dataIndex: 'name',
       key: 'name',
       width: 100,
-      ellipsis: true,
       fixed: 'left'
     },
     {
@@ -184,20 +253,20 @@ export default () => {
   for (let i = 0; i < 100; i++) {
     data.push({
       key: i,
-      name: 'John Brown',
-      age: i + 1,
+      name: "张三",
+      age: i,
       street: 'Lake Park',
       building: 'C',
       number: 2035,
       companyAddress: 'Lake Street 42',
       companyName: 'SoftLake Co',
-      gender: 'M',
+      gender: "李四",
     });
   }
   return (
     <Table
-      dataSource={data}
       bordered
+      dataSource={data}
       columns={columns}
       scroll={{ x: '1400px', y: '500px' }}
       rowKey="key"

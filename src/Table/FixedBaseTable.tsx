@@ -10,6 +10,7 @@ const FixedBaseTable:FC<FixedBaseTableProps> = ({
   scroll,
   dataSource,
   rowKey,
+  hideHeader=false
 }) => {
   const { scrollBarX, scrollBarY } = getScrollbarSize();
   const [filterColumns] = useState(genColumns.filter(v => v.level === 1 && (!v.children || v.children.length <= 0) && v.fixed === fixed));
@@ -20,14 +21,9 @@ const FixedBaseTable:FC<FixedBaseTableProps> = ({
   const thRef = useRef<HTMLTableRowElement>()
   const context = useContext(BaseTableContext);
   let style: React.CSSProperties = {};
-  let bodyStyle: React.CSSProperties = {};
   if (scroll) {
     style.right = (fixed === 'right' && scroll.y) ? scrollBarY : undefined;
     style.bottom = scroll.x ? scrollBarX : undefined;
-  }
-  if (scroll && scroll && scroll.y) {
-    bodyStyle.maxHeight = scroll.y;
-    bodyStyle.overflow = 'scroll hidden'
   }
 
   useEffect(() => {
@@ -43,13 +39,12 @@ const FixedBaseTable:FC<FixedBaseTableProps> = ({
   }, [fixedBodyRef, genColumns]);
 
   return (
-    <div className={`${cssPrefix}-content-fixed ${cssPrefix}-content-fixed-${fixed}`}
-         style={style}>
-      <div className={`${cssPrefix}-header`}>
+    <div className={`${cssPrefix}-content-fixed ${cssPrefix}-content-fixed-${fixed}`} style={{ ...style }}>
+      <div className={`${cssPrefix}-header`} style={{ display: hideHeader ? 'none' : 'block' }}>
         <table>
           <colgroup>
             {filterColumns.map(column => <col key={column.dataIndex}
-                                           style={{ width: column.width, minWidth: column.width }} />)}
+                                           style={{ width: column.width, maxWidth: column.width }} />)}
           </colgroup>
           <thead>
           <tr ref={thRef}>
@@ -65,10 +60,7 @@ const FixedBaseTable:FC<FixedBaseTableProps> = ({
         </table>
       </div>
 
-      <div className={`${cssPrefix}-body`}
-           ref={fixedBodyRef}
-           id={`__fixed${fixed}`}
-           style={bodyStyle}>
+      <div className={`${cssPrefix}-body`} ref={fixedBodyRef} style={{ overflow: 'hidden', maxHeight: scroll.y ? `calc(${typeof scroll.y === 'number' ? scroll.y + 'px' : scroll.y} - ${scrollBarX}px)` : undefined }}>
         <table>
           <colgroup>
             {filterColumns.map(column => <col key={column.dataIndex} style={{ width: column.width, minWidth: column.width }} />)}

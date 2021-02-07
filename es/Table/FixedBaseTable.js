@@ -22,7 +22,9 @@ var FixedBaseTable = function FixedBaseTable(_ref) {
       genColumns = _ref$genColumns === void 0 ? [] : _ref$genColumns,
       scroll = _ref.scroll,
       dataSource = _ref.dataSource,
-      rowKey = _ref.rowKey;
+      rowKey = _ref.rowKey,
+      _ref$hideHeader = _ref.hideHeader,
+      hideHeader = _ref$hideHeader === void 0 ? false : _ref$hideHeader;
 
   var _getScrollbarSize = getScrollbarSize(),
       scrollBarX = _getScrollbarSize.scrollBarX,
@@ -42,16 +44,10 @@ var FixedBaseTable = function FixedBaseTable(_ref) {
   var thRef = useRef();
   var context = useContext(BaseTableContext);
   var style = {};
-  var bodyStyle = {};
 
   if (scroll) {
     style.right = fixed === 'right' && scroll.y ? scrollBarY : undefined;
     style.bottom = scroll.x ? scrollBarX : undefined;
-  }
-
-  if (scroll && scroll && scroll.y) {
-    bodyStyle.maxHeight = scroll.y;
-    bodyStyle.overflow = 'scroll hidden';
   }
 
   useEffect(function () {
@@ -66,15 +62,18 @@ var FixedBaseTable = function FixedBaseTable(_ref) {
   }, [fixedBodyRef, genColumns]);
   return /*#__PURE__*/React.createElement("div", {
     className: "".concat(cssPrefix, "-content-fixed ").concat(cssPrefix, "-content-fixed-").concat(fixed),
-    style: style
+    style: Object.assign({}, style)
   }, /*#__PURE__*/React.createElement("div", {
-    className: "".concat(cssPrefix, "-header")
+    className: "".concat(cssPrefix, "-header"),
+    style: {
+      display: hideHeader ? 'none' : 'block'
+    }
   }, /*#__PURE__*/React.createElement("table", null, /*#__PURE__*/React.createElement("colgroup", null, filterColumns.map(function (column) {
     return /*#__PURE__*/React.createElement("col", {
       key: column.dataIndex,
       style: {
         width: column.width,
-        minWidth: column.width
+        maxWidth: column.width
       }
     });
   })), /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", {
@@ -89,8 +88,10 @@ var FixedBaseTable = function FixedBaseTable(_ref) {
   }))))), /*#__PURE__*/React.createElement("div", {
     className: "".concat(cssPrefix, "-body"),
     ref: fixedBodyRef,
-    id: "__fixed".concat(fixed),
-    style: bodyStyle
+    style: {
+      overflow: 'hidden',
+      maxHeight: scroll.y ? "calc(".concat(typeof scroll.y === 'number' ? scroll.y + 'px' : scroll.y, " - ").concat(scrollBarX, "px)") : undefined
+    }
   }, /*#__PURE__*/React.createElement("table", null, /*#__PURE__*/React.createElement("colgroup", null, filterColumns.map(function (column) {
     return /*#__PURE__*/React.createElement("col", {
       key: column.dataIndex,

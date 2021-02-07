@@ -48,8 +48,8 @@ var TableHeader = function TableHeader(_ref) {
   return /*#__PURE__*/React.createElement("div", {
     className: "".concat(cssPrefix, "-header"),
     ref: bodyRef,
-    style: Object.assign(Object.assign({}, style), scroll && scroll.y && {
-      overflow: 'hidden scroll'
+    style: Object.assign(Object.assign({}, style), scroll && {
+      overflow: "hidden ".concat(scroll.y ? 'scroll' : 'hidden')
     })
   }, /*#__PURE__*/React.createElement("table", {
     style: {

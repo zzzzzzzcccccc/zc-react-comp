@@ -88,8 +88,8 @@ const BaseTable: FC<BaseTableProps> = ({
                 dataSource={dataSource}
               />
             )}
-            <FixedBaseTable rowKey={rowKey} fixed="left" scroll={scroll} genColumns={genColumns} dataSource={dataSource} />
-            <FixedBaseTable rowKey={rowKey} fixed="right" scroll={scroll} genColumns={genColumns} dataSource={dataSource} />
+            <FixedBaseTable hideHeader={hideHeader} rowKey={rowKey} fixed="left" scroll={scroll} genColumns={genColumns} dataSource={dataSource} />
+            <FixedBaseTable hideHeader={hideHeader} rowKey={rowKey} fixed="right" scroll={scroll} genColumns={genColumns} dataSource={dataSource} />
           </div>
         </div>
       </div>
