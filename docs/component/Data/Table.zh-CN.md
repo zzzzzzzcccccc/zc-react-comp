@@ -231,13 +231,13 @@ export default () => {
     ];
   }
   const columns = [
-    { title: '姓名', dataIndex: 'name', width: 100, ellipsis: true },
-    { title: '性别', dataIndex: 'sex', width: 400, ellipsis: true },
-    { title: 'a', dataIndex: 'a', width: 400, ellipsis: true },
-    { title: 'b', dataIndex: 'b', width: 400, ellipsis: true },
-    { title: 'c', dataIndex: 'c', width: 400, ellipsis: true },
-    { title: 'd', dataIndex: 'd', width: 400, ellipsis: true },
-    { title: '年龄', dataIndex: 'age', width: 100, ellipsis: true },
+    { title: '姓名', dataIndex: 'name', width: 100 },
+    { title: '性别', dataIndex: 'sex', width: 400 },
+    { title: 'a', dataIndex: 'a', width: 400 },
+    { title: 'b', dataIndex: 'b', width: 400 },
+    { title: 'c', dataIndex: 'c', width: 400 },
+    { title: 'd', dataIndex: 'd', width: 400 },
+    { title: '年龄', dataIndex: 'age', width: 100 },
   ];
   return (
     <Table

@@ -34,13 +34,13 @@ const TableHeader: FC<BaseTableHeaderProps> = ({
     if (theadRef && theadRef.current) {
       context.theadRefCurrent = theadRef.current;
     }
-  }, [theadRef]);
+  }, [theadRef, genColumns]);
 
   useEffect(() => {
     if (bodyRef && bodyRef.current) {
       context.headerRefCurrent = bodyRef.current;
     }
-  }, [bodyRef]);
+  }, [bodyRef, genColumns]);
 
   return (
     <div

@@ -1,7 +1,8 @@
-import React, { FC, useContext, useEffect, useRef } from 'react';
+import React, { FC, useContext, useEffect, useRef, useState } from 'react';
 import { cssPrefix, FixedBaseTableProps } from './index';
 import { getThProps, BaseTableContext } from './tableUitls';
 import TableCell from './TableCell';
+import { getScrollbarSize } from '../utils'
 
 const FixedBaseTable:FC<FixedBaseTableProps> = ({
   fixed,
@@ -10,7 +11,9 @@ const FixedBaseTable:FC<FixedBaseTableProps> = ({
   dataSource,
   rowKey,
 }) => {
-  if (!genColumns || genColumns.length <= 0) {
+  const { scrollBarX, scrollBarY } = getScrollbarSize();
+  const [filterColumns] = useState(genColumns.filter(v => v.level === 1 && (!v.children || v.children.length <= 0) && v.fixed === fixed));
+  if (!filterColumns || filterColumns.length <= 0) {
     return null
   }
   const fixedBodyRef = useRef<HTMLDivElement>();
@@ -19,8 +22,8 @@ const FixedBaseTable:FC<FixedBaseTableProps> = ({
   let style: React.CSSProperties = {};
   let bodyStyle: React.CSSProperties = {};
   if (scroll) {
-    style.right = (fixed === 'right' && scroll.y) ? 15 : undefined;
-    style.bottom = scroll.x ? 15 : undefined;
+    style.right = (fixed === 'right' && scroll.y) ? scrollBarY : undefined;
+    style.bottom = scroll.x ? scrollBarX : undefined;
   }
   if (scroll && scroll && scroll.y) {
     bodyStyle.maxHeight = scroll.y;
@@ -31,13 +34,13 @@ const FixedBaseTable:FC<FixedBaseTableProps> = ({
     if (context && context.theadRefCurrent) {
       thRef.current.style.height = context.theadRefCurrent.offsetHeight + 'px'
     }
-  }, [context]);
+  }, [context, genColumns]);
 
   useEffect(() => {
     if (fixedBodyRef && fixedBodyRef.current) {
       context[`${fixed}FixedBodyRefCurrent`] = fixedBodyRef.current;
     }
-  }, [fixedBodyRef]);
+  }, [fixedBodyRef, genColumns]);
 
   return (
     <div className={`${cssPrefix}-content-fixed ${cssPrefix}-content-fixed-${fixed}`}
@@ -45,12 +48,12 @@ const FixedBaseTable:FC<FixedBaseTableProps> = ({
       <div className={`${cssPrefix}-header`}>
         <table>
           <colgroup>
-            {genColumns.map(column => <col key={column.dataIndex}
+            {filterColumns.map(column => <col key={column.dataIndex}
                                            style={{ width: column.width, minWidth: column.width }} />)}
           </colgroup>
           <thead>
           <tr ref={thRef}>
-            {genColumns.map(column => {
+            {filterColumns.map(column => {
               return(
                 <th key={column.dataIndex} {...getThProps(column)}>
                   <TableCell column={column} renderType="header" />
@@ -68,14 +71,14 @@ const FixedBaseTable:FC<FixedBaseTableProps> = ({
            style={bodyStyle}>
         <table>
           <colgroup>
-            {genColumns.map(column => <col key={column.dataIndex} style={{ width: column.width, minWidth: column.width }} />)}
+            {filterColumns.map(column => <col key={column.dataIndex} style={{ width: column.width, minWidth: column.width }} />)}
           </colgroup>
           <tbody>
             {dataSource.map((record, recordIndex) => {
               return (
                 <tr key={rowKey ? record[rowKey] : recordIndex}
                     data-row-key={rowKey ? record[rowKey] : recordIndex}>
-                  {genColumns.map(column => {
+                  {filterColumns.map(column => {
                     return(
                       <td key={column.dataIndex}>
                         <TableCell record={record}

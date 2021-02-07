@@ -39,12 +39,12 @@ var TableHeader = function TableHeader(_ref) {
     if (theadRef && theadRef.current) {
       context.theadRefCurrent = theadRef.current;
     }
-  }, [theadRef]);
+  }, [theadRef, genColumns]);
   useEffect(function () {
     if (bodyRef && bodyRef.current) {
       context.headerRefCurrent = bodyRef.current;
     }
-  }, [bodyRef]);
+  }, [bodyRef, genColumns]);
   return /*#__PURE__*/React.createElement("div", {
     className: "".concat(cssPrefix, "-header"),
     ref: bodyRef,

@@ -25,8 +25,6 @@ const BaseTable: FC<BaseTableProps> = ({
   const context: IBaseTableContext = {}
   const { originColumns, genColumns } = convertToRows(columns);
   const [endColumns, setEndColumns] = useState(genColumns.filter(v => v.isEndColumn));
-  const [leftColumns] = useState(genColumns.filter(v => v.level === 1 && (!v.children || v.children.length <= 0) && v.fixed === 'left'));
-  const [rightColumns] = useState(genColumns.filter(v => v.level === 1 && (!v.children || v.children.length <= 0) && v.fixed === 'right'));
 
   const handleResize = (index: number, width: number) => {
     let updateEndColumns = [...endColumns];
@@ -90,8 +88,8 @@ const BaseTable: FC<BaseTableProps> = ({
                 dataSource={dataSource}
               />
             )}
-            <FixedBaseTable rowKey={rowKey} fixed="left" scroll={scroll} genColumns={leftColumns} dataSource={dataSource} />
-            <FixedBaseTable rowKey={rowKey} fixed="right" scroll={scroll} genColumns={rightColumns} dataSource={dataSource} />
+            <FixedBaseTable rowKey={rowKey} fixed="left" scroll={scroll} genColumns={genColumns} dataSource={dataSource} />
+            <FixedBaseTable rowKey={rowKey} fixed="right" scroll={scroll} genColumns={genColumns} dataSource={dataSource} />
           </div>
         </div>
       </div>

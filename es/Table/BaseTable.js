@@ -58,18 +58,6 @@ var BaseTable = function BaseTable(_ref) {
       endColumns = _useState2[0],
       setEndColumns = _useState2[1];
 
-  var _useState3 = useState(genColumns.filter(function (v) {
-    return v.level === 1 && (!v.children || v.children.length <= 0) && v.fixed === 'left';
-  })),
-      _useState4 = _slicedToArray(_useState3, 1),
-      leftColumns = _useState4[0];
-
-  var _useState5 = useState(genColumns.filter(function (v) {
-    return v.level === 1 && (!v.children || v.children.length <= 0) && v.fixed === 'right';
-  })),
-      _useState6 = _slicedToArray(_useState5, 1),
-      rightColumns = _useState6[0];
-
   var handleResize = function handleResize(index, width) {
     var updateEndColumns = _toConsumableArray(endColumns);
 
@@ -131,13 +119,13 @@ var BaseTable = function BaseTable(_ref) {
     rowKey: rowKey,
     fixed: "left",
     scroll: scroll,
-    genColumns: leftColumns,
+    genColumns: genColumns,
     dataSource: dataSource
   }), /*#__PURE__*/React.createElement(FixedBaseTable, {
     rowKey: rowKey,
     fixed: "right",
     scroll: scroll,
-    genColumns: rightColumns,
+    genColumns: genColumns,
     dataSource: dataSource
   })))));
 };

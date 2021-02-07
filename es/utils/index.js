@@ -17,3 +17,17 @@ export var logWarning = function logWarning() {
 export var isArray = function isArray(target) {
   return Object.prototype.toString.call(target) === '[object Array]';
 };
+export var getScrollbarSize = function getScrollbarSize() {
+  var div = document.createElement('div');
+  div.style.width = '100px';
+  div.style.height = '100px';
+  div.style.overflow = 'scroll';
+  document.body.appendChild(div);
+  var scrollBarX = div.offsetWidth - div.clientWidth;
+  var scrollBarY = div.offsetHeight - div.clientHeight;
+  div.remove();
+  return {
+    scrollBarX: scrollBarX,
+    scrollBarY: scrollBarY
+  };
+};
