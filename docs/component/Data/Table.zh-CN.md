@@ -318,3 +318,29 @@ export default () => {
   )
 };
 ```
+
+## API
+
+### Table
+
+| 属性 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| dataSource | 源数据 | object[] | [] |
+| columns | 列配置建下方配置说明 | IColumn[] | [] |
+| rowKey | 唯一标识 | string | |
+| size | 尺寸 | small/middle/large | middle |
+| bordered | 是否显示边框 | boolean | false |
+| scroll | 内容滚动 | { x: string/number, y: string/number  } | |
+| onScroll | 滚动监听事件 | (scrollLeft: number, scrollTop: number) => void | |
+
+### Column
+| 属性 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| title | 标题 | React.ReactNode | |
+| dataIndex | string | | |
+| width | 列宽度 | number | |
+| align | 布局 | left/center/right | left |
+| resize | 是否可以改变宽度(必须设定一个width) | boolean | false |
+| fixed | 冻结列(必须设定width) | left/right | |
+| render | 自定义渲染 | (text: any, record: object, index: number) => React.ReactNode | |
+| children | 子集(同Column配置) | IColumn[] | |

@@ -1,92 +1,37 @@
-function _slicedToArray(arr, i) {
-  return (
-    _arrayWithHoles(arr) ||
-    _iterableToArrayLimit(arr, i) ||
-    _unsupportedIterableToArray(arr, i) ||
-    _nonIterableRest()
-  );
-}
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
-function _nonIterableRest() {
-  throw new TypeError(
-    'Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.',
-  );
-}
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 
-function _unsupportedIterableToArray(o, minLen) {
-  if (!o) return;
-  if (typeof o === 'string') return _arrayLikeToArray(o, minLen);
-  var n = Object.prototype.toString.call(o).slice(8, -1);
-  if (n === 'Object' && o.constructor) n = o.constructor.name;
-  if (n === 'Map' || n === 'Set') return Array.from(o);
-  if (n === 'Arguments' || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
-    return _arrayLikeToArray(o, minLen);
-}
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
-function _arrayLikeToArray(arr, len) {
-  if (len == null || len > arr.length) len = arr.length;
-  for (var i = 0, arr2 = new Array(len); i < len; i++) {
-    arr2[i] = arr[i];
-  }
-  return arr2;
-}
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
-function _iterableToArrayLimit(arr, i) {
-  if (typeof Symbol === 'undefined' || !(Symbol.iterator in Object(arr)))
-    return;
-  var _arr = [];
-  var _n = true;
-  var _d = false;
-  var _e = undefined;
-  try {
-    for (
-      var _i = arr[Symbol.iterator](), _s;
-      !(_n = (_s = _i.next()).done);
-      _n = true
-    ) {
-      _arr.push(_s.value);
-      if (i && _arr.length === i) break;
-    }
-  } catch (err) {
-    _d = true;
-    _e = err;
-  } finally {
-    try {
-      if (!_n && _i['return'] != null) _i['return']();
-    } finally {
-      if (_d) throw _e;
-    }
-  }
-  return _arr;
-}
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
-function _arrayWithHoles(arr) {
-  if (Array.isArray(arr)) return arr;
-}
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 import React, { useState } from 'react';
 import classNames from 'classnames';
-import './index.css';
+import "./index.css";
 var cssPrefix = 'r-zc-collapse';
 
 var Collapse = function Collapse(_ref) {
   var className = _ref.className,
-    style = _ref.style,
-    _ref$defaultValue = _ref.defaultValue,
-    defaultValue = _ref$defaultValue === void 0 ? undefined : _ref$defaultValue,
-    children = _ref.children,
-    _ref$multiple = _ref.multiple,
-    multiple = _ref$multiple === void 0 ? true : _ref$multiple,
-    onChange = _ref.onChange;
+      style = _ref.style,
+      _ref$defaultValue = _ref.defaultValue,
+      defaultValue = _ref$defaultValue === void 0 ? undefined : _ref$defaultValue,
+      children = _ref.children,
+      _ref$multiple = _ref.multiple,
+      multiple = _ref$multiple === void 0 ? true : _ref$multiple,
+      onChange = _ref.onChange;
 
   var _useState = useState(defaultValue || []),
-    _useState2 = _slicedToArray(_useState, 2),
-    actualValue = _useState2[0],
-    setActualValue = _useState2[1];
+      _useState2 = _slicedToArray(_useState, 2),
+      actualValue = _useState2[0],
+      setActualValue = _useState2[1];
 
   var updateActualValue = function updateActualValue() {
-    var val =
-      arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+    var val = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
     setActualValue(val);
     onChange && onChange(val);
   };
@@ -96,12 +41,12 @@ var Collapse = function Collapse(_ref) {
       return null;
     }
 
-    return React.Children.map(children, function(child) {
-      if (/*#__PURE__*/ React.isValidElement(child)) {
-        return /*#__PURE__*/ React.cloneElement(child, {
+    return React.Children.map(children, function (child) {
+      if ( /*#__PURE__*/React.isValidElement(child)) {
+        return /*#__PURE__*/React.cloneElement(child, {
           actualValue: actualValue,
           updateActualValue: updateActualValue,
-          multiple: multiple,
+          multiple: multiple
         });
       } else {
         return child;
@@ -109,14 +54,10 @@ var Collapse = function Collapse(_ref) {
     });
   };
 
-  return /*#__PURE__*/ React.createElement(
-    'div',
-    {
-      className: classNames(cssPrefix, className),
-      style: style,
-    },
-    renderChild(),
-  );
+  return /*#__PURE__*/React.createElement("div", {
+    className: classNames(cssPrefix, className),
+    style: style
+  }, renderChild());
 };
 
 export default Collapse;

@@ -3,6 +3,13 @@ import { TableBodyProps, cssPrefix } from './index';
 import TableCell from './TableCell'
 
 class TableBody extends React.Component<TableBodyProps, any> {
+  private scrollDivRef = React.createRef<HTMLDivElement>();
+
+  setScrollY = (scrollTop: number) => {
+    if (this.scrollDivRef && this.scrollDivRef.current) {
+      this.scrollDivRef.current.scrollTop = scrollTop;
+    }
+  };
 
   handleScroll = (e: React.MouseEvent<HTMLDivElement>) => {
     const { onScroll } = this.props;
@@ -15,6 +22,7 @@ class TableBody extends React.Component<TableBodyProps, any> {
     return(
       <div className={`${cssPrefix}-body`}
            onScroll={this.handleScroll}
+           ref={this.scrollDivRef}
            style={{ maxHeight: scroll && scroll.y, overflowX: scroll && scroll.x ? 'scroll' : undefined, overflowY: scroll && scroll.y ? 'scroll' : undefined }}>
         <table style={{ width: scroll && scroll.x }}>
           <colgroup>

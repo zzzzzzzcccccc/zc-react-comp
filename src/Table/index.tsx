@@ -11,7 +11,6 @@ export interface IColumn {
   dataIndex?: string;
   width?: number;
   align?: 'left' | 'center' | 'right';
-  size?: 'small' | 'middle' | 'large';
   resize?: boolean;
   fixed?: 'left' | 'right';
   render?: (text: any, record: object, index: number) => React.ReactNode;
@@ -31,6 +30,7 @@ export interface TableProps {
   className?: string;
   style?: React.CSSProperties;
   bordered?: boolean;
+  size?: 'small' | 'middle' | 'large';
   scroll?: IScroll;
   onScroll?: (scrollLeft: number, scrollTop: number) => void;
 }
@@ -83,6 +83,7 @@ export interface TableFixedProps {
   scrollBarY: number;
   scroll?: IScroll;
   rowKey?: string;
+  onScroll?: (scrollLeft: number, scrollTop: number) => void;
 }
 
 export const cssPrefix = 'r-zc-table';

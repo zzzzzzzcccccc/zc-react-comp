@@ -21,98 +21,111 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 import React from 'react';
+import classNames from 'classnames';
 import { cssPrefix } from './index';
 import TableCell from './TableCell';
 
-var TableHeader = /*#__PURE__*/function (_React$Component) {
-  _inherits(TableHeader, _React$Component);
+var TableFixed = /*#__PURE__*/function (_React$Component) {
+  _inherits(TableFixed, _React$Component);
 
-  var _super = _createSuper(TableHeader);
+  var _super = _createSuper(TableFixed);
 
-  function TableHeader() {
+  function TableFixed() {
     var _this;
 
-    _classCallCheck(this, TableHeader);
+    _classCallCheck(this, TableFixed);
 
     _this = _super.apply(this, arguments);
     _this.scrollDivRef = /*#__PURE__*/React.createRef();
-    _this.theadRef = /*#__PURE__*/React.createRef();
 
-    _this.setScrollX = function (scrollLeft) {
+    _this.setScrollY = function (scrollTop) {
       if (_this.scrollDivRef && _this.scrollDivRef.current) {
-        _this.scrollDivRef.current.scrollLeft = scrollLeft;
+        _this.scrollDivRef.current.scrollTop = scrollTop;
       }
     };
 
-    _this.noticeTheadHeight = function () {
-      _this.timer = setTimeout(function () {
-        _this.props.theadChange && _this.props.theadChange(_this.theadRef.current);
-      }, 0);
+    _this.handleScroll = function (e) {
+      var dom = e.target;
+      _this.props.onScroll && _this.props.onScroll(dom.scrollLeft, dom.scrollTop);
     };
 
     return _this;
   }
 
-  _createClass(TableHeader, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.noticeTheadHeight();
-    }
-  }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      if (this.timer) {
-        clearTimeout(this.timer);
-        this.timer = null;
-      }
-    }
-  }, {
+  _createClass(TableFixed, [{
     key: "render",
     value: function render() {
-      // @ts-ignore
       var _this$props = this.props,
-          originColumns = _this$props.originColumns,
+          fixedType = _this$props.fixedType,
+          theadHeight = _this$props.theadHeight,
           endColumns = _this$props.endColumns,
+          dataSource = _this$props.dataSource,
+          scrollBarX = _this$props.scrollBarX,
+          scrollBarY = _this$props.scrollBarY,
           scroll = _this$props.scroll,
-          onResize = _this$props.onResize;
-      return /*#__PURE__*/React.createElement("div", {
-        className: "".concat(cssPrefix, "-header"),
-        ref: this.scrollDivRef,
-        style: Object.assign(Object.assign({}, scroll && scroll.y && {
-          overflowY: 'scroll'
-        }), {
-          overflowX: 'hidden'
-        })
-      }, /*#__PURE__*/React.createElement("table", {
-        style: {
-          width: scroll && scroll.x
-        }
-      }, /*#__PURE__*/React.createElement("colgroup", null, endColumns.map(function (item) {
-        return /*#__PURE__*/React.createElement("col", {
-          key: item.dataIndex,
-          style: {
-            width: item.width,
-            minWidth: item.width
-          }
-        });
-      })), /*#__PURE__*/React.createElement("thead", {
-        ref: this.theadRef
-      }, originColumns.map(function (tr, trIndex) {
-        return /*#__PURE__*/React.createElement("tr", {
-          key: trIndex
-        }, tr.map(function (column, colIndex) {
-          return /*#__PURE__*/React.createElement(TableCell, {
-            onResize: onResize,
-            key: colIndex,
-            type: "header",
-            column: column
+          rowKey = _this$props.rowKey;
+      var style = {
+        bottom: scroll && scroll.x ? scrollBarX : undefined
+      };
+
+      var renderColGroup = function renderColGroup() {
+        return /*#__PURE__*/React.createElement("colgroup", null, endColumns.map(function (item) {
+          return /*#__PURE__*/React.createElement("col", {
+            key: item.dataIndex,
+            style: {
+              width: item.width,
+              minWidth: item.width
+            }
           });
         }));
-      }))));
+      };
+
+      return /*#__PURE__*/React.createElement("div", {
+        className: classNames("".concat(cssPrefix, "-fixed-item"), "".concat(cssPrefix, "-fixed-item-").concat(fixedType)),
+        style: style
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "".concat(cssPrefix, "-header")
+      }, /*#__PURE__*/React.createElement("table", null, renderColGroup(), /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", {
+        style: {
+          height: theadHeight
+        }
+      }, endColumns.map(function (column) {
+        return /*#__PURE__*/React.createElement(TableCell, {
+          key: column.dataIndex,
+          type: "header",
+          column: column
+        });
+      }))))), /*#__PURE__*/React.createElement("div", {
+        style: {
+          marginRight: fixedType === 'left' ? -1 * scrollBarY : undefined,
+          paddingBottom: 0
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "".concat(cssPrefix, "-body"),
+        style: {
+          maxHeight: scroll && scroll.y,
+          overflow: 'scroll'
+        },
+        onScroll: this.handleScroll,
+        ref: this.scrollDivRef
+      }, /*#__PURE__*/React.createElement("table", null, renderColGroup(), /*#__PURE__*/React.createElement("tbody", null, dataSource.map(function (record, recordIndex) {
+        return /*#__PURE__*/React.createElement("tr", {
+          key: rowKey ? record[rowKey] : recordIndex,
+          "data-row-key": rowKey ? record[rowKey] : recordIndex
+        }, endColumns.map(function (column) {
+          return /*#__PURE__*/React.createElement(TableCell, {
+            key: column.dataIndex,
+            type: "body",
+            column: column,
+            index: recordIndex,
+            record: record
+          });
+        }));
+      }))))));
     }
   }]);
 
-  return TableHeader;
+  return TableFixed;
 }(React.Component);
 
-export default TableHeader;
+export default TableFixed;

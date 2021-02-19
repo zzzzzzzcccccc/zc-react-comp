@@ -12,11 +12,15 @@ class TableFixed extends React.Component<TableFixedProps, any> {
     }
   };
 
+  handleScroll = (e: React.MouseEvent<HTMLDivElement>) => {
+    const dom = e.target as HTMLDivElement;
+    this.props.onScroll && this.props.onScroll(dom.scrollLeft, dom.scrollTop);
+  };
+
   render() {
     const { fixedType, theadHeight, endColumns, dataSource, scrollBarX, scrollBarY, scroll, rowKey } = this.props;
     const style:React.CSSProperties = {
       bottom: scroll && scroll.x ? scrollBarX : undefined,
-      right: fixedType === 'right' && scroll && scroll.y ? scrollBarY : undefined,
     };
     const renderColGroup = () => (
       <colgroup>
@@ -36,12 +40,14 @@ class TableFixed extends React.Component<TableFixedProps, any> {
             </thead>
           </table>
         </div>
-        <div className={`${cssPrefix}-body`}
-             style={{ maxHeight: scroll && scroll.y ? `calc(${typeof scroll.y === 'number' ? scroll.y + 'px' : scroll.y} - ${scrollBarX}px)` : undefined, overflow: 'hidden' }}
-             ref={this.scrollDivRef}>
-          <table>
-            {renderColGroup()}
-            <tbody>
+        <div style={{ marginRight: fixedType === 'left' ? -1 * scrollBarY : undefined, paddingBottom: 0 }}>
+          <div className={`${cssPrefix}-body`}
+               style={{ maxHeight: scroll && scroll.y, overflow: 'scroll' }}
+               onScroll={this.handleScroll}
+               ref={this.scrollDivRef}>
+            <table>
+              {renderColGroup()}
+              <tbody>
               {dataSource.map((record, recordIndex) => {
                 return(
                   <tr key={rowKey ? record[rowKey] : recordIndex} data-row-key={rowKey ? record[rowKey] : recordIndex}>
@@ -49,8 +55,9 @@ class TableFixed extends React.Component<TableFixedProps, any> {
                   </tr>
                 )
               })}
-            </tbody>
-          </table>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     );

@@ -14,6 +14,7 @@ class Table extends React.Component<TableProps, TableState> {
     bordered: false,
   };
   private headerRef = React.createRef<TableHeader>();
+  private bodyRef = React.createRef<TableBody>();
   private leftTableRef = React.createRef<TableFixed>();
   private rightTableRef = React.createRef<TableFixed>();
   constructor(props: TableProps) {
@@ -41,7 +42,8 @@ class Table extends React.Component<TableProps, TableState> {
       scrollBarY,
       scroll,
       dataSource,
-      rowKey
+      rowKey,
+      onScroll: this.handleFixedScroll,
     }
   };
 
@@ -54,6 +56,10 @@ class Table extends React.Component<TableProps, TableState> {
       }
     }
     this.setState({ endColumns });
+  };
+
+  handleFixedScroll = (scrollLeft: number, scrollTop: number) => {
+    this.bodyRef && this.bodyRef.current && this.bodyRef.current.setScrollY(scrollTop);
   };
 
   handleScroll = (scrollLeft: number, scrollTop: number) => {
@@ -85,7 +91,6 @@ class Table extends React.Component<TableProps, TableState> {
   }
 
   render() {
-    // @ts-ignore
     const { dataSource, className, style, size, rowKey, bordered, scroll } = this.props;
     const { originColumns, endColumns, leftColumns, rightColumns, theadHeight, scrollBarX, scrollBarY } = this.state;
     return(
@@ -100,18 +105,22 @@ class Table extends React.Component<TableProps, TableState> {
                        scrollBarX={scrollBarX}
                        scrollBarY={scrollBarY}
                        endColumns={endColumns} />
-          <TableBody dataSource={dataSource}
-                     rowKey={rowKey}
-                     onScroll={this.handleScroll}
-                     scroll={scroll}
-                     scrollBarX={scrollBarX}
-                     scrollBarY={scrollBarY}
-                     endColumns={endColumns} />
-          {(leftColumns.length > 0 || rightColumns.length > 0) && dataSource.length > 0 && theadHeight > 0 &&
-          <div className={`${cssPrefix}-fixed`}>
-            {leftColumns.length > 0 && <TableFixed {...this.getFixedProps('left')} ref={this.leftTableRef} />}
-            {rightColumns.length > 0 && <TableFixed {...this.getFixedProps('right')} ref={this.rightTableRef} /> }
-          </div>}
+          {!dataSource && dataSource.length <= 0 ? <div>null</div> :
+          <>
+            <TableBody dataSource={dataSource}
+                       ref={this.bodyRef}
+                       rowKey={rowKey}
+                       onScroll={this.handleScroll}
+                       scroll={scroll}
+                       scrollBarX={scrollBarX}
+                       scrollBarY={scrollBarY}
+                       endColumns={endColumns} />
+            {(leftColumns.length > 0 || rightColumns.length > 0)  && theadHeight > 0 &&
+            <div className={`${cssPrefix}-fixed`}>
+              {leftColumns.length > 0 && <TableFixed {...this.getFixedProps('left')} ref={this.leftTableRef} />}
+              {rightColumns.length > 0 && <TableFixed {...this.getFixedProps('right')} ref={this.rightTableRef} /> }
+            </div>}
+          </>}
         </div>
       </div>
     );

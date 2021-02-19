@@ -1,85 +1,81 @@
 import React from 'react';
-import BaseTable from './BaseTable';
-declare type TableColumnFixed = 'left' | 'right';
+import Table from './Table';
 export interface IScroll {
-  x?: string | number;
-  y?: string | number;
-}
-export interface IVirtualScroll {
-  itemHeight: number;
+    x?: string | number;
+    y?: string | number;
 }
 export interface IColumn {
-  title: React.ReactNode;
-  dataIndex: string;
-  width?: number;
-  children?: IColumn[];
-  render?: (val: any, record: object, index: number) => React.ReactNode;
-  resize?: boolean;
-  fixed?: TableColumnFixed;
+    title: React.ReactNode;
+    dataIndex?: string;
+    width?: number;
+    align?: 'left' | 'center' | 'right';
+    resize?: boolean;
+    fixed?: 'left' | 'right';
+    render?: (text: any, record: object, index: number) => React.ReactNode;
+    children?: IColumn[];
 }
 export interface ITheadColumn extends IColumn {
-  colSpan?: number;
-  rowSpan?: number;
-  level?: number;
-  children?: ITheadColumn[];
-  isEndColumn?: boolean;
+    level?: number;
+    colSpan?: number;
+    rowSpan?: number;
+    isEndColumn?: boolean;
 }
-export interface IBaseTableContext {
-  theadRefCurrent?: HTMLTableSectionElement;
-  headerRefCurrent?: HTMLDivElement;
-  leftFixedBodyRefCurrent?: HTMLDivElement;
-  rightFixedBodyRefCurrent?: HTMLDivElement;
+export interface TableProps {
+    dataSource: object[];
+    columns: IColumn[];
+    rowKey?: string;
+    className?: string;
+    style?: React.CSSProperties;
+    bordered?: boolean;
+    size?: 'small' | 'middle' | 'large';
+    scroll?: IScroll;
+    onScroll?: (scrollLeft: number, scrollTop: number) => void;
 }
-export interface BaseTableProps {
-  dataSource: object[];
-  columns: IColumn[];
-  rowKey?: string;
-  className?: string;
-  style?: React.CSSProperties;
-  size?: 'small' | 'middle' | 'large';
-  scroll?: IScroll;
-  bordered?: boolean;
-  hideHeader?: boolean;
-  onScroll?: (x: number, y: number) => void;
-  virtualScroll?: IVirtualScroll;
-  onResize?: (dataIndex: string, width: number) => void;
+export interface TableState {
+    originColumns: ITheadColumn[][];
+    genColumns: ITheadColumn[];
+    endColumns: ITheadColumn[];
+    leftColumns: ITheadColumn[];
+    rightColumns: ITheadColumn[];
+    theadHeight: number;
+    scrollBarX: number;
+    scrollBarY: number;
 }
-export interface BaseTableHeaderProps {
-  originColumns: ITheadColumn[][];
-  genColumns: ITheadColumn[];
-  scroll?: IScroll;
-  ref?: React.MutableRefObject<any>;
-  onResize?: (index: number, width: number) => void;
-  style?: React.CSSProperties;
+export interface TableHeaderProps {
+    originColumns: ITheadColumn[][];
+    endColumns: ITheadColumn[];
+    scrollBarX: number;
+    scrollBarY: number;
+    scroll?: IScroll;
+    onResize?: (column: ITheadColumn, width: number) => void;
+    theadChange?: (thead: HTMLTableSectionElement) => void;
 }
-export interface BaseTableBodyProps {
-  genColumns: ITheadColumn[];
-  dataSource: any[];
-  rowKey?: string;
-  scroll?: IScroll;
-  onScroll?: (scrollLeft: number, scrollTop: number) => void;
-}
-export interface BaseVirtualTableBodyProps extends BaseTableBodyProps {
-  virtualScroll: IVirtualScroll;
+export interface TableBodyProps {
+    dataSource: object[];
+    endColumns: ITheadColumn[];
+    rowKey: string;
+    scrollBarX: number;
+    scrollBarY: number;
+    scroll?: IScroll;
+    onScroll?: (scrollLeft: number, scrollTop: number) => void;
 }
 export interface TableCellProps {
-  className?: string;
-  style?: React.CSSProperties;
-  column: IColumn | ITheadColumn;
-  renderType: 'header' | 'body';
-  record?: object;
-  index?: number;
+    type: 'header' | 'body';
+    column: ITheadColumn;
+    record?: object;
+    index?: number;
+    onResize?: (column: ITheadColumn, width: number) => void;
 }
-export interface FixedBaseTableProps {
-  fixed: TableColumnFixed;
-  genColumns?: ITheadColumn[];
-  dataSource: any[];
-  scroll?: IScroll;
-  rowKey?: string;
-  hideHeader?: boolean;
+export interface TableFixedProps {
+    fixedType: 'left' | 'right';
+    theadHeight: number;
+    endColumns: ITheadColumn[];
+    dataSource: object[];
+    scrollBarX: number;
+    scrollBarY: number;
+    scroll?: IScroll;
+    rowKey?: string;
+    onScroll?: (scrollLeft: number, scrollTop: number) => void;
 }
-export declare const isTableCellHeader: (
-  renderType: 'header' | 'body',
-) => boolean;
-export declare const cssPrefix: string;
-export default BaseTable;
+export declare const cssPrefix = "r-zc-table";
+export default Table;

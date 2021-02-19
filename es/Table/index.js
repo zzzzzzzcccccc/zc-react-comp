@@ -1,6 +1,3 @@
-import BaseTable from './BaseTable';
-export var isTableCellHeader = function isTableCellHeader(renderType) {
-  return renderType === 'header';
-};
+import Table from './Table';
 export var cssPrefix = 'r-zc-table';
-export default BaseTable;
+export default Table;

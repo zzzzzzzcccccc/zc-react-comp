@@ -1,39 +1,15 @@
-.r-zc {
-  /* header */
-  /* body */
-  /* fixed */
-  /* cell */
-  /* virtual */
-  /* bordered */
-  /* middle */
-  /* small */
-  /* large */
-}
 .r-zc-table {
-  zoom: 1;
   box-sizing: border-box;
 }
-.r-zc-table:before {
-  content: '';
-  display: table;
-}
-.r-zc-table:after {
-  content: '';
-  display: table;
-  clear: both;
-}
 .r-zc-table table {
-  width: 100%;
   text-align: left;
   border-collapse: collapse;
   border-spacing: 0;
   border: 0;
   table-layout: fixed;
+  width: 100%;
 }
 .r-zc-table-wrapper {
-  box-sizing: border-box;
-}
-.r-zc-table-content {
   box-sizing: border-box;
   position: relative;
 }
@@ -41,23 +17,14 @@
   box-sizing: border-box;
   background-color: #f5f5f9;
 }
-.r-zc-table-header thead {
-  box-sizing: border-box;
+.r-zc-table-header table tr th[colspan]:not([colspan='1']) {
+  text-align: center;
 }
-.r-zc-table-header tr {
-  box-sizing: border-box;
-}
-.r-zc-table-header tr th {
-  box-sizing: border-box;
-}
-.r-zc-table-header tr .r-zc-table-cell-last {
-  border-bottom: 1px solid #e8e8e8;
-}
-.r-zc-table-header tr .react-resizable {
+.r-zc-table-header .react-resizable {
   position: relative;
   background-clip: padding-box;
 }
-.r-zc-table-header tr .react-resizable-handle {
+.r-zc-table-header .react-resizable-handle {
   position: absolute;
   width: 10px;
   height: 100%;
@@ -68,135 +35,81 @@
 }
 .r-zc-table-body {
   box-sizing: border-box;
+  background-color: #fff;
 }
-.r-zc-table-body tbody {
+.r-zc-table-body table tr td {
+  border-top: 1px solid #e8e8e8;
+}
+.r-zc-table-fixed {
   box-sizing: border-box;
 }
-.r-zc-table-body tr {
-  box-sizing: border-box;
-}
-.r-zc-table-body tr td {
-  border-bottom: 1px solid #e8e8e8;
-  box-sizing: border-box;
-}
-.r-zc-table-content-fixed {
+.r-zc-table-fixed-item {
   position: absolute;
   top: 0;
-  bottom: 0;
-  overflow: hidden;
-  background-color: #fff;
   box-sizing: border-box;
+  overflow: hidden;
 }
-.r-zc-table-content-fixed table {
+.r-zc-table-fixed-item table {
   width: auto;
 }
-.r-zc-table-content-fixed-header {
-  box-sizing: border-box;
-}
-.r-zc-table-content-fixed-header table tr th {
-  background-color: #f5f5f9;
-}
-.r-zc-table-content-fixed-body {
-  box-sizing: border-box;
-  background-color: #fff;
-  overflow: hidden;
-}
-.r-zc-table-content-fixed-left {
+.r-zc-table-fixed-item-left {
   left: 0;
 }
-.r-zc-table-content-fixed-right {
+.r-zc-table-fixed-item-right {
   right: 0;
 }
 .r-zc-table-cell {
+  box-sizing: border-box;
   display: inline-block;
   vertical-align: top;
   width: 100%;
-  font-family: "宋体,Simsun";
-}
-.r-zc-table-cell-header {
-  font-weight: normal;
-}
-.r-zc-table-cell-body {
-  word-break: break-word;
-}
-.r-zc-table-cell-ellipsis {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-.r-zc-table-virtual-cell {
-  border-bottom: 1px solid #e8e8e8;
-}
-.r-zc-table-bordered .r-zc-table-content {
-  border-top: 1px solid #e8e8e8;
-}
-.r-zc-table-bordered .r-zc-table-content:after {
-  content: '';
-  display: block;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  width: 1px;
-  background-color: #e8e8e8;
-}
-.r-zc-table-bordered .r-zc-table-content:before {
-  content: '';
-  display: block;
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 1px;
-  background-color: #e8e8e8;
-}
-.r-zc-table-bordered .r-zc-table-content-fixed-left {
-  border-right: 1px solid #e8e8e8;
-}
-.r-zc-table-bordered .r-zc-table-header table tr th {
-  border-left: 1px solid #e8e8e8;
-  border-bottom: 1px solid #e8e8e8;
-}
-.r-zc-table-bordered .r-zc-table-body table tr td {
-  border-left: 1px solid #e8e8e8;
-}
-.r-zc-table-bordered .r-zc-table-virtual-cell:before {
-  content: '';
-  display: block;
-  position: absolute;
-  width: 1px;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  background-color: #e8e8e8;
-}
-.r-zc-table-middle table tr th,
-.r-zc-table-middle table tr td {
-  padding: 8px 12px;
-  font-size: 14px;
-}
-.r-zc-table-middle .r-zc-table-virtual-cell {
-  padding: 8px 12px;
-  box-sizing: border-box;
-  font-size: 14px;
+  font-family: '宋体,Simsun';
+  font-weight: normal;
 }
 .r-zc-table-small table tr th,
 .r-zc-table-small table tr td {
   padding: 4px 10px;
   font-size: 12px;
 }
-.r-zc-table-small .r-zc-table-virtual-cell {
-  padding: 4px 10px;
-  box-sizing: border-box;
+.r-zc-table-small .r-zc-table-cell {
   font-size: 12px;
+}
+.r-zc-table-middle table tr th,
+.r-zc-table-middle table tr td {
+  padding: 8px 12px;
+  font-size: 14px;
+}
+.r-zc-table-middle .r-zc-table-cell {
+  font-size: 14px;
 }
 .r-zc-table-large table tr th,
 .r-zc-table-large table tr td {
   padding: 10px 14px;
   font-size: 16px;
 }
-.r-zc-table-large .r-zc-table-virtual-cell {
-  padding: 10px 14px;
-  box-sizing: border-box;
+.r-zc-table-large .r-zc-table-cell {
   font-size: 16px;
+}
+.r-zc-table-border .r-zc-table-header {
+  border: 1px solid #e8e8e8;
+  border-top: 0;
+}
+.r-zc-table-border .r-zc-table-header table tr th {
+  border-top: 1px solid #e8e8e8;
+}
+.r-zc-table-border .r-zc-table-header table tr th:not(:last-child) {
+  border-right: 1px solid #e8e8e8;
+}
+.r-zc-table-border .r-zc-table-body {
+  border: 1px solid #e8e8e8;
+  border-top: 0;
+}
+.r-zc-table-border .r-zc-table-body table tr:first-child td {
+  border-top: 0;
+}
+.r-zc-table-border .r-zc-table-body table tr td:not(:last-child) {
+  border-right: 1px solid #e8e8e8;
 }

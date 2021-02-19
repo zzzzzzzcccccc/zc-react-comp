@@ -4,7 +4,7 @@ var localConfig = {
     title: 'Title',
     ok: 'Ok',
     cancel: 'Cancel',
-    null: 'No Data',
-  },
+    null: 'No Data'
+  }
 };
 export default localConfig;
