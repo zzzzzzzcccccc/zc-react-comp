@@ -1,42 +1,65 @@
 import React, { FC } from 'react';
 import classNames from 'classnames';
-import { cssPrefix, TableCellProps, isTableCellHeader } from './index';
+import { Resizable, ResizeCallbackData } from 'react-resizable';
+import { TableCellProps, cssPrefix, ITheadColumn } from './index';
 
-const TableCell: FC<TableCellProps> = ({
-  className,
-  style,
+const TableCell:FC<TableCellProps> = ({
+  type,
   column,
-  renderType,
   record,
   index,
+  onResize,
 }) => {
-  const renderHeaderCell = (): React.ReactNode => {
-    return column.title;
+  const cssClassName = classNames(`${cssPrefix}-cell`, `${cssPrefix}-cell-${type}`);
+
+  const handleResize = (column: ITheadColumn) => (e: React.SyntheticEvent, data: ResizeCallbackData) => {
+    e.stopPropagation();
+    if (data.size.width < 20) {
+      return;
+    }
+    onResize && onResize(column, data.size.width);
   };
 
-  const renderBodyCell = (): React.ReactNode => {
-    return column.render
-      ? column.render(record[column.dataIndex], record, index)
-      : record[column.dataIndex];
+  const renderTh = () => {
+    return(
+      <th rowSpan={column.rowSpan}
+          colSpan={column.colSpan}
+          style={{ textAlign: column.align }}>
+              <span className={cssClassName}
+                    title={typeof column.title ? column.title as string : undefined}>
+                {column.title}
+              </span>
+      </th>
+    )
   };
 
-  const renderCell = (): React.ReactNode =>
-    isTableCellHeader(renderType) ? renderHeaderCell() : renderBodyCell();
+  const renderMap = {
+    "header": () => {
+      if (column.width && column.resize && !column.fixed && !column.children) {
+        return (
+          <Resizable width={typeof column.width === 'string' ? parseInt(column.width) : column.width}
+                     draggableOpts={{ enableUserSelectHack: false }}
+                     onResize={handleResize(column)}
+                     height={0}>
+            {renderTh()}
+          </Resizable>
+        )
+      }
+      return renderTh();
+    },
+    "body": () => {
+      return(
+        <td style={{ textAlign: column.align }}>
+          <span className={cssClassName}
+                title={column.render ? undefined : record[column.dataIndex] || ''}>
+            {column.render ? column.render(record[column.dataIndex], record, index) : record[column.dataIndex] || ''}
+          </span>
+        </td>
+      )
+    }
+  };
 
-  return (
-    <span
-      title={typeof renderCell() === 'string' ? renderCell() as string : undefined}
-      className={classNames(
-        `${cssPrefix}-cell`,
-        `${cssPrefix}-cell-${renderType}`,
-        `${cssPrefix}-cell-ellipsis`,
-        className,
-      )}
-      style={style}
-    >
-      {renderCell()}
-    </span>
-  );
+  return renderMap[type]();
 };
 
 export default TableCell;

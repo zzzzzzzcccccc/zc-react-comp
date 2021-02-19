@@ -1,350 +1,320 @@
 ## Table
 
 ### 基础
-
 ```tsx
 import React from 'react';
 import { Table } from 'zc-react-comp';
 
 export default () => {
-  const dataSource = [
-    { id: 1, name: '张三1', age: 21, sex: '男' },
-    { id: 2, name: '张三2', age: 22, sex: '女' },
-    { id: 3, name: '张三3', age: 23, sex: '男' },
-    { id: 4, name: '张三4', age: 24, sex: '女' },
-    { id: 5, name: '张三5', age: 25, sex: '男' },
-  ];
   const columns = [
-    { title: '姓名', dataIndex: 'name', width: 100 },
+    { title: '姓名', dataIndex: 'name' },
     { title: '性别', dataIndex: 'sex' },
-    { title: '年龄', dataIndex: 'age', width: 100 },
+    { title: '地址', dataIndex: 'address' }
   ];
-  return <Table rowKey="id" dataSource={dataSource} columns={columns} />;
+  const dataSource = [
+    { id: 1, name: '张三1', sex: '男', address: 'address1' },
+    { id: 2, name: '张三2', sex: '男', address: 'address2' },
+    { id: 3, name: '张三3', sex: '男', address: 'address3' },
+    { id: 4, name: '张三4', sex: '男', address: 'address4' }
+  ];
+  return(
+    <Table dataSource={dataSource} columns={columns} rowKey="id" />
+  )
 };
 ```
 
 ### 小尺寸
-
 ```tsx
 import React from 'react';
 import { Table } from 'zc-react-comp';
 
 export default () => {
-  const dataSource = [
-    { id: 1, name: '张三1', age: 21, sex: '男' },
-    { id: 2, name: '张三2', age: 22, sex: '女' },
-    { id: 3, name: '张三3', age: 23, sex: '男' },
-    { id: 4, name: '张三4', age: 24, sex: '女' },
-    { id: 5, name: '张三5', age: 25, sex: '男' },
-  ];
   const columns = [
-    { title: '姓名', dataIndex: 'name', width: 100 },
+    { title: '姓名', dataIndex: 'name' },
     { title: '性别', dataIndex: 'sex' },
-    { title: '年龄', dataIndex: 'age', width: 100 },
+    { title: '地址', dataIndex: 'address' }
   ];
-  return (
-    <Table rowKey="id" size="small" dataSource={dataSource} columns={columns} />
-  );
+  const dataSource = [
+    { id: 1, name: '张三1', sex: '男', address: 'address1' },
+    { id: 2, name: '张三2', sex: '男', address: 'address2' },
+    { id: 3, name: '张三3', sex: '男', address: 'address3' },
+    { id: 4, name: '张三4', sex: '男', address: 'address4' }
+  ];
+  return(
+    <Table dataSource={dataSource} columns={columns} rowKey="id" size="small" />
+  )
 };
 ```
 
 ### 大尺寸
-
 ```tsx
 import React from 'react';
 import { Table } from 'zc-react-comp';
 
 export default () => {
-  const dataSource = [
-    { id: 1, name: '张三1', age: 21, sex: '男' },
-    { id: 2, name: '张三2', age: 22, sex: '女' },
-    { id: 3, name: '张三3', age: 23, sex: '男' },
-    { id: 4, name: '张三4', age: 24, sex: '女' },
-    { id: 5, name: '张三5', age: 25, sex: '男' },
-  ];
   const columns = [
-    { title: '姓名', dataIndex: 'name', width: 100 },
+    { title: '姓名', dataIndex: 'name' },
     { title: '性别', dataIndex: 'sex' },
-    { title: '年龄', dataIndex: 'age', width: 100 },
+    { title: '地址', dataIndex: 'address' }
   ];
-  return (
-    <Table rowKey="id" size="large" dataSource={dataSource} columns={columns} />
-  );
+  const dataSource = [
+    { id: 1, name: '张三1', sex: '男', address: 'address1' },
+    { id: 2, name: '张三2', sex: '男', address: 'address2' },
+    { id: 3, name: '张三3', sex: '男', address: 'address3' },
+    { id: 4, name: '张三4', sex: '男', address: 'address4' }
+  ];
+  return(
+    <Table dataSource={dataSource} columns={columns} rowKey="id" size="large" />
+  )
 };
 ```
 
-### 隐藏头部
-
+### 带边框
 ```tsx
 import React from 'react';
 import { Table } from 'zc-react-comp';
 
 export default () => {
-  const dataSource = [
-    { id: 1, name: '张三1', age: 21, sex: '男' },
-    { id: 2, name: '张三2', age: 22, sex: '女' },
-    { id: 3, name: '张三3', age: 23, sex: '男' },
-    { id: 4, name: '张三4', age: 24, sex: '女' },
-    { id: 5, name: '张三5', age: 25, sex: '男' },
-  ];
   const columns = [
-    { title: '姓名', dataIndex: 'name', width: 100 },
+    { title: '姓名', dataIndex: 'name' },
     { title: '性别', dataIndex: 'sex' },
-    { title: '年龄', dataIndex: 'age', width: 100 },
+    { title: '地址', dataIndex: 'address' }
   ];
-  return (
-    <Table hideHeader rowKey="id" dataSource={dataSource} columns={columns} />
-  );
+  const dataSource = [
+    { id: 1, name: '张三1', sex: '男', address: 'address1' },
+    { id: 2, name: '张三2', sex: '男', address: 'address2' },
+    { id: 3, name: '张三3', sex: '男', address: 'address3' },
+    { id: 4, name: '张三4', sex: '男', address: 'address4' }
+  ];
+  return(
+    <Table dataSource={dataSource} columns={columns} rowKey="id" bordered />
+  )
 };
 ```
 
-### 只滚动x轴
+### 滚动条y
 ```tsx
 import React from 'react';
 import { Table } from 'zc-react-comp';
 
 export default () => {
   const columns = [
-    { title: "姓名", dataIndex: 'name' },
-    { title: "年龄", dataIndex: "age" },
-    { title: '描述', dataIndex: 'desc' },
-    { title: 'A', dataIndex: 'A' },
-    { title: 'B', dataIndex: 'B' },
-    { title: 'C', dataIndex: 'C' },
-    { title: 'D', dataIndex: 'D' },
-    { title: 'E', dataIndex: 'E', width: 50, fixed: 'right' }
+    { title: '姓名', dataIndex: 'name' },
+    { title: '性别', dataIndex: 'sex' },
+    { title: '地址', dataIndex: 'address' }
   ];
-  let data = [];
-  for (let i = 0; i < 10; i++) {
-    data.push({ 
-      id: i + 1, 
-      name: "张三" + i + 1, 
-      age: i + 1, 
-      desc: 'descdescdesc' + i + 1,
-      A: i + 1,
-      B: i + 1,
-      C: i + 1,
-      D: i + 1,
-      E: i + 1,
+  const dataSource = [];
+  for (let i = 0; i < 50; i++) {
+    dataSource.push({
+      id: i,
+      name: `张三${i}`,
+      sex: '女',
+      address: `address${i}`
     })
   }
-  
-  return <Table hideHeader scroll={{ x: 1000 }} columns={columns} rowKey="id" dataSource={data} />
+  return(
+    <Table dataSource={dataSource} 
+           columns={columns} 
+           rowKey="id" 
+           scroll={{ y: 260 }}
+           bordered />
+  )
 };
 ```
 
-### 只滚动y轴
+### 滚动条x
 ```tsx
 import React from 'react';
 import { Table } from 'zc-react-comp';
 
 export default () => {
   const columns = [
-    { title: "姓名", dataIndex: 'name' },
-    { title: "年龄", dataIndex: "age" },
-    { title: '描述', dataIndex: 'desc' },
-    { title: 'A', dataIndex: 'A' },
-    { title: 'B', dataIndex: 'B' },
-    { title: 'C', dataIndex: 'C' },
-    { title: 'D', dataIndex: 'D' },
-    { title: 'E', dataIndex: 'E', width: 50 }
+    { title: '姓名', dataIndex: 'name' },
+    { title: '性别', dataIndex: 'sex' },
+    { title: '地址', dataIndex: 'address' }
   ];
-  let data = [];
-  for (let i = 0; i < 10; i++) {
-    data.push({ 
-      id: i + 1, 
-      name: "张三" + i + 1, 
-      age: i + 1, 
-      desc: 'descdescdesc' + i + 1,
-      A: i + 1,
-      B: i + 1,
-      C: i + 1,
-      D: i + 1,
-      E: i + 1,
+  const dataSource = [];
+  for (let i = 0; i < 5; i++) {
+    dataSource.push({
+      id: i,
+      name: `张三${i}`,
+      sex: '女',
+      address: `address${i}`
     })
   }
-  
-  return <Table scroll={{ y: 300 }} columns={columns} rowKey="id" dataSource={data} />
+  return(
+    <Table dataSource={dataSource} 
+           columns={columns} 
+           rowKey="id" 
+           scroll={{ x: `calc(100% + 200px)` }}
+           bordered />
+  )
 };
 ```
 
-### 表头嵌套表头固定滚动某些列可以拖动宽度
-
+### 滚动条x + y
 ```tsx
 import React from 'react';
 import { Table } from 'zc-react-comp';
 
 export default () => {
   const columns = [
-    {
-      title: 'Name',
-      dataIndex: 'name',
-      key: 'name',
-      width: 100,
-      fixed: 'left'
-    },
-    {
-      title: 'Other',
-      children: [
-        {
-          title: 'Age',
-          dataIndex: 'age',
-          key: 'age',
-          width: 150,
-          resize: true,
-        },
-        {
-          title: 'Address',
-          children: [
-            {
-              title: 'Street',
-              dataIndex: 'street',
-              key: 'street',
-              width: 150,
-              resize: true,
-            },
-            {
-              title: 'Block',
-              children: [
-                {
-                  title: 'Building',
-                  dataIndex: 'building',
-                  key: 'building',
-                  width: 100,
-                  resize: true,
-                },
-                {
-                  title: 'Door No.',
-                  dataIndex: 'number',
-                  key: 'number',
-                  width: 100,
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    },
-    {
-      title: 'Company',
-      children: [
-        {
-          title: 'Company Address',
-          dataIndex: 'companyAddress',
-          key: 'companyAddress',
-        },
-        {
-          title: 'Company Name',
-          dataIndex: 'companyName',
-          key: 'companyName',
-        },
-      ],
-    },
-    {
-      width: 100,
-      title: 'Gender',
-      dataIndex: 'gender',
-      key: 'gender',
-      fixed: 'right',
-    },
+    { title: '姓名', dataIndex: 'name' },
+    { title: '性别', dataIndex: 'sex' },
+    { title: '地址', dataIndex: 'address' }
   ];
-
-  const data = [];
-  for (let i = 0; i < 100; i++) {
-    data.push({
-      key: i,
-      name: "张三",
-      age: i,
-      street: 'Lake Park',
-      building: 'C',
-      number: 2035,
-      companyAddress: 'Lake Street 42',
-      companyName: 'SoftLake Co',
-      gender: "李四",
-    });
+  const dataSource = [];
+  for (let i = 0; i < 50; i++) {
+    dataSource.push({
+      id: i,
+      name: `张三${i}`,
+      sex: '女',
+      address: `address${i}`
+    })
   }
-  return (
-    <Table
-      bordered
-      dataSource={data}
-      columns={columns}
-      scroll={{ x: '1400px', y: '500px' }}
-      rowKey="key"
-    />
-  );
+  return(
+    <Table dataSource={dataSource} 
+           columns={columns} 
+           rowKey="id" 
+           scroll={{ x: `calc(100% + 200px)`, y: 300 }}
+           bordered />
+  )
 };
 ```
 
-### 虚拟滚动
-
+### 嵌套
 ```tsx
 import React from 'react';
 import { Table } from 'zc-react-comp';
 
 export default () => {
-  let dataSource = [];
-  for (let i = 0; i < 10000; i++) {
-    dataSource = [
-      ...dataSource,
-      {
-        id: i + 1,
-        name: `张三${i + 1}`,
-        sex: 'MMMM',
-        age: Math.floor(Math.random() * 1000),
-        a: i + 1,
-        b: i + 2,
-        c: i + 3,
-        d: i + 4,
-        e: i + 5,
-      },
-    ];
-  }
   const columns = [
-    { title: '姓名', dataIndex: 'name', width: 100 },
-    { title: '性别', dataIndex: 'sex', width: 400 },
-    { title: 'a', dataIndex: 'a', width: 400 },
-    { title: 'b', dataIndex: 'b', width: 400 },
-    { title: 'c', dataIndex: 'c', width: 400 },
-    { title: 'd', dataIndex: 'd', width: 400 },
-    { title: '年龄', dataIndex: 'age', width: 100 },
+    { title: '姓名',
+      children: [
+        { title: '姓', dataIndex: 'name1' },
+        { title: '名', dataIndex: 'name2' }
+      ]
+    },
+    { title: '性别', dataIndex: 'sex' },
+    { title: '地址',
+      children: [
+        { title: '省', dataIndex: 'address1' },
+        { title: '市', dataIndex: 'address2' },
+        { title: '区', dataIndex: 'address3' }
+      ]
+    }
   ];
-  return (
-    <Table
-      rowKey="id"
-      dataSource={dataSource}
-      bordered
-      scroll={{ y: 500, x: '100%' }}
-      virtualScroll={{ itemHeight: 36 }}
-      columns={columns}
-    />
-  );
+  const dataSource = [];
+  for (let i = 0; i < 50; i++) {
+    dataSource.push({
+      id: i,
+      name1: `张${i}`,
+      name2: `三${i}`,
+      sex: '女',
+      address1: `address${i}`,
+      address2: `address${i}`,
+      address3: `address${i}`
+    })
+  }
+  return(
+    <Table dataSource={dataSource} 
+           columns={columns} 
+           rowKey="id" 
+           scroll={{ y: 300, x: `calc(100% + 200px)` }}
+           bordered />
+  )
 };
 ```
 
-## API
+### 表头可拖拽
+```tsx
+import React from 'react';
+import { Table } from 'zc-react-comp';
 
-### Table
+export default () => {
+  const columns = [
+    { title: '姓名',
+      children: [
+        { title: '姓', dataIndex: 'name1', width: 100, resize: true },
+        { title: '名', dataIndex: 'name2', width: 100, resize: true }
+      ]
+    },
+    { title: '性别', dataIndex: 'sex' },
+    { title: '地址',
+      children: [
+        { title: '省', dataIndex: 'address1', width: 160, resize: true },
+        { title: '市', dataIndex: 'address2', width: 160, resize: true },
+        { title: '区', dataIndex: 'address3', width: 160, resize: true }
+      ]
+    }
+  ];
+  const dataSource = [];
+  for (let i = 0; i < 50; i++) {
+    dataSource.push({
+      id: i,
+      name1: `张${i}`,
+      name2: `三${i}`,
+      sex: '女',
+      address1: `address${i}`,
+      address2: `address${i}`,
+      address3: `address${i}`
+    })
+  }
+  return(
+    <Table dataSource={dataSource} 
+           columns={columns} 
+           rowKey="id" 
+           scroll={{ y: 300, x: `calc(100% + 200px)` }}
+           bordered />
+  )
+};
+```
 
-| 属性          | 说明                                           | 类型                                      | 默认值         |
-| ------------- | ---------------------------------------------- | ----------------------------------------- | -------------- |
-| dataSource    | 源数据                                         | object[]                                  | []             |
-| columns       | [表头配置](/zh-CN/component/data/table?anchor=api#column) | IColumn[]                                 | []             |
-| rowKey        | 唯一标识                                       | string                                    | 若不传则为索引 |
-| size          | 尺寸                                           | small/middle/large                        | middle         |
-| scroll        | 表格滚动                                       | {x: 1000/1000px/100%, y: 1000/100px/50% } |                |
-| bordered      | 是否显示边框                                   | boolean                                   | false          |
-| hideHeader    | 是否隐藏头部                                   | boolean                                   | false          |
-| onScroll      | 内容滚动监听                                   | (x, y) => void                            |                |
-| virtualScroll | 虚拟滚动配置(需要配合 scroll.y)                | { itemHeight: number }                    |                |
 
-### Column
+### 冻结列
+```tsx
+import React from 'react';
+import { Table } from 'zc-react-comp';
 
-| 属性      | 说明                             | 类型                                    | 默认值 |
-| --------- | -------------------------------- | --------------------------------------- | ------ |
-| title     | 文案                             | React.ReactNode                         |        |
-| dataIndex | 字段索引                         | string                                  |        |
-| width     | 宽度                             | number                                  |        |
-| children  | 子集                             | IColumn[]                               |        |
-| render    | 自定义渲染内容                   | (val, record, index) => React.ReactNode |        |
-| resize    | 是否可以调整宽度(必须设置 width) | boolean                                 | false  |
-| fixed     | 列冻结                        | left/right                             | |
+export default () => {
+  const columns = [
+    { title: '公司', dataIndex: 'company', width: 120, fixed: 'left' },
+    { title: '姓名',
+      children: [
+        { title: '姓', dataIndex: 'name1', width: 160, resize: true },
+        { title: '名', dataIndex: 'name2', width: 160, resize: true }
+      ]
+    },
+    { title: '性别', dataIndex: 'sex' },
+    { title: '地址',
+      children: [
+        { title: '省', dataIndex: 'address1', width: 150, resize: true },
+        { title: '市', dataIndex: 'address2', width: 150, resize: true },
+        { title: '区', dataIndex: 'address3', width: 150, resize: true }
+      ]
+    },
+    { title: '分组', dataIndex: 'group', width: 150, fixed: 'right' }
+  ];
+  const dataSource = [];
+  for (let i = 0; i < 50; i++) {
+    dataSource.push({
+      id: i,
+      company: `公司${i}`,
+      name1: `张${i}`,
+      name2: `三${i}`,
+      sex: '女',
+      address1: `address${i}`,
+      address2: `address${i}`,
+      address3: `address${i}`,
+      group: `分组${i}`,
+    })
+  }
+  return(
+    <Table dataSource={dataSource} 
+           columns={columns} 
+           rowKey="id" 
+           scroll={{ y: 300, x: `calc(100% + 200px)` }}
+           bordered />
+  )
+};
+```

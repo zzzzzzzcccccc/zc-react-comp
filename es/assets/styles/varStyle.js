@@ -5,6 +5,6 @@ var varStyle = {
   defaultColor: '#858585',
   successColor: '#a0d911',
   messageZIndex: 1024,
-  modalZIndex: 1000
+  modalZIndex: 1000,
 };
 export default varStyle;

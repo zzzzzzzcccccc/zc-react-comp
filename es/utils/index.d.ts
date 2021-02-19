@@ -7,6 +7,6 @@ export declare const logError: (str?: string) => void;
 export declare const logWarning: (str?: string) => void;
 export declare const isArray: (target: any) => boolean;
 export declare const getScrollbarSize: () => {
-    scrollBarX: number;
-    scrollBarY: number;
+  scrollBarX: number;
+  scrollBarY: number;
 };

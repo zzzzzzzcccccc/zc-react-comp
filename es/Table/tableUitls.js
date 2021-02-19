@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 var getGenColumns = function getGenColumns(columns) {
   var list = [];
-  columns.forEach(function (column) {
+  columns.forEach(function(column) {
     if (column.children && column.children.length > 0) {
       list.push(column);
       list.push.apply(list, getGenColumns(column.children));
@@ -29,7 +29,7 @@ export var convertToRows = function convertToRows(originColumns) {
 
     if (column.children) {
       var colSpan = 0;
-      column.children.forEach(function (subColumn) {
+      column.children.forEach(function(subColumn) {
         traverse(subColumn, column);
         colSpan += subColumn.colSpan;
       });
@@ -39,7 +39,7 @@ export var convertToRows = function convertToRows(originColumns) {
     }
   };
 
-  originColumns.forEach(function (column) {
+  originColumns.forEach(function(column) {
     column.level = 1;
     traverse(column, undefined);
   });
@@ -50,7 +50,7 @@ export var convertToRows = function convertToRows(originColumns) {
   }
 
   var allColumns = getGenColumns(originColumns);
-  allColumns.forEach(function (column) {
+  allColumns.forEach(function(column) {
     if (!column.children || column.children.length <= 0) {
       column.rowSpan = maxLevel - column.level + 1;
       column.isEndColumn = true;
@@ -62,14 +62,17 @@ export var convertToRows = function convertToRows(originColumns) {
   });
   return {
     originColumns: rows,
-    genColumns: allColumns
+    genColumns: allColumns,
   };
 };
 export var getThProps = function getThProps(column) {
   return {
     colSpan: column.colSpan == 1 ? undefined : column.colSpan,
     rowSpan: column.rowSpan == 1 ? undefined : column.rowSpan,
-    className: classNames((!column.children || column.children.length === 0) && "".concat(cssPrefix, "-cell-last"))
+    className: classNames(
+      (!column.children || column.children.length === 0) &&
+        ''.concat(cssPrefix, '-cell-last'),
+    ),
   };
 };
-export var BaseTableContext = /*#__PURE__*/createContext(null);
+export var BaseTableContext = /*#__PURE__*/ createContext(null);

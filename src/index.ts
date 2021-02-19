@@ -42,7 +42,7 @@ export type { CollapseProps, CollapseItemProps } from './Collapse';
 export { default as Collapse } from './Collapse';
 export { default as CollapseItem } from './Collapse/CollapseItem';
 
-export type { BaseTableProps, IColumn, IScroll, IVirtualScroll } from './Table';
+export type { TableProps, TableHeaderProps, TableBodyProps, TableCellProps, IColumn, TableFixedProps } from './Table'
 export { default as Table } from './Table';
 
 export type { CheckBoxProps, CheckBoxGroupProps } from './CheckBox';

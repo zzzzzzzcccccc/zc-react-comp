@@ -30,6 +30,6 @@ export const getScrollbarSize = () => {
   div.remove();
   return {
     scrollBarX,
-    scrollBarY
-  }
-}
+    scrollBarY,
+  };
+};

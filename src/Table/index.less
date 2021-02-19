@@ -1,240 +1,143 @@
-@import '../assets/styles/var.less';
+@import "../assets/styles/var.less";
 
 .@{prefix-name} {
-  &-table {
-    zoom: 1;
+  &-table{
     box-sizing: border-box;
-    &:before {
-      content: '';
-      display: table;
-    }
-    &:after {
-      content: '';
-      display: table;
-      clear: both;
-    }
-    table {
-      width: 100%;
+    table{
       text-align: left;
       border-collapse: collapse;
       border-spacing: 0;
       border: 0;
       table-layout: fixed;
+      width: 100%;
     }
   }
-  &-table-wrapper {
-    box-sizing: border-box;
-  }
-  &-table-content {
+
+  &-table-wrapper{
     box-sizing: border-box;
     position: relative;
   }
-  /* header */
-  &-table-header {
+
+  &-table-header{
     box-sizing: border-box;
     background-color: @gray-bg-color;
-    thead{
-      box-sizing: border-box;
+    table tr th[colspan]:not([colspan='1']) {
+      text-align: center;
     }
-    tr {
-      box-sizing: border-box;
-      th{
-        box-sizing: border-box;
-      }
-      .@{prefix-name}-table-cell-last {
-        border-bottom: 1px solid @gray-border-color;
-      }
-      .react-resizable {
-        position: relative;
-        background-clip: padding-box;
-      }
-      .react-resizable-handle {
-        position: absolute;
-        width: 10px;
-        height: 100%;
-        bottom: 0;
-        right: -5px;
-        cursor: col-resize;
-        z-index: 1;
-      }
+    .react-resizable {
+      position: relative;
+      background-clip: padding-box;
+    }
+    .react-resizable-handle {
+      position: absolute;
+      width: 10px;
+      height: 100%;
+      bottom: 0;
+      right: -5px;
+      cursor: col-resize;
+      z-index: 1;
     }
   }
 
-  /* body */
-  &-table-body {
+  &-table-body{
     box-sizing: border-box;
-    tbody{
-      box-sizing: border-box;
-    }
-    tr {
-      box-sizing: border-box;
-      td {
-        border-bottom: 1px solid @gray-border-color;
-        box-sizing: border-box;
-      }
-    }
-  }
-
-  /* fixed */
-  &-table-content-fixed{
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    overflow: hidden;
     background-color: #fff;
-    box-sizing: border-box;
-    table{
-      width: auto;
+    table tr td{
+      border-top: 1px solid @gray-border-color;
     }
-    &-header{
-      box-sizing: border-box;
-      table{
-        tr {
-          th{
-            background-color: @gray-bg-color;
-          }
-        }
-      }
-    }
-    &-body{
-      box-sizing: border-box;
-      background-color: #fff;
-      overflow: hidden;
-    }
-  }
-  &-table-content-fixed-left{
-    left: 0;
-  }
-  &-table-content-fixed-right{
-    right: 0;
   }
 
-  /* cell */
-  &-table-cell {
+  &-table-fixed{
+    box-sizing: border-box;
+    &-item{
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      box-sizing: border-box;
+      overflow: hidden;
+      table{
+        width: auto;
+      }
+    }
+    &-item-left{
+      left: 0;
+    }
+    &-item-right{
+      right: 0;
+    }
+  }
+
+  &-table-cell{
+    box-sizing: border-box;
     display: inline-block;
     vertical-align: top;
     width: 100%;
-    font-family: "宋体,Simsun";
-    &-header {
-      font-weight: normal;
-    }
-    &-body {
-      word-break: break-word;
-    }
-    &-ellipsis {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: '宋体,Simsun';
+    font-weight: normal;
   }
 
-  /* virtual */
-  &-table-virtual-cell {
-    border-bottom: 1px solid @gray-border-color;
-  }
-
-  /* bordered */
-  &-table-bordered {
-    .@{prefix-name} {
-      &-table-content{
-        border-top: 1px solid @gray-border-color;
-        &:after{
-          content: '';
-          display: block;
-          position: absolute;
-          top: 0;
-          bottom: 0;
-          right: 0;
-          width: 1px;
-          background-color: @gray-border-color;
-        }
-        &:before{
-          content: '';
-          display: block;
-          position: absolute;
-          left: 0;
-          top: 0;
-          bottom: 0;
-          width: 1px;
-          background-color: @gray-border-color;
-        }
-        &-fixed-left{
-          border-right: 1px solid @gray-border-color;
-        }
-      }
-      &-table-header {
-        table {
-          tr {
-            th{
-              border-left: 1px solid @gray-border-color;
-              border-bottom: 1px solid @gray-border-color;
-            }
-          }
-        }
-      }
-      &-table-body {
-        table {
-          tr {
-            td{
-              border-left: 1px solid @gray-border-color;
-            }
-          }
-        }
-      }
-      &-table-virtual-cell {
-        &:before{
-          content: '';
-          display: block;
-          position: absolute;
-          width: 1px;
-          left: 0;
-          top: 0;
-          bottom: 0;
-          background-color: @gray-border-color;
-        }
-      }
-    }
-  }
-
-  /* middle */
-  &-table-middle {
+  &-table-small{
     table tr th,
-    table tr td {
-      padding: 8px 12px;
-      font-size: 14px;
-    }
-    .@{prefix-name}-table-virtual-cell {
-      padding: 8px 12px;
-      box-sizing: border-box;
-      font-size: 14px;
-    }
-  }
-
-  /* small */
-  &-table-small {
-    table tr th,
-    table tr td {
+    table tr td{
       padding: 4px 10px;
       font-size: 12px;
     }
-    .@{prefix-name}-table-virtual-cell {
-      padding: 4px 10px;
-      box-sizing: border-box;
+    .@{prefix-name}-table-cell{
       font-size: 12px;
     }
   }
 
-  /* large */
-  &-table-large {
+  &-table-middle{
     table tr th,
-    table tr td {
+    table tr td{
+      padding: 8px 12px;
+      font-size: 14px;
+    }
+    .@{prefix-name}-table-cell{
+      font-size: 14px;
+    }
+  }
+
+  &-table-large{
+    table tr th,
+    table tr td{
       padding: 10px 14px;
       font-size: 16px;
     }
-    .@{prefix-name}-table-virtual-cell {
-      padding: 10px 14px;
-      box-sizing: border-box;
+    .@{prefix-name}-table-cell{
       font-size: 16px;
+    }
+  }
+
+  &-table-border{
+    .@{prefix-name}{
+      &-table-header{
+        border: 1px solid @gray-border-color;
+        border-top: 0;
+        table tr {
+          th{
+            border-top: 1px solid @gray-border-color;
+          }
+          th:not(:last-child){
+            border-right: 1px solid @gray-border-color;
+          }
+        }
+      }
+      &-table-body{
+        border: 1px solid @gray-border-color;
+        border-top: 0;
+        table tr:first-child td{
+          border-top: 0;
+        }
+        table tr{
+          td:not(:last-child){
+            border-right: 1px solid @gray-border-color;
+          }
+        }
+      }
     }
   }
 }

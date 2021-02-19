@@ -4,7 +4,7 @@ var localConfig = {
     title: '标题',
     ok: '确认',
     cancel: '取消',
-    null: '暂无数据'
-  }
+    null: '暂无数据',
+  },
 };
 export default localConfig;
