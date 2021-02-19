@@ -48,13 +48,14 @@ class TableFixed extends React.Component<TableFixedProps, any> {
             <table>
               {renderColGroup()}
               <tbody>
-              {dataSource.map((record, recordIndex) => {
-                return(
-                  <tr key={rowKey ? record[rowKey] : recordIndex} data-row-key={rowKey ? record[rowKey] : recordIndex}>
-                    {endColumns.map(column => <TableCell key={column.dataIndex} type="body" column={column} index={recordIndex} record={record} />)}
-                  </tr>
-                )
-              })}
+                {dataSource.map((record, recordIndex) => {
+                  return(
+                    <tr key={rowKey ? record[rowKey] : recordIndex}
+                        data-row-key={rowKey ? record[rowKey] : recordIndex}>
+                      {endColumns.map(column => <TableCell key={column.dataIndex} type="body" column={column} index={recordIndex} record={record} />)}
+                    </tr>
+                  )
+                })}
               </tbody>
             </table>
           </div>

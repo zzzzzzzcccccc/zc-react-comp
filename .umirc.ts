@@ -7,9 +7,17 @@ export default defineConfig({
   title: 'zc-react-comp',
   favicon: './images/React.svg',
   logo: './images/React.svg',
-  headScripts: [
-    { src: './lib/babel-polyfill.min.js' }
-  ],
+  targets: {
+    ie: 9,
+    chrome: 49,
+    firefox: 64,
+    safari: 10,
+    edge: 13,
+    ios: 10,
+  },
+  // headScripts: [
+  //   { src: './lib/babel-polyfill.min.js' }
+  // ],
   outputPath: 'docs-dist',
   navs: {
     'en-US': [

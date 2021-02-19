@@ -41,6 +41,6 @@
     "dist",
     "typings",
     "**/__test__",
-    "test"
+    "test",
   ]
 }

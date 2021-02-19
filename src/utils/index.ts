@@ -20,10 +20,9 @@ export const getScrollbarSize = () => {
   div.style.height = '100px';
   div.style.overflow = 'scroll';
   document.body.appendChild(div);
-
   const scrollBarX = div.offsetWidth - div.clientWidth;
   const scrollBarY = div.offsetHeight - div.clientHeight;
-  div.remove();
+  document.body.removeChild(div);
   return {
     scrollBarX,
     scrollBarY,

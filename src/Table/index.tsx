@@ -5,6 +5,13 @@ export interface IScroll {
   x?: string | number;
   y?: string | number;
 }
+export interface IRowSelection {
+  width?: number;
+  title?: React.ReactNode;
+  type?: 'checkbox' | 'radio';
+  selectedRowKeys?: any[];
+  fixed: 'left' | 'right';
+}
 
 export interface IColumn {
   title: React.ReactNode;
@@ -33,6 +40,7 @@ export interface TableProps {
   size?: 'small' | 'middle' | 'large';
   scroll?: IScroll;
   onScroll?: (scrollLeft: number, scrollTop: number) => void;
+  rowSelection?: IRowSelection;
 }
 
 export interface TableState {

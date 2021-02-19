@@ -195,7 +195,7 @@ var Table = /*#__PURE__*/function (_React$Component) {
         scrollBarX: scrollBarX,
         scrollBarY: scrollBarY,
         endColumns: endColumns
-      }), /*#__PURE__*/React.createElement(TableBody, {
+      }), !dataSource && dataSource.length <= 0 ? /*#__PURE__*/React.createElement("div", null, "null") : /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(TableBody, {
         dataSource: dataSource,
         ref: this.bodyRef,
         rowKey: rowKey,
@@ -204,13 +204,13 @@ var Table = /*#__PURE__*/function (_React$Component) {
         scrollBarX: scrollBarX,
         scrollBarY: scrollBarY,
         endColumns: endColumns
-      }), (leftColumns.length > 0 || rightColumns.length > 0) && dataSource.length > 0 && theadHeight > 0 && /*#__PURE__*/React.createElement("div", {
+      }), (leftColumns.length > 0 || rightColumns.length > 0) && theadHeight > 0 && /*#__PURE__*/React.createElement("div", {
         className: "".concat(cssPrefix, "-fixed")
       }, leftColumns.length > 0 && /*#__PURE__*/React.createElement(TableFixed, Object.assign({}, this.getFixedProps('left'), {
         ref: this.leftTableRef
       })), rightColumns.length > 0 && /*#__PURE__*/React.createElement(TableFixed, Object.assign({}, this.getFixedProps('right'), {
         ref: this.rightTableRef
-      })))));
+      }))))));
     }
   }]);
 
