@@ -1,4 +1,8 @@
-import { IColumn, ITheadColumn } from './index';
+import React from 'react';
+import TableFixed from './TableFixed';
+import TableBody from './TableBody';
+import { IColumn, IOnCell, IOnRow, ITheadColumn, cssPrefix } from './index';
+import { addClass, removeClass } from '../utils';
 
 const genColumns = (columns: IColumn[] | ITheadColumn[]): IColumn[] | ITheadColumn[] => {
   let list: IColumn[] = [];
@@ -61,4 +65,79 @@ export const formatColumns = (originColumns: IColumn[]) => {
   }
 
   return { genColumns: allColumns, originColumns: rows }
+};
+
+export const rowActionProps = (onRow: IOnRow, record: object, index: number, leftFixedRef: React.RefObject<TableFixed> | undefined, rightFixedRef: React.RefObject<TableFixed> | undefined, bodyRef: React.RefObject<TableBody> | undefined) => {
+  const rowAction = (record: object, index: number, e: React.MouseEvent<HTMLTableRowElement>, callback: (record: object, index: number, e: React.MouseEvent<HTMLTableRowElement>) => void) => {
+    callback && callback(record, index, e);
+  }
+  const hoverCss = `${cssPrefix}-hover-row`;
+  const updateFixedRefClassName = (add: boolean, fixRef: React.RefObject<TableFixed>) => {
+    fixRef.current
+    && fixRef.current.bodyTableRef
+    && fixRef.current.bodyTableRef.current.rows
+    && fixRef.current.bodyTableRef.current.rows[index]
+    && (add ? addClass(fixRef.current.bodyTableRef.current.rows[index], hoverCss) : removeClass(fixRef.current.bodyTableRef.current.rows[index], hoverCss))
+  };
+  const updateBodyRefClassName = (add: boolean) => {
+    bodyRef.current
+    && bodyRef.current.bodyTableRef
+    && bodyRef.current.bodyTableRef.current
+    && bodyRef.current.bodyTableRef.current.rows
+    && bodyRef.current.bodyTableRef.current.rows[index]
+    && (add ? addClass(bodyRef.current.bodyTableRef.current.rows[index], hoverCss) : removeClass(bodyRef.current.bodyTableRef.current.rows[index], hoverCss))
+  };
+
+  return {
+    onClick: (e: React.MouseEvent<HTMLTableRowElement>) => rowAction(record, index, e, onRow.onClick),
+    onDoubleClick: (e: React.MouseEvent<HTMLTableRowElement>) => rowAction(record, index, e, onRow.onDoubleClick),
+    onContextMenu: (e: React.MouseEvent<HTMLTableRowElement>) => rowAction(record, index, e, onRow.onContextMenu),
+    onMouseEnter: (e: React.MouseEvent<HTMLTableRowElement>) => {
+      addClass(e.currentTarget, hoverCss);
+      if (leftFixedRef && rightFixedRef) {
+        updateFixedRefClassName(true, leftFixedRef);
+        updateFixedRefClassName(true, rightFixedRef);
+      }
+      if (bodyRef) {
+        if (leftFixedRef) {
+          updateFixedRefClassName(true, leftFixedRef);
+        }
+        if (rightFixedRef) {
+          updateFixedRefClassName(true, rightFixedRef);
+        }
+        updateBodyRefClassName(true);
+      }
+      rowAction(record, index, e, onRow.onMouseEnter);
+    },
+    onMouseLeave: (e: React.MouseEvent<HTMLTableRowElement>) => {
+      removeClass(e.currentTarget, hoverCss);
+      if (leftFixedRef && rightFixedRef) {
+        updateFixedRefClassName(false, leftFixedRef);
+        updateFixedRefClassName(false, rightFixedRef);
+      }
+      if (bodyRef) {
+        if (leftFixedRef) {
+          updateFixedRefClassName(false, leftFixedRef);
+        }
+        if (rightFixedRef) {
+          updateFixedRefClassName(false, rightFixedRef);
+        }
+        updateBodyRefClassName(false);
+      }
+      rowAction(record, index, e, onRow.onMouseLeave)
+    }
+  }
+};
+
+export const cellActionProps = (onCell: IOnCell, dataIndex: string, record: object, index: number) => {
+  const cellAction = (dataIndex: string, record: object, index: number, e: React.MouseEvent<HTMLTableDataCellElement>, callback: (dataIndex: string, record: object, index: number, e: React.MouseEvent<HTMLTableDataCellElement>) => void) => {
+    callback && callback(dataIndex, record, index, e);
+  };
+  return {
+    onClick: (e: React.MouseEvent<HTMLTableDataCellElement>) => cellAction(dataIndex, record, index, e, onCell.onClick),
+    onDoubleClick: (e: React.MouseEvent<HTMLTableDataCellElement>) => cellAction(dataIndex, record, index, e, onCell.onDoubleClick),
+    onContextMenu: (e: React.MouseEvent<HTMLTableDataCellElement>) => cellAction(dataIndex, record, index, e, onCell.onContextMenu),
+    onMouseEnter: (e: React.MouseEvent<HTMLTableDataCellElement>) => cellAction(dataIndex, record, index, e, onCell.onMouseEnter),
+    onMouseLeave: (e: React.MouseEvent<HTMLTableDataCellElement>) => cellAction(dataIndex, record, index, e, onCell.onMouseLeave),
+  }
 };

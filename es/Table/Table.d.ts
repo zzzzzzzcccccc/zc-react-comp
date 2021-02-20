@@ -5,6 +5,8 @@ declare class Table extends React.Component<TableProps, TableState> {
     static defaultProps: {
         size: string;
         bordered: boolean;
+        onRow: {};
+        onCell: {};
     };
     private headerRef;
     private bodyRef;

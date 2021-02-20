@@ -21,8 +21,10 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 import React from 'react';
+import classNames from 'classnames';
 import { cssPrefix } from './index';
 import TableCell from './TableCell';
+import { rowActionProps } from './TableUtils';
 
 var TableBody = /*#__PURE__*/function (_React$Component) {
   _inherits(TableBody, _React$Component);
@@ -36,6 +38,7 @@ var TableBody = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.apply(this, arguments);
     _this.scrollDivRef = /*#__PURE__*/React.createRef();
+    _this.bodyTableRef = /*#__PURE__*/React.createRef();
 
     _this.setScrollY = function (scrollTop) {
       if (_this.scrollDivRef && _this.scrollDivRef.current) {
@@ -61,7 +64,12 @@ var TableBody = /*#__PURE__*/function (_React$Component) {
           dataSource = _this$props.dataSource,
           endColumns = _this$props.endColumns,
           rowKey = _this$props.rowKey,
-          scroll = _this$props.scroll;
+          scroll = _this$props.scroll,
+          onRow = _this$props.onRow,
+          onCell = _this$props.onCell,
+          leftFixedRef = _this$props.leftFixedRef,
+          rightFixedRef = _this$props.rightFixedRef,
+          rowClassName = _this$props.rowClassName;
       return /*#__PURE__*/React.createElement("div", {
         className: "".concat(cssPrefix, "-body"),
         onScroll: this.handleScroll,
@@ -74,7 +82,8 @@ var TableBody = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/React.createElement("table", {
         style: {
           width: scroll && scroll.x
-        }
+        },
+        ref: this.bodyTableRef
       }, /*#__PURE__*/React.createElement("colgroup", null, endColumns.map(function (item) {
         return /*#__PURE__*/React.createElement("col", {
           key: item.dataIndex,
@@ -84,11 +93,13 @@ var TableBody = /*#__PURE__*/function (_React$Component) {
           }
         });
       })), /*#__PURE__*/React.createElement("tbody", null, dataSource.map(function (record, recordIndex) {
-        return /*#__PURE__*/React.createElement("tr", {
+        return /*#__PURE__*/React.createElement("tr", Object.assign({
           key: rowKey ? record[rowKey] : recordIndex,
+          className: classNames(rowClassName && rowClassName(record, recordIndex)),
           "data-row-key": rowKey ? record[rowKey] : recordIndex
-        }, endColumns.map(function (column) {
+        }, rowActionProps(onRow, record, recordIndex, leftFixedRef, rightFixedRef, undefined)), endColumns.map(function (column) {
           return /*#__PURE__*/React.createElement(TableCell, {
+            onCell: onCell,
             key: column.dataIndex,
             type: "body",
             column: column,

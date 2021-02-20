@@ -1,10 +1,12 @@
 import React from 'react';
 import classNames from 'classnames';
 import { TableFixedProps, cssPrefix } from './index';
-import TableCell from './TableCell'
+import TableCell from './TableCell';
+import { rowActionProps } from './TableUtils'
 
 class TableFixed extends React.Component<TableFixedProps, any> {
   private scrollDivRef = React.createRef<HTMLDivElement>();
+  public bodyTableRef = React.createRef<HTMLTableElement>();
 
   setScrollY = (scrollTop: number) => {
     if (this.scrollDivRef && this.scrollDivRef.current) {
@@ -18,7 +20,7 @@ class TableFixed extends React.Component<TableFixedProps, any> {
   };
 
   render() {
-    const { fixedType, theadHeight, endColumns, dataSource, scrollBarX, scrollBarY, scroll, rowKey } = this.props;
+    const { fixedType, theadHeight, endColumns, dataSource, scrollBarX, scrollBarY, scroll, rowKey, onRow, onCell, bodyRef, leftFixedRef, rightFixedRef, rowClassName } = this.props;
     const style:React.CSSProperties = {
       bottom: scroll && scroll.x ? scrollBarX : undefined,
     };
@@ -45,14 +47,16 @@ class TableFixed extends React.Component<TableFixedProps, any> {
                style={{ maxHeight: scroll && scroll.y, overflow: 'scroll' }}
                onScroll={this.handleScroll}
                ref={this.scrollDivRef}>
-            <table>
+            <table ref={this.bodyTableRef}>
               {renderColGroup()}
               <tbody>
                 {dataSource.map((record, recordIndex) => {
                   return(
                     <tr key={rowKey ? record[rowKey] : recordIndex}
-                        data-row-key={rowKey ? record[rowKey] : recordIndex}>
-                      {endColumns.map(column => <TableCell key={column.dataIndex} type="body" column={column} index={recordIndex} record={record} />)}
+                        data-row-key={rowKey ? record[rowKey] : recordIndex}
+                        className={classNames(rowClassName && rowClassName(record, recordIndex))}
+                        {...rowActionProps(onRow, record, recordIndex, leftFixedRef || undefined, rightFixedRef || undefined, bodyRef)}>
+                      {endColumns.map(column => <TableCell onCell={onCell} key={column.dataIndex} type="body" column={column} index={recordIndex} record={record} />)}
                     </tr>
                   )
                 })}

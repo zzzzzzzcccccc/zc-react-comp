@@ -168,7 +168,10 @@ var Table = /*#__PURE__*/function (_React$Component) {
           size = _this$props2.size,
           rowKey = _this$props2.rowKey,
           bordered = _this$props2.bordered,
-          scroll = _this$props2.scroll;
+          scroll = _this$props2.scroll,
+          onRow = _this$props2.onRow,
+          onCell = _this$props2.onCell,
+          rowClassName = _this$props2.rowClassName;
       var _this$state2 = this.state,
           originColumns = _this$state2.originColumns,
           endColumns = _this$state2.endColumns,
@@ -201,15 +204,32 @@ var Table = /*#__PURE__*/function (_React$Component) {
         rowKey: rowKey,
         onScroll: this.handleScroll,
         scroll: scroll,
+        onRow: onRow,
+        onCell: onCell,
         scrollBarX: scrollBarX,
         scrollBarY: scrollBarY,
-        endColumns: endColumns
+        endColumns: endColumns,
+        leftFixedRef: this.leftTableRef,
+        rightFixedRef: this.rightTableRef,
+        rowClassName: rowClassName
       }), (leftColumns.length > 0 || rightColumns.length > 0) && theadHeight > 0 && /*#__PURE__*/React.createElement("div", {
         className: "".concat(cssPrefix, "-fixed")
-      }, leftColumns.length > 0 && /*#__PURE__*/React.createElement(TableFixed, Object.assign({}, this.getFixedProps('left'), {
-        ref: this.leftTableRef
-      })), rightColumns.length > 0 && /*#__PURE__*/React.createElement(TableFixed, Object.assign({}, this.getFixedProps('right'), {
-        ref: this.rightTableRef
+      }, leftColumns.length > 0 && /*#__PURE__*/React.createElement(TableFixed, Object.assign({
+        onRow: onRow,
+        onCell: onCell
+      }, this.getFixedProps('left'), {
+        rightFixedRef: this.rightTableRef,
+        ref: this.leftTableRef,
+        bodyRef: this.bodyRef,
+        rowClassName: rowClassName
+      })), rightColumns.length > 0 && /*#__PURE__*/React.createElement(TableFixed, Object.assign({
+        onRow: onRow,
+        onCell: onCell
+      }, this.getFixedProps('right'), {
+        leftFixedRef: this.leftTableRef,
+        ref: this.rightTableRef,
+        bodyRef: this.bodyRef,
+        rowClassName: rowClassName
       }))))));
     }
   }]);
@@ -219,6 +239,8 @@ var Table = /*#__PURE__*/function (_React$Component) {
 
 Table.defaultProps = {
   size: "middle",
-  bordered: false
+  bordered: false,
+  onRow: {},
+  onCell: {}
 };
 export default Table;

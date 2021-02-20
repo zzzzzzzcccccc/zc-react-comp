@@ -12,6 +12,8 @@ class Table extends React.Component<TableProps, TableState> {
   static defaultProps = {
     size: "middle",
     bordered: false,
+    onRow: {},
+    onCell: {},
   };
   private headerRef = React.createRef<TableHeader>();
   private bodyRef = React.createRef<TableBody>();
@@ -91,7 +93,7 @@ class Table extends React.Component<TableProps, TableState> {
   }
 
   render() {
-    const { dataSource, className, style, size, rowKey, bordered, scroll } = this.props;
+    const { dataSource, className, style, size, rowKey, bordered, scroll, onRow, onCell, rowClassName } = this.props;
     const { originColumns, endColumns, leftColumns, rightColumns, theadHeight, scrollBarX, scrollBarY } = this.state;
     return(
       <div className={classNames(cssPrefix, `${cssPrefix}-${size}`, bordered && `${cssPrefix}-border`, className)}
@@ -112,13 +114,32 @@ class Table extends React.Component<TableProps, TableState> {
                        rowKey={rowKey}
                        onScroll={this.handleScroll}
                        scroll={scroll}
+                       onRow={onRow}
+                       onCell={onCell}
                        scrollBarX={scrollBarX}
                        scrollBarY={scrollBarY}
-                       endColumns={endColumns} />
+                       endColumns={endColumns}
+                       leftFixedRef={this.leftTableRef}
+                       rightFixedRef={this.rightTableRef}
+                       rowClassName={rowClassName} />
             {(leftColumns.length > 0 || rightColumns.length > 0)  && theadHeight > 0 &&
             <div className={`${cssPrefix}-fixed`}>
-              {leftColumns.length > 0 && <TableFixed {...this.getFixedProps('left')} ref={this.leftTableRef} />}
-              {rightColumns.length > 0 && <TableFixed {...this.getFixedProps('right')} ref={this.rightTableRef} /> }
+              {leftColumns.length > 0 && <TableFixed
+                onRow={onRow}
+                onCell={onCell}
+                {...this.getFixedProps('left')}
+                rightFixedRef={this.rightTableRef}
+                ref={this.leftTableRef}
+                bodyRef={this.bodyRef}
+                rowClassName={rowClassName} />}
+              {rightColumns.length > 0 && <TableFixed
+                onRow={onRow}
+                onCell={onCell}
+                {...this.getFixedProps('right')}
+                leftFixedRef={this.leftTableRef}
+                ref={this.rightTableRef}
+                bodyRef={this.bodyRef}
+                rowClassName={rowClassName} /> }
             </div>}
           </>}
         </div>

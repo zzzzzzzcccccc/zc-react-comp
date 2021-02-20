@@ -27,3 +27,31 @@ export var getScrollbarSize = function getScrollbarSize() {
     scrollBarY: scrollBarY
   };
 };
+export var addClass = function addClass(el, name) {
+  if (!el || !name) {
+    return;
+  }
+
+  if (!el.className) {
+    el.className = name;
+    return;
+  }
+
+  el.className = "".concat(el.className, " ").concat(name);
+};
+export var removeClass = function removeClass(el, name) {
+  if (!el || !name) {
+    return;
+  }
+
+  if (!el.className) {
+    return;
+  }
+
+  var classNameList = el.className.split(" ").map(function (name) {
+    return name;
+  }).filter(function (v) {
+    return v !== name;
+  });
+  el.className = classNameList.length <= 0 ? '' : classNameList.join(" ");
+};

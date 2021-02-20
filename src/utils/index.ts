@@ -28,3 +28,25 @@ export const getScrollbarSize = () => {
     scrollBarY,
   };
 };
+
+export const addClass = (el: HTMLElement, name: string) => {
+  if (!el || !name) {
+    return;
+  }
+  if (!el.className) {
+    el.className = name;
+    return;
+  }
+  el.className = `${el.className} ${name}`;
+};
+
+export const removeClass = (el: HTMLElement, name: string) => {
+  if (!el || !name) {
+    return;
+  }
+  if (!el.className) {
+    return;
+  }
+  const classNameList = el.className.split(" ").map(name => name).filter(v => v !== name);
+  el.className = classNameList.length <= 0 ? '' : classNameList.join(" ");
+};

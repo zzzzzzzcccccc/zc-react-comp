@@ -17,6 +17,9 @@
   box-sizing: border-box;
   background-color: #f5f5f9;
 }
+.r-zc-table-header table tr th {
+  text-align: left;
+}
 .r-zc-table-header table tr th[colspan]:not([colspan='1']) {
   text-align: center;
 }
@@ -39,6 +42,7 @@
 }
 .r-zc-table-body table tr td {
   border-top: 1px solid #e8e8e8;
+  text-align: left;
 }
 .r-zc-table-fixed {
   box-sizing: border-box;
@@ -112,4 +116,7 @@
 }
 .r-zc-table-border .r-zc-table-body table tr td:not(:last-child) {
   border-right: 1px solid #e8e8e8;
+}
+.r-zc-table-hover-row {
+  background-color: #4569d436;
 }

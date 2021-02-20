@@ -24,6 +24,7 @@ import React from 'react';
 import classNames from 'classnames';
 import { cssPrefix } from './index';
 import TableCell from './TableCell';
+import { rowActionProps } from './TableUtils';
 
 var TableFixed = /*#__PURE__*/function (_React$Component) {
   _inherits(TableFixed, _React$Component);
@@ -37,6 +38,7 @@ var TableFixed = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.apply(this, arguments);
     _this.scrollDivRef = /*#__PURE__*/React.createRef();
+    _this.bodyTableRef = /*#__PURE__*/React.createRef();
 
     _this.setScrollY = function (scrollTop) {
       if (_this.scrollDivRef && _this.scrollDivRef.current) {
@@ -63,7 +65,13 @@ var TableFixed = /*#__PURE__*/function (_React$Component) {
           scrollBarX = _this$props.scrollBarX,
           scrollBarY = _this$props.scrollBarY,
           scroll = _this$props.scroll,
-          rowKey = _this$props.rowKey;
+          rowKey = _this$props.rowKey,
+          onRow = _this$props.onRow,
+          onCell = _this$props.onCell,
+          bodyRef = _this$props.bodyRef,
+          leftFixedRef = _this$props.leftFixedRef,
+          rightFixedRef = _this$props.rightFixedRef,
+          rowClassName = _this$props.rowClassName;
       var style = {
         bottom: scroll && scroll.x ? scrollBarX : undefined
       };
@@ -108,12 +116,16 @@ var TableFixed = /*#__PURE__*/function (_React$Component) {
         },
         onScroll: this.handleScroll,
         ref: this.scrollDivRef
-      }, /*#__PURE__*/React.createElement("table", null, renderColGroup(), /*#__PURE__*/React.createElement("tbody", null, dataSource.map(function (record, recordIndex) {
-        return /*#__PURE__*/React.createElement("tr", {
+      }, /*#__PURE__*/React.createElement("table", {
+        ref: this.bodyTableRef
+      }, renderColGroup(), /*#__PURE__*/React.createElement("tbody", null, dataSource.map(function (record, recordIndex) {
+        return /*#__PURE__*/React.createElement("tr", Object.assign({
           key: rowKey ? record[rowKey] : recordIndex,
-          "data-row-key": rowKey ? record[rowKey] : recordIndex
-        }, endColumns.map(function (column) {
+          "data-row-key": rowKey ? record[rowKey] : recordIndex,
+          className: classNames(rowClassName && rowClassName(record, recordIndex))
+        }, rowActionProps(onRow, record, recordIndex, leftFixedRef || undefined, rightFixedRef || undefined, bodyRef)), endColumns.map(function (column) {
           return /*#__PURE__*/React.createElement(TableCell, {
+            onCell: onCell,
             key: column.dataIndex,
             type: "body",
             column: column,

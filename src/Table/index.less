@@ -21,6 +21,9 @@
   &-table-header{
     box-sizing: border-box;
     background-color: @gray-bg-color;
+    table tr th{
+      text-align: left;
+    }
     table tr th[colspan]:not([colspan='1']) {
       text-align: center;
     }
@@ -44,6 +47,7 @@
     background-color: #fff;
     table tr td{
       border-top: 1px solid @gray-border-color;
+      text-align: left;
     }
   }
 
@@ -138,5 +142,9 @@
         }
       }
     }
+  }
+
+  &-table-hover-row{
+    background-color: @primary-color-hover;
   }
 }

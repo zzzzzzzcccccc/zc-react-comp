@@ -4,13 +4,16 @@ import React from 'react';
 import classNames from 'classnames';
 import { Resizable } from 'react-resizable';
 import { cssPrefix } from './index';
+import { cellActionProps } from './TableUtils';
 
 var TableCell = function TableCell(_ref) {
   var type = _ref.type,
       column = _ref.column,
       record = _ref.record,
       index = _ref.index,
-      onResize = _ref.onResize;
+      onResize = _ref.onResize,
+      _ref$onCell = _ref.onCell,
+      onCell = _ref$onCell === void 0 ? {} : _ref$onCell;
   var cssClassName = classNames("".concat(cssPrefix, "-cell"), "".concat(cssPrefix, "-cell-").concat(type));
 
   var handleResize = function handleResize(column) {
@@ -54,11 +57,11 @@ var TableCell = function TableCell(_ref) {
       return renderTh();
     },
     "body": function body() {
-      return /*#__PURE__*/React.createElement("td", {
+      return /*#__PURE__*/React.createElement("td", Object.assign({
         style: {
           textAlign: column.align
         }
-      }, /*#__PURE__*/React.createElement("span", {
+      }, cellActionProps(onCell, column.dataIndex, record, index)), /*#__PURE__*/React.createElement("span", {
         className: cssClassName,
         title: column.render ? undefined : record[column.dataIndex] || ''
       }, column.render ? column.render(record[column.dataIndex], record, index) : record[column.dataIndex] || ''));

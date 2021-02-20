@@ -15,9 +15,9 @@ export default defineConfig({
     edge: 13,
     ios: 10,
   },
-  // headScripts: [
-  //   { src: './lib/babel-polyfill.min.js' }
-  // ],
+  headScripts: [
+    { src: './lib/babel-polyfill.min.js' }
+  ],
   outputPath: 'docs-dist',
   navs: {
     'en-US': [

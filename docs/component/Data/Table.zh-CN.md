@@ -319,6 +319,29 @@ export default () => {
 };
 ```
 
+### 自定义className
+```tsx
+import React from 'react';
+import { Table } from 'zc-react-comp';
+
+export default () => {
+  const columns = [
+    { title: '姓名', dataIndex: 'name' },
+    { title: '性别', dataIndex: 'sex' },
+    { title: '地址', dataIndex: 'address' }
+  ];
+  const dataSource = [
+    { id: 1, name: '张三1', sex: '男', address: 'address1' },
+    { id: 2, name: '张三2', sex: '男', address: 'address2' },
+    { id: 3, name: '张三3', sex: '男', address: 'address3' },
+    { id: 4, name: '张三4', sex: '男', address: 'address4' }
+  ];
+  return(
+    <Table rowClassName={(record, index) => (index + 1) % 2 === 0 && 'custom-class-name'} dataSource={dataSource} columns={columns} rowKey="id" />
+  )
+};
+```
+
 ## API
 
 ### Table
@@ -332,6 +355,9 @@ export default () => {
 | bordered | 是否显示边框 | boolean | false |
 | scroll | 内容滚动 | { x: string/number, y: string/number  } | |
 | onScroll | 滚动监听事件 | (scrollLeft: number, scrollTop: number) => void | |
+| onRow | 表格行事件集合(见下方文档) | IOnRow | |
+| onCell| 表格单元格事件集合(见下方文档) | IOnCell | |
+| rowClassName | 表格行自定义className | (record: object, index: number) => string | |
 
 ### Column
 | 属性 | 说明 | 类型 | 默认值 |
@@ -344,3 +370,21 @@ export default () => {
 | fixed | 冻结列(必须设定width) | left/right | |
 | render | 自定义渲染 | (text: any, record: object, index: number) => React.ReactNode | |
 | children | 子集(同Column配置) | IColumn[] | |
+
+### onRow
+| 属性 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| onClick | 点击 | (record: object, index: number, e: React.MouseEvent) | |
+| onDoubleClick | 双击 | 同上 |
+| onContextMenu | 鼠标右键 | 同上 |
+| onMouseEnter | 鼠标进入 | 同上 |
+| onMouseLeave | 鼠标离开 | 同上 |
+
+### onCell
+| 属性 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| onClick | 点击 | (dataIndex: string, record: object, index: number, e: React.MouseEvent) |
+| onDoubleClick | 双击 | 同上 |
+| onContextMenu | 鼠标右键 | 同上 |
+| onMouseEnter | 鼠标进入 | 同上 |
+| onMouseLeave | 鼠标离开 | 同上 |

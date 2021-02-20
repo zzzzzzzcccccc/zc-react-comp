@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import classNames from 'classnames';
 import { Resizable, ResizeCallbackData } from 'react-resizable';
 import { TableCellProps, cssPrefix, ITheadColumn } from './index';
+import { cellActionProps } from './TableUtils'
 
 const TableCell:FC<TableCellProps> = ({
   type,
@@ -9,6 +10,7 @@ const TableCell:FC<TableCellProps> = ({
   record,
   index,
   onResize,
+  onCell={},
 }) => {
   const cssClassName = classNames(`${cssPrefix}-cell`, `${cssPrefix}-cell-${type}`);
 
@@ -49,7 +51,8 @@ const TableCell:FC<TableCellProps> = ({
     },
     "body": () => {
       return(
-        <td style={{ textAlign: column.align }}>
+        <td style={{ textAlign: column.align }}
+            {...cellActionProps(onCell, column.dataIndex, record, index)}>
           <span className={cssClassName}
                 title={column.render ? undefined : record[column.dataIndex] || ''}>
             {column.render ? column.render(record[column.dataIndex], record, index) : record[column.dataIndex] || ''}
